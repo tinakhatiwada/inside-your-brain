@@ -2,6 +2,16 @@
 import { BY_ID, GROUPS } from '../brain/anatomy.js';
 import chemicals from '../content/chemicals.json';
 
+export const LOBE_NAMES = {
+  frontal: 'Frontal lobe',
+  parietal: 'Parietal lobe',
+  temporal: 'Temporal lobe',
+  occipital: 'Occipital lobe',
+  cerebellum: 'Cerebellum',
+  brainstem: 'Brainstem',
+  deep: 'Deep brain',
+};
+
 export const $ = (sel, root = document) => root.querySelector(sel);
 export const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -46,12 +56,17 @@ function inline(s) {
     part.startsWith('**') && part.endsWith('**') ? h('strong', {}, part.slice(2, -2)) : document.createTextNode(part.replace(/\*\*/g, '')));
 }
 
-export function structureChip(id, onClick) {
+export function structureChip(id, onClick, { showLobe = false } = {}) {
   const s = BY_ID[id];
   if (!s) return null;
   const color = GROUPS[s.group].color;
+  const children = [h('span.dot', { '--c': color, 'aria-hidden': 'true' }), s.name];
+  if (showLobe && s.lobe) {
+    const lobeName = LOBE_NAMES[s.lobe] || s.lobe;
+    children.push(h('span.chip-lobe', {}, ' · ' + lobeName));
+  }
   return h(onClick ? 'button.chip.chip-structure' : 'span.chip.chip-structure', { type: onClick ? 'button' : undefined, onclick: onClick, '--c': color },
-    h('span.dot', { '--c': color, 'aria-hidden': 'true' }), s.name);
+    ...children);
 }
 
 /** One dot per kind of brain work involved (sensing, feeling, thinking, acting), in a fixed order. */

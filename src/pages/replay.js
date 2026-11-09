@@ -1,5 +1,5 @@
 import { aiReady } from '../ui/shell.js';
-import { h, $, structureChip, chemicalChip, dotsFor, storage } from '../ui/dom.js';
+import { h, $, structureChip, chemicalChip, dotsFor, storage, LOBE_NAMES } from '../ui/dom.js';
 import { streamPost } from '../ui/api.js';
 import { openAsk, setPageContext, icon } from '../ui/ask.js';
 import { BrainView } from '../brain/brain-view.js';
@@ -157,6 +157,27 @@ function showMessage(moment, result) {
 }
 
 // ---------- the replay ----------
+const LOBE_ORDER = ['frontal', 'parietal', 'temporal', 'occipital', 'cerebellum', 'brainstem', 'deep'];
+
+function lobeGroupedChips(ids) {
+  const groups = {};
+  for (const id of ids) {
+    const s = BY_ID[id];
+    if (!s) continue;
+    const lobe = s.lobe || 'deep';
+    if (!groups[lobe]) groups[lobe] = [];
+    groups[lobe].push(id);
+  }
+  return LOBE_ORDER.filter((l) => groups[l]).map((lobe) =>
+    h('div.lobe-group', {},
+      h('h4.lobe-label', {}, LOBE_NAMES[lobe] || lobe),
+      h('div.step-chips', {}, groups[lobe].map((id) =>
+        h('a.chip.chip-structure', { href: `/explore.html#${id}`, '--c': GROUPS[BY_ID[id].group].color },
+          h('span.dot', { '--c': GROUPS[BY_ID[id].group].color, 'aria-hidden': 'true' }), BY_ID[id].name))),
+    ),
+  );
+}
+
 let current = null;
 let step = -1;
 let playing = false;
@@ -185,7 +206,7 @@ function showReplay(r) {
       h('span.step-time', {}, b.time), h('span.step-title', {}, b.title)),
     h('p.step-text', {}, b.text),
     h('div.step-chips', {},
-      b.structures.map((id) => structureChip(id, () => { brain.focusOn([id]); brain.select(id); setTimeout(() => brain.select(null), 2200); })),
+      b.structures.map((id) => structureChip(id, () => { brain.focusOn([id]); brain.select(id); setTimeout(() => brain.select(null), 2200); }, { showLobe: true })),
       (b.chemicals || []).map(chemicalChip)),
   )));
 
@@ -225,7 +246,7 @@ function showReplay(r) {
     h('section.block.fine', { 'aria-labelledby': 'fine-title' }, h('h2.section-title', { id: 'fine-title' }, 'The fine print'),
       h('ul.fine-list', {}, (r.finePrint || []).map((f) => h('li', {}, f))),
       r.sources?.length ? h('div.sources', {}, h('h3', {}, 'Sources'), h('ul', {}, r.sources.map((s) => h('li', {}, `${s.authors} (${s.year}). ${s.title}.${s.journal ? ' ' + s.journal + '.' : ''}`)))) : null,
-      h('div.sources', {}, h('h3', {}, 'Brain areas in this replay'), h('div.step-chips', {}, allIds.map((id) => h('a.chip.chip-structure', { href: `/explore.html#${id}`, '--c': GROUPS[BY_ID[id].group].color }, h('span.dot', { '--c': GROUPS[BY_ID[id].group].color, 'aria-hidden': 'true' }), BY_ID[id].name))))),
+      h('div.sources', {}, h('h3', {}, 'Brain areas in this replay'), ...lobeGroupedChips(allIds))),
     h('section.block.again', { 'data-ai-only': true, 'aria-labelledby': 'again-title' }, h('h2.section-title', { id: 'again-title' }, 'Replay a moment of your own'), buildComposer()),
   ));
   panel.scrollTop = 0;

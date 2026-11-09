@@ -144,6 +144,15 @@ button.chip:hover { color: var(--ivory); border-color: rgba(243, 236, 228, 0.4);
 .chip-structure { color: var(--ivory); }
 .chip-structure .dot { width: 7px; height: 7px; }
 .chip-chem { border-style: dashed; }
+.chip-lobe { font-size: 0.82em; opacity: 0.6; font-weight: 400; }
+
+/* ---------- Lobe groups (replay footer) ---------- */
+.lobe-group { margin-top: 10px; }
+.lobe-group:first-child { margin-top: 4px; }
+.lobe-label {
+  font-size: var(--t-xs); font-weight: 600; color: var(--mist);
+  margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.04em;
+}
 
 /* ---------- Tooltip / popover for chemicals ---------- */
 .pop {
