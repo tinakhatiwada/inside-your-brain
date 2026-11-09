@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Explore the Brain in 3D — Inside the Brain</title>
+    <meta name="description" content="Interactive 3D brain explorer — rotate, zoom, and click brain regions to learn how each part works.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="brain.html" class="nav-brand">
+            <span class="brain-icon">🧠</span>
+            <span>Inside the Brain</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="brain.html">Home</a></li>
+            <li><a href="explore.html" class="active">Explore in 3D</a></li>
+            <li><a href="thoughts.html">How Thoughts Form</a></li>
+            <li><a href="departments.html">Departments</a></li>
+        </ul>
+    </nav>
+
+    <section class="brain-viewer-section">
+        <div class="brain-canvas-container" id="brain-canvas">
+            <div class="loading-text" id="loading-text">Loading brain model...</div>
+        </div>
+        <div class="brain-legend" id="brain-legend"></div>
+        <div class="brain-info-panel" id="brain-info-panel">
+            <div class="brain-info-header">
+                <div class="color-dot" id="info-dot"></div>
+                <h3 id="info-name"></h3>
+            </div>
+            <div class="brain-fn-tags" id="info-fns"></div>
+            <div class="brain-info-desc" id="info-desc"></div>
+            <div class="brain-info-fact" id="info-fact"></div>
+            <div class="brain-connections" id="info-connections">
+                <h4>Connections</h4>
+                <p id="info-conn-text"></p>
+            </div>
+            <button class="brain-back-btn" id="brain-back-btn">← Back to full brain</button>
+        </div>
+        <div class="brain-instruction">Click any lobe to learn about it · Drag to rotate · Scroll to zoom</div>
+    </section>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+
+    const LOBES = [
+        { id:'frontal', name:'Frontal Lobe (incl. Prefrontal Cortex)', color:0x4A90D9, hex:'#4A90D9',
+          fns:['Planning & decision-making','Working memory','Personality & impulse control',"Speech production (Broca's area)",'Voluntary motor control'],
+          desc:'<p>The <strong>frontal lobe</strong> is the largest lobe, occupying about one-third of the cortical surface. Its anterior portion is the <em>prefrontal cortex (PFC)</em> \u2014 the seat of executive functions:</p><ul><li><strong>Dorsolateral PFC</strong> \u2014 Working memory, planning, cognitive flexibility</li><li><strong>Ventromedial PFC</strong> \u2014 Emotional regulation, risk assessment, empathy</li><li><strong>Orbitofrontal cortex</strong> \u2014 Reward processing, decision-making</li></ul><p>The <em>precentral gyrus</em> at the rear contains the <strong>primary motor cortex</strong> \u2014 a strip running ear-to-ear, where each point controls a specific muscle group (motor homunculus).</p><p><em>Broca\'s area</em> (left hemisphere) produces fluent speech. Damage causes <strong>expressive aphasia</strong> \u2014 understanding language perfectly but unable to produce it.</p>',
+          fact:'The prefrontal cortex doesn\'t fully mature until age ~25 \u2014 which is why teenagers often struggle with impulse control and long-term planning.',
+          connections:'Extensively connected to all other lobes. Strong reciprocal connections with the thalamus, basal ganglia, and limbic system. The arcuate fasciculus connects Broca\'s area to Wernicke\'s area in the temporal lobe.' },
+        { id:'parietal', name:'Parietal Lobe', color:0xF5D63D, hex:'#F5D63D',
+          fns:['Touch & pressure sensation','Spatial awareness & navigation','Body position (proprioception)','Mathematical processing','Sensory integration'],
+          desc:'<p>The <strong>parietal lobe</strong> sits behind the frontal lobe, separated by the <em>central sulcus</em>. Its front edge is the <em>postcentral gyrus</em> \u2014 the <strong>primary somatosensory cortex</strong>, processing touch, temperature, pressure, and pain.</p><p>The sensory signals are mapped as a <strong>sensory homunculus</strong> \u2014 the lips and fingertips have disproportionately large representations because of their sensitivity.</p><p>The <em>posterior parietal cortex</em> integrates sensory data to construct spatial awareness. Damage to the right parietal lobe causes <strong>hemispatial neglect</strong> \u2014 the person genuinely cannot perceive the left side of their world.</p>',
+          fact:'Certain parietal damage causes <em>acalculia</em> (inability to do math) or <em>agraphia</em> (inability to write) despite otherwise normal intelligence.',
+          connections:'Connected to the frontal lobe via the superior longitudinal fasciculus. Receives input from the thalamus. Projects to temporal lobe (ventral stream) and motor areas (dorsal stream).' },
+        { id:'temporal', name:'Temporal Lobe', color:0x4CAF50, hex:'#4CAF50',
+          fns:['Hearing & auditory processing','Language comprehension (Wernicke\'s area)','Long-term memory (hippocampus)','Emotion & fear (amygdala)','Face & object recognition'],
+          desc:'<p>The <strong>temporal lobes</strong> sit behind the temples. The <em>superior temporal gyrus</em> houses the <strong>primary auditory cortex</strong> \u2014 where vibrations become conscious sound.</p><p><strong>Wernicke\'s area</strong> (left temporal lobe) handles language comprehension. Damage produces <em>receptive aphasia</em> \u2014 fluent but meaningless speech.</p><ul><li><strong>Hippocampus</strong> \u2014 Converts short-term memories to long-term. Patient H.M., who had both hippocampi removed, could no longer form new memories.</li><li><strong>Amygdala</strong> \u2014 The brain\'s threat detector. Processes fear, anxiety, and emotional memory.</li></ul><p>The <em>fusiform gyrus</em> at the temporal-occipital boundary specializes in face recognition. Damage causes <strong>prosopagnosia</strong> \u2014 face blindness.</p>',
+          fact:'The hippocampus is named after the Greek word for "seahorse" due to its curved shape. It\'s one of only two brain regions where new neurons are born throughout adult life.',
+          connections:'Connected to the frontal lobe via the uncinate fasciculus and arcuate fasciculus. The hippocampus connects to the entorhinal cortex, fornix, and mammillary bodies.' },
+        { id:'occipital', name:'Occipital Lobe', color:0xE53935, hex:'#E53935',
+          fns:['Primary vision processing (V1)','Color perception (V4)','Motion detection (V5/MT)','Shape & edge recognition','Depth perception'],
+          desc:'<p>The <strong>occipital lobe</strong> sits at the very back of the head, almost entirely dedicated to <em>vision</em>.</p><ul><li><strong>V1 (Primary Visual Cortex)</strong> \u2014 Receives raw retinal input. Processes edges, orientations, contrast.</li><li><strong>V4</strong> \u2014 Color perception. Damage causes <em>cerebral achromatopsia</em> \u2014 seeing only in grayscale</li><li><strong>V5/MT</strong> \u2014 Motion detection. Damage causes <em>akinetopsia</em> \u2014 the world appears as frozen snapshots</li></ul><p>Visual information from the left visual field is processed in the <em>right</em> occipital lobe, and vice versa.</p>',
+          fact:'About 30% of your entire cortex is devoted to vision \u2014 more brain territory than any other sense.',
+          connections:'Receives input from the lateral geniculate nucleus (LGN) of the thalamus. Projects forward via the ventral stream (to temporal lobe) and dorsal stream (to parietal lobe).' },
+        { id:'cerebellum', name:'Cerebellum', color:0xAB47BC, hex:'#AB47BC',
+          fns:['Motor coordination & precision','Balance & posture','Procedural "muscle memory"','Timing & rhythm','Motor learning'],
+          desc:'<p>Latin for "little brain," the <strong>cerebellum</strong> is only 10% of brain volume but contains over <em>half of all neurons</em> \u2014 roughly 50\u201380 billion cells.</p><p>It doesn\'t initiate movement \u2014 it <em>refines</em> it. Three functional divisions:</p><ul><li><strong>Vestibulocerebellum</strong> \u2014 Balance and eye movements</li><li><strong>Spinocerebellum</strong> \u2014 Body and limb movements, posture</li><li><strong>Cerebrocerebellum</strong> \u2014 Motor planning, cognitive functions</li></ul><p>It also stores <em>procedural memory</em> \u2014 how to ride a bike, type, or play an instrument without conscious thought.</p>',
+          fact:'Alcohol impairs the cerebellum early \u2014 which is why the first signs of intoxication are poor balance and clumsiness.',
+          connections:'Connected to the cortex via the pons. Sends output through deep cerebellar nuclei to the thalamus and motor cortex. Also receives vestibular and spinal cord input.' },
+        { id:'brainstem', name:'Brainstem', color:0xFF9800, hex:'#FF9800',
+          fns:['Breathing & heartbeat regulation','Sleep-wake cycle control','Cranial nerve relay','Consciousness (reticular formation)','Reflexes'],
+          desc:'<p>The <strong>brainstem</strong> is the brain\'s oldest structure, connecting the cerebrum to the spinal cord.</p><ul><li><strong>Midbrain</strong> \u2014 Contains the superior and inferior colliculi. Controls eye movement.</li><li><strong>Pons</strong> \u2014 Bridges cerebrum-cerebellum communication. Regulates breathing.</li><li><strong>Medulla Oblongata</strong> \u2014 Controls heartbeat, blood pressure, breathing rhythm, and protective reflexes.</li></ul><p>The <em>reticular activating system (RAS)</em> running through the brainstem is the brain\'s master alertness switch.</p>',
+          fact:'Ten of the twelve cranial nerves originate from the brainstem \u2014 controlling facial expressions, eye movements, taste, hearing, and swallowing.',
+          connections:'All ascending and descending pathways pass through the brainstem. Connected to the cerebellum via the cerebellar peduncles. The reticular formation projects to thalamus and cortex.' }
+    ];
+
+    let scene, camera, renderer, controls, brainModel, clock;
+    let allMeshes = [];
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let hovIdx = -1, selIdx = -1, camAnimating = false;
+    const camTarget = new THREE.Vector3();
+    const lookTarget = new THREE.Vector3();
+    const CAM_DEFAULT = new THREE.Vector3(2.0, 1.0, 2.5);
+    const LOOK_DEFAULT = new THREE.Vector3(0, 0.2, 0);
+    let ptrStart = {x:0,y:0}, ptrMoved = false;
+    let modelBBox = null;
+
+    function initScene(){
+        const wrap = document.getElementById('brain-canvas');
+        const w = wrap.clientWidth, h = wrap.clientHeight;
+        clock = new THREE.Clock();
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x08061a);
+        camera = new THREE.PerspectiveCamera(40, w/h, 0.01, 50);
+        camera.position.copy(CAM_DEFAULT);
+        renderer = new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(w,h);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.3;
+        wrap.appendChild(renderer.domElement);
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; controls.dampingFactor = 0.07;
+        controls.minDistance = 1.0; controls.maxDistance = 6;
+        controls.target.copy(LOOK_DEFAULT);
+        controls.autoRotate = true; controls.autoRotateSpeed = 0.6;
+        scene.add(new THREE.AmbientLight(0xd0d0e0, 0.5));
+        const key = new THREE.DirectionalLight(0xfff5ee, 1.6);
+        key.position.set(3,5,4); scene.add(key);
+        const fill = new THREE.DirectionalLight(0x8899bb, 0.4);
+        fill.position.set(-3,2,-2); scene.add(fill);
+        const rim = new THREE.DirectionalLight(0xaaccff, 0.3);
+        rim.position.set(0,-1,-4); scene.add(rim);
+        loadBrain(); buildLegend(); bindEvents(); tick();
+    }
+
+    function showLoading(msg){ const el=document.getElementById('loading-text'); if(el) el.innerHTML=msg; }
+    function hideLoading(){ const el=document.getElementById('loading-text'); if(el) el.style.display='none'; }
+
+    function loadBrain(){
+        showLoading('Loading brain model...');
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+        const loader = new GLTFLoader();
+        loader.setDRACOLoader(dracoLoader);
+        loader.load('brain_c.glb',
+            (gltf) => { setupModel(gltf); },
+            (p) => { if(p.total>0) showLoading('Loading... '+Math.round(p.loaded/p.total*100)+'%'); },
+            () => {
+                const loader2 = new GLTFLoader();
+                loader2.load('brain_model.glb', (gltf) => { setupModel(gltf); }, null,
+                    () => { showLoading('Could not load brain model.<br>Open via <b>http://127.0.0.1:8765/explore.html</b>'); });
+            }
+        );
+    }
+
+    function setupModel(gltf){
+        brainModel = gltf.scene;
+        brainModel.scale.set(1.5,1.5,1.5);
+        const meshes = [];
+        brainModel.traverse(child => {
+            if(child.isMesh){
+                child.material = new THREE.MeshPhysicalMaterial({color:0xddbbcc,roughness:0.5,metalness:0,clearcoat:0.12,clearcoatRoughness:0.5,side:THREE.DoubleSide});
+                child.castShadow = true;
+                meshes.push(child);
+            }
+        });
+        allMeshes = meshes;
+        assignLobes(meshes);
+        scene.add(brainModel);
+        hideLoading();
+    }
+
+    function getLobeFromPoint(point){
+        if(!modelBBox) return 0;
+        const bb=modelBBox, size=new THREE.Vector3(); bb.getSize(size);
+        const ny=(point.y-bb.min.y)/size.y, nz=(point.z-bb.min.z)/size.z, nx=(point.x-bb.min.x)/size.x;
+        if(ny<0.25){ if(nz<0.4)return 4; if(ny<0.12)return 5; return 2; }
+        else if(ny<0.55){ if(nz<0.3)return 3; if(nz>0.65)return 0; if(Math.abs(nx-0.5)>0.35)return 2; return 1; }
+        else{ if(nz<0.25)return 3; if(nz>0.6)return 0; return 1; }
+    }
+
+    function assignLobes(meshes){
+        const lobeColors = LOBES.map(d => new THREE.Color(d.color));
+        meshes.forEach(mesh => {
+            mesh.geometry.computeBoundingBox();
+            if(!modelBBox) modelBBox = mesh.geometry.boundingBox.clone();
+            else modelBBox.union(mesh.geometry.boundingBox);
+        });
+        meshes.forEach(mesh => {
+            const pos=mesh.geometry.attributes.position;
+            const colors=new Float32Array(pos.count*3);
+            for(let i=0;i<pos.count;i++){
+                const idx=getLobeFromPoint(new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)));
+                const c=lobeColors[idx];
+                colors[i*3]=c.r; colors[i*3+1]=c.g; colors[i*3+2]=c.b;
+            }
+            mesh.geometry.setAttribute('color',new THREE.BufferAttribute(colors,3));
+            mesh.material=new THREE.MeshPhysicalMaterial({vertexColors:true,roughness:0.5,metalness:0.02,clearcoat:0.15,clearcoatRoughness:0.4,side:THREE.DoubleSide});
+        });
+    }
+
+    function buildLegend(){
+        const el=document.getElementById('brain-legend');
+        el.innerHTML=LOBES.map((d,i)=>'<div class="brain-legend-item" data-i="'+i+'"><div class="brain-legend-dot" style="background:'+d.hex+'"></div>'+d.name.split('(')[0].trim()+'</div>').join('');
+        el.querySelectorAll('.brain-legend-item').forEach(it=>it.addEventListener('click',()=>selectLobe(+it.dataset.i)));
+    }
+
+    function bindEvents(){
+        const c=renderer.domElement;
+        c.addEventListener('pointerdown',e=>{ptrStart={x:e.clientX,y:e.clientY};ptrMoved=false;});
+        c.addEventListener('pointermove',e=>{
+            if(!ptrMoved){if(Math.hypot(e.clientX-ptrStart.x,e.clientY-ptrStart.y)>5)ptrMoved=true;}
+            const r=c.getBoundingClientRect();
+            mouse.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
+            raycaster.setFromCamera(mouse,camera);
+            const hits=raycaster.intersectObjects(allMeshes);
+            if(hits.length>0){
+                const hitPt=hits[0].point.clone(); if(brainModel) brainModel.worldToLocal(hitPt);
+                const idx=getLobeFromPoint(hitPt);
+                if(idx!==hovIdx&&hovIdx>=0&&hovIdx!==selIdx) allMeshes.forEach(m=>{m.material.emissive.setHex(0);});
+                if(idx!==selIdx){hovIdx=idx;allMeshes.forEach(m=>{m.material.emissive.setHex(LOBES[idx].color);m.material.emissiveIntensity=0.08;});}
+                c.style.cursor='pointer';
+            }else{
+                if(hovIdx>=0&&hovIdx!==selIdx) allMeshes.forEach(m=>{m.material.emissive.setHex(0);});
+                hovIdx=-1;c.style.cursor='grab';
+            }
+        });
+        c.addEventListener('pointerup',e=>{
+            if(ptrMoved)return;
+            const r=c.getBoundingClientRect();
+            mouse.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
+            raycaster.setFromCamera(mouse,camera);
+            const hits=raycaster.intersectObjects(allMeshes);
+            if(hits.length>0){const hitPt=hits[0].point.clone();if(brainModel)brainModel.worldToLocal(hitPt);selectLobe(getLobeFromPoint(hitPt));}
+        });
+    }
+
+    function selectLobe(idx){
+        if(idx<0||idx>=LOBES.length)return;
+        selIdx=idx;controls.autoRotate=false;
+        const lobeColors=LOBES.map(d=>new THREE.Color(d.color));
+        allMeshes.forEach(mesh=>{
+            const pos=mesh.geometry.attributes.position,colAttr=mesh.geometry.attributes.color;
+            for(let i=0;i<pos.count;i++){
+                const vertIdx=getLobeFromPoint(new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)));
+                let c=vertIdx===idx?lobeColors[vertIdx]:lobeColors[vertIdx].clone().multiplyScalar(0.12);
+                colAttr.setXYZ(i,c.r,c.g,c.b);
+            }
+            colAttr.needsUpdate=true;mesh.material.emissive.setHex(0);
+        });
+        showPanel(LOBES[idx]);
+    }
+
+    function resetView(){
+        const lobeColors=LOBES.map(d=>new THREE.Color(d.color));
+        allMeshes.forEach(mesh=>{
+            const pos=mesh.geometry.attributes.position,colAttr=mesh.geometry.attributes.color;
+            if(!colAttr)return;
+            for(let i=0;i<pos.count;i++){const c=lobeColors[getLobeFromPoint(new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)))];colAttr.setXYZ(i,c.r,c.g,c.b);}
+            colAttr.needsUpdate=true;mesh.material.transparent=false;mesh.material.opacity=1;mesh.material.emissive.setHex(0);
+        });
+        selIdx=-1;camTarget.copy(CAM_DEFAULT);lookTarget.copy(LOOK_DEFAULT);camAnimating=true;controls.autoRotate=true;hidePanel();
+    }
+
+    function showPanel(d){
+        document.getElementById('info-dot').style.background=d.hex;
+        document.getElementById('info-name').textContent=d.name;
+        document.getElementById('info-name').style.color=d.hex;
+        document.getElementById('info-fns').innerHTML=d.fns.map(f=>'<span class="brain-fn-tag">'+f+'</span>').join('');
+        document.getElementById('info-desc').innerHTML=d.desc;
+        document.getElementById('info-fact').innerHTML='<strong>\uD83D\uDCA1 Fun fact:</strong> '+d.fact;
+        document.getElementById('info-conn-text').innerHTML=d.connections||'';
+        document.getElementById('brain-info-panel').classList.add('active');
+    }
+    function hidePanel(){document.getElementById('brain-info-panel').classList.remove('active');}
+
+    function tick(){
+        requestAnimationFrame(tick);if(!renderer)return;
+        const t=clock.getElapsedTime();
+        if(camAnimating){camera.position.lerp(camTarget,0.04);controls.target.lerp(lookTarget,0.04);if(camera.position.distanceTo(camTarget)<0.01)camAnimating=false;}
+        if(selIdx<0&&brainModel){const s=1+Math.sin(t*0.8)*0.004;brainModel.scale.setScalar(1.5*s);}
+        controls.update();renderer.render(scene,camera);
+    }
+
+    function onResize(){if(!renderer)return;const w=document.getElementById('brain-canvas');camera.aspect=w.clientWidth/w.clientHeight;camera.updateProjectionMatrix();renderer.setSize(w.clientWidth,w.clientHeight);}
+
+    document.getElementById('brain-back-btn').addEventListener('click',resetView);
+    window.addEventListener('resize',onResize);
+    initScene();
+    </script>
+</body>
+</html>
