@@ -455,6 +455,7 @@ export class BrainView {
   setAutoRotate(on) { this.autoRotate = on && !reduceMotion(); }
   setAmbient(on) { this.opts.ambient = on; if (!on) this.clearActivity(); }
   setMarkers(on) { this.opts.markers = on; }
+  setShowLobes(on) { this.opts.showLobes = !!on; }
 
   setLobeMode(on) { this.lobeModeTarget = on ? 1 : 0; if (!on) this.selectLobe(-1); }
   selectLobe(i) { this.lobeSel = i; this.uniforms && (this.uniforms.uLobeSel.value = i); }
@@ -621,9 +622,14 @@ export class BrainView {
         el = document.createElement('div');
         el.className = 'brain-label';
         el.style.setProperty('--c', GROUPS[s.group].color);
-        el.innerHTML = `<span class="brain-label-name"></span><span class="brain-label-nick"></span>`;
-        el.firstChild.textContent = s.name;
-        el.lastChild.textContent = s.nickname;
+        el.innerHTML = `<span class="brain-label-name"></span><span class="brain-label-nick"></span><span class="brain-label-lobe"></span>`;
+        el.querySelector('.brain-label-name').textContent = s.name;
+        el.querySelector('.brain-label-nick').textContent = s.nickname;
+        const lobeEl = el.querySelector('.brain-label-lobe');
+        if (this.opts.showLobes && s.lobe) {
+          const lobeNames = { frontal: 'Frontal lobe', parietal: 'Parietal lobe', temporal: 'Temporal lobe', occipital: 'Occipital lobe', cerebellum: 'Cerebellum', brainstem: 'Brainstem', deep: 'Deep brain' };
+          lobeEl.textContent = lobeNames[s.lobe] || s.lobe;
+        }
         this.labelLayer.appendChild(el);
         this.labels.set(id, el);
       }

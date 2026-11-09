@@ -12,7 +12,7 @@ const caption = $('#caption');
 const player = $('#player');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const brain = new BrainView($('#stage'), { autoRotate: false, ambient: false, labels: true, zoom: true, view: [1, 0.22, 0.2] });
+const brain = new BrainView($('#stage'), { autoRotate: false, ambient: false, labels: true, zoom: true, view: [1, 0.22, 0.2], showLobes: true });
 brain.ready.catch(() => {});
 
 $('#stage-key').append(...Object.values(GROUPS).map((g) => h('li', {}, h('span.dot', { '--c': g.color, 'aria-hidden': 'true' }), g.name)));

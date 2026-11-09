@@ -114,6 +114,8 @@
 }
 .brain-label-name { font-size: var(--t-xs); font-weight: 600; color: var(--ivory); line-height: 1.3; }
 .brain-label-nick { font-size: 0.75rem; color: var(--c); line-height: 1.3; }
+.brain-label-lobe { font-size: 0.68rem; color: var(--mist); opacity: 0.7; line-height: 1.3; }
+.brain-label-lobe:empty { display: none; }
 .brain-label.is-selected { background: rgba(37, 29, 51, 0.92); }
 @keyframes label-in { from { opacity: 0; } to { opacity: 1; } }
 .brain-fallback {
