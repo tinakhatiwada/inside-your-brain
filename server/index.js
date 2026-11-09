@@ -11,8 +11,8 @@ import { PROMPT_VERSION } from './prompts/index.js';
 const env = process.env;
 const config = {
   port: Number(env.PORT || 8787),
-  modelReplay: env.MODEL_REPLAY || 'gemini-3.8-flash',
-  modelAsk: env.MODEL_ASK || 'gemini-3.8-flash',
+  modelReplay: env.MODEL_REPLAY || 'gemini-3.5-flash',
+  modelAsk: env.MODEL_ASK || 'gemini-3.5-flash',
   ratePerMin: Number(env.RATE_LIMIT_PER_MIN || 20),
   maxChars: Number(env.MAX_INPUT_CHARS || 600),
   maxTurns: Number(env.MAX_TURNS || 12),

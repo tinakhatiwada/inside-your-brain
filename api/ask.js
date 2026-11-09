@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: process.env.MODEL_ASK || 'gemini-3.8-flash' });
+    const model = genAI.getGenerativeModel({ model: process.env.MODEL_ASK || 'gemini-3.5-flash' });
 
     const geminiHistory = messages.slice(0, -1).map((m) => ({
       role: m.role === 'assistant' ? 'model' : 'user',
