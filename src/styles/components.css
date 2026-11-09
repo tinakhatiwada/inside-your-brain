@@ -198,7 +198,6 @@ button.chip:hover { color: var(--ivory); border-color: rgba(243, 236, 228, 0.4);
 .ask-head h2 { font-size: var(--t-lg); }
 .ask-context { margin-top: 6px; font-size: var(--t-xs); color: var(--mist); }
 .ask-context b { color: var(--ivory); font-weight: 600; }
-.ask-close { margin-left: auto; }
 .ask-body { flex: 1; overflow-y: auto; padding: 18px 22px; display: flex; flex-direction: column; gap: 18px; overscroll-behavior: contain; }
 .ask-intro { color: var(--mist); font-size: var(--t-sm); }
 .ask-suggest { display: grid; gap: 8px; }
@@ -228,3 +227,32 @@ button.chip:hover { color: var(--ivory); border-color: rgba(243, 236, 228, 0.4);
 .ask-form textarea:focus-visible { box-shadow: none; }
 .ask-form textarea::placeholder { color: var(--faint); }
 .ask-small { font-size: 0.75rem; color: var(--faint); padding: 0 6px; }
+
+/* ---------- Ask history ---------- */
+.ask-head-actions { display: flex; gap: 4px; margin-left: auto; align-items: center; }
+.ask-history-btn svg { width: 18px; height: 18px; }
+.ask-history { display: flex; flex-direction: column; gap: 8px; }
+.ask-history-heading { font-size: var(--t-base); font-weight: 600; margin-bottom: 4px; }
+.ask-history-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  padding: 12px 14px; border-radius: var(--r-md);
+  background: var(--night-2); border: 1px solid var(--line);
+  color: var(--ivory); font-size: var(--t-sm); cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ask-history-item:hover { border-color: var(--line-strong); background: var(--night-3); }
+.ask-history-new { border-style: dashed; color: var(--mist); }
+.ask-history-new:hover { color: var(--ivory); }
+.ask-history-icon { font-size: 1.2rem; flex: none; width: 24px; text-align: center; }
+.ask-history-text { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.ask-history-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ask-history-meta { font-size: var(--t-xs); color: var(--faint); }
+.ask-history-delete { flex: none; opacity: 0; transition: opacity 0.15s; }
+.ask-history-delete svg { width: 14px; height: 14px; }
+.ask-history-item:hover .ask-history-delete { opacity: 0.6; }
+.ask-history-delete:hover { opacity: 1 !important; }
+.ask-history-empty { color: var(--faint); font-size: var(--t-sm); padding: 8px 0; }
+.ask-history-hint { font-size: var(--t-xs); color: var(--faint); margin-top: 4px; }
+.btn-link { background: none; border: none; color: var(--mist); text-decoration: underline; cursor: pointer; font-size: inherit; padding: 0; }
+.btn-link:hover { color: var(--ivory); }

@@ -1,4 +1,4 @@
-﻿import { getGenAI, generateWithFallback } from './lib/gemini.js';
+import { getGenAI, generateWithFallback } from './lib/gemini.js';
 
 export default async function handler(req, res) {
   const genAI = getGenAI();
