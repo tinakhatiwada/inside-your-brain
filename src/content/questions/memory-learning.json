@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ml-01",
+    "question": "How many items can working memory typically hold at once?",
+    "options": [
+      "About 2",
+      "About 4",
+      "About 10",
+      "About 20"
+    ],
+    "answer": 1,
+    "explanation": "Working memory can hold roughly 4 items (revised from Miller's original 7±2). This is the brain's mental workspace in the prefrontal cortex.",
+    "topic": "memory-learning",
+    "difficulty": 1
+  },
+  {
+    "id": "ml-02",
+    "question": "During which sleep stage does memory consolidation primarily occur?",
+    "options": [
+      "REM sleep",
+      "Slow-wave (deep) sleep",
+      "Light sleep (Stage 1)",
+      "All stages equally"
+    ],
+    "answer": 1,
+    "explanation": "During slow-wave sleep, the hippocampus 'replays' the day's experiences, strengthening important neural pathways and pruning irrelevant ones.",
+    "topic": "memory-learning",
+    "difficulty": 2
+  },
+  {
+    "id": "ml-03",
+    "question": "What are the two main types of long-term memory?",
+    "options": [
+      "Short and long",
+      "Explicit (declarative) and implicit (procedural)",
+      "Visual and auditory",
+      "Emotional and logical"
+    ],
+    "answer": 1,
+    "explanation": "Explicit/declarative memory covers facts and events (conscious recall). Implicit/procedural memory covers skills and habits (unconscious, like riding a bike).",
+    "topic": "memory-learning",
+    "difficulty": 1
+  },
+  {
+    "id": "ml-04",
+    "question": "London taxi drivers famously have enlarged:",
+    "options": [
+      "Amygdalae",
+      "Cerebellums",
+      "Hippocampi",
+      "Prefrontal cortices"
+    ],
+    "answer": 2,
+    "explanation": "Studies show London taxi drivers have enlarged hippocampi from years of navigating complex city streets, demonstrating structural neuroplasticity.",
+    "topic": "memory-learning",
+    "difficulty": 2
+  },
+  {
+    "id": "ml-05",
+    "question": "What is memory reconsolidation?",
+    "options": [
+      "The process of storing new memories",
+      "Memories being rebuilt and potentially altered each time they're recalled",
+      "Forgetting old memories",
+      "Transferring memories between hemispheres"
+    ],
+    "answer": 1,
+    "explanation": "Memory reconsolidation means each time you recall a memory, it becomes unstable and is re-stored — potentially with subtle alterations. This is why eyewitness testimony can be unreliable.",
+    "topic": "memory-learning",
+    "difficulty": 3
+  },
+  {
+    "id": "ml-06",
+    "question": "What is the spacing effect in learning?",
+    "options": [
+      "Learning more in larger rooms",
+      "Distributed practice is more effective than massed practice",
+      "Taking breaks harms learning",
+      "Faster reading improves retention"
+    ],
+    "answer": 1,
+    "explanation": "The spacing effect shows that spreading learning over time (distributed practice) produces significantly better long-term retention than cramming (massed practice).",
+    "topic": "memory-learning",
+    "difficulty": 1
+  },
+  {
+    "id": "ml-07",
+    "question": "Sensory memory lasts for approximately:",
+    "options": [
+      "Milliseconds to seconds",
+      "Minutes to hours",
+      "Hours to days",
+      "Days to weeks"
+    ],
+    "answer": 0,
+    "explanation": "Sensory memory is an ultra-brief trace lasting milliseconds to a few seconds — a fleeting snapshot of raw sensory input before it fades or is encoded.",
+    "topic": "memory-learning",
+    "difficulty": 1
+  },
+  {
+    "id": "ml-08",
+    "question": "What role does the hippocampus play in memory?",
+    "options": [
+      "Permanent storage of all memories",
+      "Acts as an index, binding distributed cortical patterns",
+      "Only stores emotional memories",
+      "Only stores motor memories"
+    ],
+    "answer": 1,
+    "explanation": "The hippocampus doesn't store memories itself — it acts as an index that binds together the distributed cortical patterns that represent a memory.",
+    "topic": "memory-learning",
+    "difficulty": 2
+  },
+  {
+    "id": "ml-09",
+    "question": "What is the term for the strengthening of neural pathways through experience?",
+    "options": [
+      "Neural atrophy",
+      "Neuroplasticity",
+      "Neurodegeneration",
+      "Neural stasis"
+    ],
+    "answer": 1,
+    "explanation": "Neuroplasticity is the brain's ability to physically change through experience — strengthening connections, creating new pathways, and even growing gray matter.",
+    "topic": "memory-learning",
+    "difficulty": 1
+  },
+  {
+    "id": "ml-10",
+    "question": "Why does sleep deprivation devastate learning?",
+    "options": [
+      "It damages neurons permanently",
+      "It prevents memory consolidation during slow-wave sleep",
+      "It destroys the hippocampus",
+      "It only affects motor learning"
+    ],
+    "answer": 1,
+    "explanation": "Sleep deprivation prevents the hippocampal replay during slow-wave sleep that consolidates memories, dramatically impairing the transfer from short-term to long-term storage.",
+    "topic": "memory-learning",
+    "difficulty": 2
+  }
+]

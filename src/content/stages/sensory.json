@@ -1,0 +1,21 @@
+{
+  "id": "sensory",
+  "order": 1,
+  "name": "Sensory Input",
+  "icon": "👁",
+  "color": "#B58AD6",
+  "summary": "Every thought begins with information from the outside world — or from within the body itself.",
+  "regionIds": [
+    "brainstem"
+  ],
+  "structures": [
+    "Thalamus",
+    "Sensory receptors",
+    "Cranial nerves",
+    "Spinal cord"
+  ],
+  "description": "Sensory receptor cells convert physical stimuli into electrical signals — a process called transduction. These electrical impulses race along afferent (incoming) nerves toward the brain at speeds up to 120 m/s. Almost all sensory signals first pass through the thalamus — the brain's relay station — which filters and routes them to the appropriate cortical area. The exception is smell (olfaction), which goes directly to the olfactory cortex and limbic system, which is why scents can trigger powerful emotional memories instantly.",
+  "sourceIds": [
+    "topic:sensory-perception"
+  ]
+}

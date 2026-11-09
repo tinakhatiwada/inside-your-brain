@@ -1,0 +1,59 @@
+{
+  "id": "parietal",
+  "name": "Parietal Lobe",
+  "color": "#F5D63D",
+  "colorblind": "#F0E442",
+  "summary": "Processes touch, spatial awareness, body position, and mathematical reasoning. Contains the primary somatosensory cortex.",
+  "functions": [
+    "Touch and pressure sensation",
+    "Spatial awareness and navigation",
+    "Body position (proprioception)",
+    "Mathematical processing",
+    "Sensory integration"
+  ],
+  "structures": [
+    "Primary somatosensory cortex",
+    "Posterior parietal cortex",
+    "Supramarginal gyrus",
+    "Angular gyrus",
+    "Intraparietal sulcus"
+  ],
+  "connections": [
+    {
+      "to": "frontal",
+      "via": "Superior longitudinal fasciculus",
+      "note": "Links spatial awareness with motor planning."
+    },
+    {
+      "to": "temporal",
+      "via": "Ventral stream",
+      "note": "Object recognition pathway."
+    },
+    {
+      "to": "occipital",
+      "via": "Dorsal stream",
+      "note": "Spatial vision and action guidance."
+    }
+  ],
+  "facts": [
+    {
+      "text": "Damage to the right parietal lobe can cause hemispatial neglect — the person genuinely cannot perceive the left side of their world.",
+      "sourceIndex": 0
+    },
+    {
+      "text": "The sensory homunculus maps touch sensitivity: lips and fingertips have disproportionately large representations because of their density of receptors.",
+      "sourceIndex": 0
+    }
+  ],
+  "detailedDescription": "The parietal lobe sits behind the frontal lobe, separated by the central sulcus. Its front edge is the postcentral gyrus — the primary somatosensory cortex, processing touch, temperature, pressure, and pain. The posterior parietal cortex integrates sensory data to construct spatial awareness. Certain parietal damage causes acalculia (inability to do math) or agraphia (inability to write) despite otherwise normal intelligence.",
+  "sources": [
+    {
+      "title": "Principles of Neural Science",
+      "authors": "Kandel et al.",
+      "edition": "6th",
+      "year": 2021
+    }
+  ],
+  "lastReviewed": "2026-10-25",
+  "reviewedBy": "sansk"
+}

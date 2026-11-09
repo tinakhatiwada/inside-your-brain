@@ -1,0 +1,24 @@
+{
+  "id": "emotion",
+  "order": 5,
+  "name": "Emotional Processing",
+  "icon": "❤️",
+  "color": "#D97BAF",
+  "summary": "Emotions are not separate from cognition — they are woven into every thought.",
+  "regionIds": [
+    "temporal",
+    "frontal"
+  ],
+  "structures": [
+    "Amygdala",
+    "Insula",
+    "Ventromedial PFC",
+    "Hypothalamus",
+    "Cingulate cortex"
+  ],
+  "description": "The amygdala is the brain's emotional alarm — it evaluates incoming stimuli for threat or reward, often before conscious awareness. It can trigger a fear response in milliseconds, through a 'low road' pathway that bypasses the cortex entirely. The ventromedial prefrontal cortex integrates emotional signals into decision-making. Patients with damage here (famously Phineas Gage) retain intelligence but make catastrophically poor life decisions because they can't 'feel' the consequences. Somatic marker theory (Antonio Damasio) proposes that emotions create bodily sensations that serve as rapid, unconscious guides to decision-making.",
+  "sourceIds": [
+    "topic:emotions-cognition",
+    "region:temporal"
+  ]
+}

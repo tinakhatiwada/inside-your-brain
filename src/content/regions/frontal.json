@@ -1,0 +1,59 @@
+{
+  "id": "frontal",
+  "name": "Frontal Lobe",
+  "color": "#4A90D9",
+  "colorblind": "#0072B2",
+  "summary": "The largest lobe, occupying about one-third of the cortical surface. Home to executive functions, personality, speech production, and voluntary motor control.",
+  "functions": [
+    "Planning and decision-making",
+    "Working memory",
+    "Personality and impulse control",
+    "Speech production (Broca's area)",
+    "Voluntary motor control"
+  ],
+  "structures": [
+    "Prefrontal cortex",
+    "Premotor cortex",
+    "Primary motor cortex",
+    "Broca's area",
+    "Anterior cingulate cortex"
+  ],
+  "connections": [
+    {
+      "to": "parietal",
+      "via": "Superior longitudinal fasciculus",
+      "note": "Links motor planning with spatial awareness."
+    },
+    {
+      "to": "temporal",
+      "via": "Arcuate fasciculus",
+      "note": "Connects Broca's area to Wernicke's area for language."
+    },
+    {
+      "to": "cerebellum",
+      "via": "Corticopontocerebellar pathway",
+      "note": "Motor planning feedback loop."
+    }
+  ],
+  "facts": [
+    {
+      "text": "The prefrontal cortex doesn't fully mature until around age 25, which helps explain why teenagers often struggle with impulse control and long-term planning.",
+      "sourceIndex": 0
+    },
+    {
+      "text": "Damage to Broca's area causes expressive aphasia — understanding language perfectly but being unable to produce fluent speech.",
+      "sourceIndex": 0
+    }
+  ],
+  "detailedDescription": "The frontal lobe's anterior portion is the prefrontal cortex (PFC) — the seat of executive functions. The dorsolateral PFC handles working memory, planning, and cognitive flexibility. The ventromedial PFC manages emotional regulation, risk assessment, and empathy. The orbitofrontal cortex processes reward and decision-making. The precentral gyrus at the rear contains the primary motor cortex — a strip running ear-to-ear where each point controls a specific muscle group (motor homunculus).",
+  "sources": [
+    {
+      "title": "Principles of Neural Science",
+      "authors": "Kandel et al.",
+      "edition": "6th",
+      "year": 2021
+    }
+  ],
+  "lastReviewed": "2026-10-25",
+  "reviewedBy": "sansk"
+}

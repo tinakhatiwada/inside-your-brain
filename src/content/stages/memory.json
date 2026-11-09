@@ -1,0 +1,23 @@
+{
+  "id": "memory",
+  "order": 4,
+  "name": "Memory Retrieval",
+  "icon": "🗂",
+  "color": "#B8A4D4",
+  "summary": "Every new perception is compared against a lifetime of stored experience.",
+  "regionIds": [
+    "temporal"
+  ],
+  "structures": [
+    "Hippocampus",
+    "Temporal cortex",
+    "Prefrontal cortex",
+    "Entorhinal cortex",
+    "Parahippocampal gyrus"
+  ],
+  "description": "The hippocampus acts as an index — it doesn't store memories itself but binds together the distributed cortical patterns that represent a memory. Semantic memory (facts and knowledge) provides conceptual frameworks. Episodic memory (personal experiences) adds autobiographical context. Memory retrieval isn't like reading a file — it's a reconstruction. Each time you remember something, the memory is rebuilt from fragments and can be subtly altered in the process. This is why eyewitness testimony is notoriously unreliable.",
+  "sourceIds": [
+    "topic:memory-learning",
+    "region:temporal"
+  ]
+}

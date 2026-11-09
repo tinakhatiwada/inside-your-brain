@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inside the Brain — A Field Guide</title>
+  <meta name="description" content="An interactive, AI-assisted neuroscience learning platform.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand"><span class="icon">🧠</span><span>Inside the Brain</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="explore.html">Explore in 3D</a></li>
+      <li><a href="journey.html">How Thoughts Form</a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+    </ul>
+  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">A field guide to the brain</div>
+        <h1>Three pounds of tissue, running everything you've ever done.</h1>
+        <div class="portrait-stage" id="portrait-stage">
+          <div class="portrait-glow"></div>
+          <div class="portrait-3d-wrap" id="portrait-3d">
+            <img src="/images/portrait.jpg" alt="Portrait illustration" class="portrait-img">
+          </div>
+        </div>
+        <p class="hero-subtitle">Roughly 86 billion neurons, each wired to thousands of others, produce every thought, memory, and reflex you have. Meet the brain behind the eyes — then take a look inside it.</p>
+        <div class="hero-actions">
+          <a href="explore.html" class="btn-primary">Explore in 3D 🧠</a>
+          <a href="#intro" class="btn-outline">Learn More ↓</a>
+        </div>
+      </div>
+    </section>
+    <section id="intro" style="padding:0 28px 80px;max-width:860px;margin:0 auto;position:relative;z-index:1">
+      <h2 style="text-align:center" class="reveal">The Most Complex Object in the Known Universe</h2>
+      <p style="text-align:center;margin:0 auto 20px" class="reveal">The human brain weighs about 1.4 kilograms yet consumes roughly 20% of the body's energy. Within its folds lie networks of unimaginable complexity.</p>
+      <div class="stats-row">
+        <div class="stat-item reveal"><span class="stat-num">~86B</span><span class="stat-label">Neurons</span></div>
+        <div class="stat-item reveal"><span class="stat-num">~100T+</span><span class="stat-label">Synaptic Connections</span></div>
+        <div class="stat-item reveal"><span class="stat-num">20%</span><span class="stat-label">Body's Energy</span></div>
+        <div class="stat-item reveal"><span class="stat-num">~120m/s</span><span class="stat-label">Max Signal Speed</span></div>
+      </div>
+    </section>
+    <section class="section-block centered">
+      <span class="topic-tag plum">Interactive Learning</span>
+      <h2>What You'll Discover</h2>
+      <p>Explore the brain through interactive 3D models, animated neural pathways, and detailed explanations.</p>
+      <div class="preview-grid">
+        <a href="explore.html" class="preview-card reveal"><span class="card-icon">🔬</span><h3>Brain Anatomy</h3><p>Rotate and explore a real 3D brain model. Click any region to learn its functions.</p><span class="card-arrow">→</span></a>
+        <a href="journey.html" class="preview-card reveal"><span class="card-icon">⚡</span><h3>How Thoughts Form</h3><p>Follow a thought from sensory input through perception, memory, emotion, and action.</p><span class="card-arrow">→</span></a>
+        <a href="library.html" class="preview-card reveal"><span class="card-icon">🧬</span><h3>Deep Dive Topics</h3><p>Explore neural communication, memory, emotions, reasoning, and brain networks.</p><span class="card-arrow">→</span></a>
+        <a href="quiz.html" class="preview-card reveal"><span class="card-icon">📝</span><h3>Quiz Yourself</h3><p>Test your knowledge with spaced repetition quizzes and track your progress.</p><span class="card-arrow">→</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>Built as an educational resource. Brain model based on Frank Johansson's anatomical reference.</p></footer>
+  <script type="module" src="/src/pages/home.js"></script>
+</body>
+</html>

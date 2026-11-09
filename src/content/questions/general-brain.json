@@ -1,0 +1,142 @@
+[
+  {
+    "id": "gb-01",
+    "question": "Approximately how many neurons does the human brain contain?",
+    "options": [
+      "8.6 million",
+      "860 million",
+      "86 billion",
+      "860 billion"
+    ],
+    "answer": 2,
+    "explanation": "The human brain contains approximately 86 billion neurons, each connected to thousands of others through synapses.",
+    "topic": "general",
+    "difficulty": 1
+  },
+  {
+    "id": "gb-02",
+    "question": "What percentage of the body's energy does the brain consume?",
+    "options": [
+      "5%",
+      "10%",
+      "20%",
+      "40%"
+    ],
+    "answer": 2,
+    "explanation": "Despite being only about 2% of body weight, the brain consumes roughly 20% of the body's total energy.",
+    "topic": "general",
+    "difficulty": 1
+  },
+  {
+    "id": "gb-03",
+    "question": "Which brain region contains over half of all neurons despite being only 10% of brain volume?",
+    "options": [
+      "Frontal lobe",
+      "Temporal lobe",
+      "Cerebellum",
+      "Brainstem"
+    ],
+    "answer": 2,
+    "explanation": "The cerebellum contains 50-80 billion neurons — more than all other brain regions combined — despite being only 10% of brain volume.",
+    "topic": "general",
+    "difficulty": 1
+  },
+  {
+    "id": "gb-04",
+    "question": "What does the reticular activating system (RAS) control?",
+    "options": [
+      "Movement",
+      "Vision",
+      "Alertness and consciousness",
+      "Digestion"
+    ],
+    "answer": 2,
+    "explanation": "The RAS running through the brainstem is the master alertness switch. Damage to it can cause coma.",
+    "topic": "general",
+    "difficulty": 2
+  },
+  {
+    "id": "gb-05",
+    "question": "The 'what' pathway (ventral stream) connects which brain areas?",
+    "options": [
+      "Frontal to parietal",
+      "Occipital to temporal",
+      "Temporal to frontal",
+      "Parietal to occipital"
+    ],
+    "answer": 1,
+    "explanation": "The ventral stream ('what' pathway) runs from the occipital lobe to the temporal lobe, identifying objects.",
+    "topic": "general",
+    "difficulty": 2
+  },
+  {
+    "id": "gb-06",
+    "question": "What is the Default Mode Network active during?",
+    "options": [
+      "Focused external tasks",
+      "Daydreaming, self-reflection, and mind-wandering",
+      "Sleep only",
+      "Physical exercise"
+    ],
+    "answer": 1,
+    "explanation": "The Default Mode Network activates during daydreaming, self-reflection, mental time travel, and imagining others' perspectives.",
+    "topic": "general",
+    "difficulty": 2
+  },
+  {
+    "id": "gb-07",
+    "question": "How many cranial nerves originate from the brainstem?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "answer": 2,
+    "explanation": "Ten of the twelve cranial nerves originate from the brainstem, controlling facial expressions, eye movements, taste, hearing, and swallowing.",
+    "topic": "general",
+    "difficulty": 2
+  },
+  {
+    "id": "gb-08",
+    "question": "What is hemispatial neglect?",
+    "options": [
+      "Inability to see",
+      "Inability to perceive one side of the world after right parietal damage",
+      "Inability to hear on one side",
+      "Inability to move one hand"
+    ],
+    "answer": 1,
+    "explanation": "Damage to the right parietal lobe can cause hemispatial neglect — the person genuinely cannot perceive the left side of their world.",
+    "topic": "general",
+    "difficulty": 3
+  },
+  {
+    "id": "gb-09",
+    "question": "Which brain area acts as a 'switch operator' between the executive and default mode networks?",
+    "options": [
+      "Hippocampus",
+      "Amygdala",
+      "Salience network",
+      "Cerebellum"
+    ],
+    "answer": 2,
+    "explanation": "The salience network (anchored in the anterior insula and anterior cingulate cortex) toggles between the externally-focused executive network and internally-focused default mode network.",
+    "topic": "general",
+    "difficulty": 3
+  },
+  {
+    "id": "gb-10",
+    "question": "What does the Global Workspace Theory propose about consciousness?",
+    "options": [
+      "Consciousness is in the pineal gland",
+      "Consciousness arises from information broadcast widely across the cortex",
+      "Consciousness is only in the frontal lobe",
+      "Consciousness doesn't exist"
+    ],
+    "answer": 1,
+    "explanation": "Global Workspace Theory proposes that conscious awareness occurs when information is 'broadcast' widely across the cortex, making it available to multiple cognitive processes simultaneously.",
+    "topic": "general",
+    "difficulty": 3
+  }
+]

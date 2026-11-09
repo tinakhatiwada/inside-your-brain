@@ -1,0 +1,54 @@
+{
+  "id": "brainstem",
+  "name": "Brainstem",
+  "color": "#FF9800",
+  "colorblind": "#E69F00",
+  "summary": "The brain's oldest structure, connecting the cerebrum to the spinal cord. Controls breathing, heartbeat, sleep-wake cycles, and consciousness.",
+  "functions": [
+    "Breathing and heartbeat regulation",
+    "Sleep-wake cycle control",
+    "Cranial nerve relay",
+    "Consciousness (reticular formation)",
+    "Reflexes (coughing, sneezing, swallowing)"
+  ],
+  "structures": [
+    "Midbrain",
+    "Pons",
+    "Medulla oblongata",
+    "Reticular activating system",
+    "Superior and inferior colliculi"
+  ],
+  "connections": [
+    {
+      "to": "cerebellum",
+      "via": "Cerebellar peduncles",
+      "note": "Bridges cerebrum-cerebellum communication."
+    },
+    {
+      "to": "frontal",
+      "via": "Reticular activating system",
+      "note": "Master alertness switch projecting to cortex via thalamus."
+    }
+  ],
+  "facts": [
+    {
+      "text": "Ten of the twelve cranial nerves originate from the brainstem — controlling facial expressions, eye movements, taste, hearing, and swallowing.",
+      "sourceIndex": 0
+    },
+    {
+      "text": "The reticular activating system (RAS) running through the brainstem is the master alertness switch. Damage to it can cause coma.",
+      "sourceIndex": 0
+    }
+  ],
+  "detailedDescription": "The brainstem connects the cerebrum to the spinal cord. The Midbrain contains the superior and inferior colliculi and controls eye movement. The Pons bridges cerebrum-cerebellum communication and regulates breathing. The Medulla Oblongata controls heartbeat, blood pressure, breathing rhythm, and protective reflexes. All ascending and descending pathways pass through the brainstem.",
+  "sources": [
+    {
+      "title": "Principles of Neural Science",
+      "authors": "Kandel et al.",
+      "edition": "6th",
+      "year": 2021
+    }
+  ],
+  "lastReviewed": "2026-10-25",
+  "reviewedBy": "sansk"
+}

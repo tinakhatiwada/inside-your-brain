@@ -1,0 +1,142 @@
+[
+  {
+    "id": "fl-01",
+    "question": "What is the primary function of the prefrontal cortex?",
+    "options": [
+      "Visual processing",
+      "Executive functions like planning and decision-making",
+      "Auditory processing",
+      "Balance and coordination"
+    ],
+    "answer": 1,
+    "explanation": "The prefrontal cortex is responsible for executive functions including planning, decision-making, working memory, and impulse control.",
+    "region": "frontal",
+    "difficulty": 1
+  },
+  {
+    "id": "fl-02",
+    "question": "At approximately what age does the prefrontal cortex fully mature?",
+    "options": [
+      "12 years",
+      "18 years",
+      "25 years",
+      "30 years"
+    ],
+    "answer": 2,
+    "explanation": "The prefrontal cortex doesn't fully mature until around age 25, which helps explain teenagers' struggles with impulse control and long-term planning.",
+    "region": "frontal",
+    "difficulty": 2
+  },
+  {
+    "id": "fl-03",
+    "question": "What condition results from damage to Broca's area?",
+    "options": [
+      "Receptive aphasia",
+      "Expressive aphasia",
+      "Prosopagnosia",
+      "Akinetopsia"
+    ],
+    "answer": 1,
+    "explanation": "Damage to Broca's area (left frontal lobe) causes expressive aphasia — the person understands language but cannot produce fluent speech.",
+    "region": "frontal",
+    "difficulty": 2
+  },
+  {
+    "id": "fl-04",
+    "question": "Which structure contains the primary motor cortex?",
+    "options": [
+      "Postcentral gyrus",
+      "Precentral gyrus",
+      "Superior temporal gyrus",
+      "Angular gyrus"
+    ],
+    "answer": 1,
+    "explanation": "The precentral gyrus is the primary motor cortex. Each point controls a specific muscle group, creating the motor homunculus.",
+    "region": "frontal",
+    "difficulty": 2
+  },
+  {
+    "id": "fl-05",
+    "question": "The case of Phineas Gage demonstrated the importance of which brain area for personality and social behavior?",
+    "options": [
+      "Occipital lobe",
+      "Cerebellum",
+      "Ventromedial prefrontal cortex",
+      "Hippocampus"
+    ],
+    "answer": 2,
+    "explanation": "Phineas Gage survived an iron rod through his frontal lobe but underwent dramatic personality changes, demonstrating the ventromedial PFC's role in emotional regulation and social behavior.",
+    "region": "frontal",
+    "difficulty": 3
+  },
+  {
+    "id": "fl-06",
+    "question": "What does the dorsolateral prefrontal cortex primarily handle?",
+    "options": [
+      "Emotional regulation",
+      "Working memory and cognitive flexibility",
+      "Reward processing",
+      "Smell processing"
+    ],
+    "answer": 1,
+    "explanation": "The dorsolateral PFC handles working memory, planning, and cognitive flexibility — the ability to switch between tasks and mental frameworks.",
+    "region": "frontal",
+    "difficulty": 2
+  },
+  {
+    "id": "fl-07",
+    "question": "Which fasciculus connects Broca's area to Wernicke's area?",
+    "options": [
+      "Uncinate fasciculus",
+      "Superior longitudinal fasciculus",
+      "Arcuate fasciculus",
+      "Inferior fronto-occipital fasciculus"
+    ],
+    "answer": 2,
+    "explanation": "The arcuate fasciculus connects Broca's area (frontal lobe, speech production) to Wernicke's area (temporal lobe, language comprehension).",
+    "region": "frontal",
+    "difficulty": 3
+  },
+  {
+    "id": "fl-08",
+    "question": "The motor homunculus shows that which body parts have disproportionately large cortical representations?",
+    "options": [
+      "Torso and legs",
+      "Hands and face",
+      "Arms and shoulders",
+      "Feet and back"
+    ],
+    "answer": 1,
+    "explanation": "The hands and face (especially lips and tongue) have disproportionately large motor cortex representations because they require fine, precise motor control.",
+    "region": "frontal",
+    "difficulty": 1
+  },
+  {
+    "id": "fl-09",
+    "question": "What is the role of the anterior cingulate cortex?",
+    "options": [
+      "Visual processing",
+      "Conflict monitoring and error detection",
+      "Auditory processing",
+      "Taste processing"
+    ],
+    "answer": 1,
+    "explanation": "The anterior cingulate cortex monitors for conflicts between competing responses and detects errors, playing a crucial role in cognitive control.",
+    "region": "frontal",
+    "difficulty": 3
+  },
+  {
+    "id": "fl-10",
+    "question": "Which part of the frontal lobe processes reward and decision-making?",
+    "options": [
+      "Premotor cortex",
+      "Broca's area",
+      "Orbitofrontal cortex",
+      "Supplementary motor area"
+    ],
+    "answer": 2,
+    "explanation": "The orbitofrontal cortex processes reward values and helps make decisions by weighing potential outcomes.",
+    "region": "frontal",
+    "difficulty": 2
+  }
+]

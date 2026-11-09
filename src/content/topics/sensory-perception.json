@@ -1,0 +1,36 @@
+{
+  "id": "sensory-perception",
+  "name": "Sensory Perception",
+  "icon": "👁",
+  "color": "#E8A84C",
+  "summary": "How your brain transforms raw physical stimuli into conscious experience.",
+  "sections": [
+    {
+      "heading": "Vision — The Dominant Sense",
+      "content": "Vision consumes roughly 30% of the cortex. Light entering the eye activates rod cells (low-light, black and white) and cone cells (color, detail) in the retina. These signals travel via the optic nerve to the lateral geniculate nucleus of the thalamus, then to V1 in the occipital lobe, where features like edges, orientation, and color are extracted."
+    },
+    {
+      "heading": "Audition — Sound Processing",
+      "content": "Sound waves vibrate the eardrum, which transmits through the ossicles to the cochlea. Hair cells in the cochlea convert vibrations into electrical signals sorted by frequency (tonotopic mapping). The auditory cortex in the temporal lobe assembles these frequencies into meaningful sounds."
+    },
+    {
+      "heading": "Cross-Modal Integration",
+      "content": "Senses don't work in isolation. The superior temporal sulcus and parietal association areas combine visual, auditory, and tactile information into unified perceptions. This is why seeing lips move helps you hear speech (the McGurk effect), and why food 'tastes' different with a stuffy nose."
+    }
+  ],
+  "regionIds": [
+    "occipital",
+    "temporal",
+    "parietal"
+  ],
+  "sources": [
+    {
+      "title": "Principles of Neural Science",
+      "authors": "Kandel et al.",
+      "edition": "6th",
+      "year": 2021
+    }
+  ],
+  "lastReviewed": "2026-10-25",
+  "reviewedBy": "sansk"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "temporal",
+  "name": "Temporal Lobe",
+  "color": "#4CAF50",
+  "colorblind": "#009E73",
+  "summary": "Handles hearing, language comprehension, memory formation, emotion, and face recognition. Contains the hippocampus and amygdala.",
+  "functions": [
+    "Hearing and auditory processing",
+    "Language comprehension (Wernicke's area)",
+    "Long-term memory (hippocampus)",
+    "Emotion and fear (amygdala)",
+    "Face and object recognition"
+  ],
+  "structures": [
+    "Primary auditory cortex",
+    "Wernicke's area",
+    "Hippocampus",
+    "Amygdala",
+    "Fusiform gyrus",
+    "Entorhinal cortex"
+  ],
+  "connections": [
+    {
+      "to": "frontal",
+      "via": "Uncinate fasciculus",
+      "note": "Links memory and emotion with decision-making."
+    },
+    {
+      "to": "frontal",
+      "via": "Arcuate fasciculus",
+      "note": "Connects Wernicke's area to Broca's area for language."
+    },
+    {
+      "to": "parietal",
+      "via": "Ventral stream",
+      "note": "Object recognition pathway."
+    }
+  ],
+  "facts": [
+    {
+      "text": "The hippocampus is named after the Greek word for 'seahorse' due to its curved shape. It is one of only two brain regions where new neurons are born throughout adult life.",
+      "sourceIndex": 0
+    },
+    {
+      "text": "Patient H.M. had both hippocampi surgically removed to treat epilepsy. He could no longer form new long-term memories but retained memories from before the surgery.",
+      "sourceIndex": 0
+    }
+  ],
+  "detailedDescription": "The temporal lobes sit behind the temples. The superior temporal gyrus houses the primary auditory cortex — where vibrations become conscious sound. Wernicke's area (left temporal lobe) handles language comprehension. Damage produces receptive aphasia — fluent but meaningless speech. The fusiform gyrus at the temporal-occipital boundary specializes in face recognition. Damage causes prosopagnosia — face blindness.",
+  "sources": [
+    {
+      "title": "Principles of Neural Science",
+      "authors": "Kandel et al.",
+      "edition": "6th",
+      "year": 2021
+    }
+  ],
+  "lastReviewed": "2026-10-25",
+  "reviewedBy": "sansk"
+}

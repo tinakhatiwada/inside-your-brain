@@ -1,0 +1,142 @@
+[
+  {
+    "id": "tl-01",
+    "question": "What is the hippocampus named after?",
+    "options": [
+      "A Greek philosopher",
+      "A seahorse",
+      "A river in Greece",
+      "A type of flower"
+    ],
+    "answer": 1,
+    "explanation": "The hippocampus is named after the Greek word for 'seahorse' due to its curved shape.",
+    "region": "temporal",
+    "difficulty": 1
+  },
+  {
+    "id": "tl-02",
+    "question": "What happens when both hippocampi are removed, as in the famous case of Patient H.M.?",
+    "options": [
+      "Loss of all memories",
+      "Inability to form new long-term memories",
+      "Loss of motor control",
+      "Blindness"
+    ],
+    "answer": 1,
+    "explanation": "Patient H.M. could no longer form new long-term memories (anterograde amnesia) but retained memories from before the surgery.",
+    "region": "temporal",
+    "difficulty": 2
+  },
+  {
+    "id": "tl-03",
+    "question": "What is the primary function of the amygdala?",
+    "options": [
+      "Language processing",
+      "Motor control",
+      "Emotional evaluation, especially threat detection",
+      "Visual processing"
+    ],
+    "answer": 2,
+    "explanation": "The amygdala evaluates the emotional significance of stimuli, particularly threats, and can trigger fear responses before conscious awareness.",
+    "region": "temporal",
+    "difficulty": 1
+  },
+  {
+    "id": "tl-04",
+    "question": "Damage to the fusiform gyrus causes what condition?",
+    "options": [
+      "Aphasia",
+      "Amnesia",
+      "Prosopagnosia (face blindness)",
+      "Agraphia"
+    ],
+    "answer": 2,
+    "explanation": "The fusiform gyrus specializes in face recognition. Damage causes prosopagnosia — the inability to recognize faces.",
+    "region": "temporal",
+    "difficulty": 2
+  },
+  {
+    "id": "tl-05",
+    "question": "What type of aphasia results from damage to Wernicke's area?",
+    "options": [
+      "Expressive aphasia",
+      "Receptive aphasia",
+      "Global aphasia",
+      "Anomic aphasia"
+    ],
+    "answer": 1,
+    "explanation": "Damage to Wernicke's area produces receptive aphasia — fluent but meaningless speech, with impaired language comprehension.",
+    "region": "temporal",
+    "difficulty": 2
+  },
+  {
+    "id": "tl-06",
+    "question": "The hippocampus is one of only two brain regions where what occurs throughout adult life?",
+    "options": [
+      "Myelination",
+      "Neurogenesis (birth of new neurons)",
+      "Synaptogenesis",
+      "Apoptosis"
+    ],
+    "answer": 1,
+    "explanation": "The hippocampus and the olfactory bulb are the only two brain regions where neurogenesis (birth of new neurons) continues throughout adult life.",
+    "region": "temporal",
+    "difficulty": 3
+  },
+  {
+    "id": "tl-07",
+    "question": "Which structure in the temporal lobe houses the primary auditory cortex?",
+    "options": [
+      "Inferior temporal gyrus",
+      "Middle temporal gyrus",
+      "Superior temporal gyrus",
+      "Fusiform gyrus"
+    ],
+    "answer": 2,
+    "explanation": "The primary auditory cortex is located in the superior temporal gyrus (Heschl's gyrus), where vibrations are first processed as conscious sound.",
+    "region": "temporal",
+    "difficulty": 2
+  },
+  {
+    "id": "tl-08",
+    "question": "What role does the entorhinal cortex play?",
+    "options": [
+      "Face recognition",
+      "Gateway to the hippocampus for memory formation",
+      "Emotional processing",
+      "Speech production"
+    ],
+    "answer": 1,
+    "explanation": "The entorhinal cortex serves as the main gateway between the hippocampus and the neocortex, playing a critical role in memory formation and spatial navigation.",
+    "region": "temporal",
+    "difficulty": 3
+  },
+  {
+    "id": "tl-09",
+    "question": "Which neurotransmitter is most associated with hippocampal memory functions and is lost in Alzheimer's disease?",
+    "options": [
+      "Dopamine",
+      "Serotonin",
+      "Acetylcholine",
+      "GABA"
+    ],
+    "answer": 2,
+    "explanation": "Acetylcholine is crucial for memory and attention. Alzheimer's disease involves significant loss of cholinergic neurons, leading to memory impairment.",
+    "region": "temporal",
+    "difficulty": 3
+  },
+  {
+    "id": "tl-10",
+    "question": "The 'low road' pathway through the amygdala allows what?",
+    "options": [
+      "Conscious emotional analysis",
+      "Fear responses before conscious awareness",
+      "Long-term memory storage",
+      "Language comprehension"
+    ],
+    "answer": 1,
+    "explanation": "The 'low road' pathway bypasses the cortex entirely, allowing the amygdala to trigger fight-or-flight responses in milliseconds — before you consciously recognize the threat.",
+    "region": "temporal",
+    "difficulty": 2
+  }
+]
