@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   }
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: process.env.MODEL_ASK || 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ model: process.env.MODEL_ASK || 'gemini-3.8-flash' });
     const result = await model.generateContent('Say hello in one word.');
     const text = result.response.text();
     return res.json({ ok: true, response: text, node: process.version });
@@ -15,3 +15,4 @@ export default async function handler(req, res) {
     return res.json({ ok: false, error: err.message, node: process.version });
   }
 }
+
