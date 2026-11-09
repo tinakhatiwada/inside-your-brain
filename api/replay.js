@@ -1,5 +1,5 @@
 // Vercel Serverless Function: /api/replay
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getGenAI, generateWithFallback } from './lib/gemini.js';
 import { replaySystemPrompt } from '../server/prompts/index.js';
 import { replayJsonSchema, normaliseReplay } from '../server/lib/replay-schema.js';
 import { REPLAYS } from '../server/lib/content.js';
@@ -22,7 +22,6 @@ export default async function handler(req, res) {
   // SSE headers
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache, no-transform');
-  res.setHeader('Connection', 'keep-alive');
   res.setHeader('X-Accel-Buffering', 'no');
   const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
 
@@ -50,20 +49,18 @@ export default async function handler(req, res) {
     return res.end();
   }
 
-  // Real AI
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(503).json({ error: 'AI is not set up on this server.', code: 'AI_DISABLED' });
+  const genAI = getGenAI();
+  if (!genAI) {
+    send({ type: 'error', code: 'AI_DISABLED', error: 'AI is not set up on this server.' });
+    return res.end();
   }
 
+  let lastReason = '';
   try {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: process.env.MODEL_REPLAY || 'gemini-3.5-flash' });
-
-    let lastReason = '';
     for (let attempt = 0; attempt < 2; attempt++) {
       const retryNote = attempt ? `\n\nYour previous answer could not be used (${lastReason}). Return a complete replay that follows every rule.` : '';
 
-      const result = await model.generateContent({
+      const { result } = await generateWithFallback(genAI, {
         contents: [{ role: 'user', parts: [{ text: `The person's moment:\n<moment>\n${moment.trim()}\n</moment>${retryNote}` }] }],
         systemInstruction: { parts: [{ text: replaySystemPrompt }] },
         generationConfig: {
@@ -89,9 +86,8 @@ export default async function handler(req, res) {
     send({ type: 'error', code: 'UPSTREAM_ERROR', error: 'The AI\'s replay didn\'t pass our checks. Try again or rephrase your moment.' });
     res.end();
   } catch (err) {
-    console.error('[replay]', err?.message);
-    send({ type: 'error', code: 'UPSTREAM_ERROR', error: 'The AI could not finish this request. Try again.' });
+    console.error('[replay]', err.message);
+    send({ type: 'error', code: 'UPSTREAM_ERROR', error: err.message });
     res.end();
   }
 }
-

@@ -1,5 +1,5 @@
 // Vercel Serverless Function: /api/ask
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getGenAI, streamWithFallback } from './lib/gemini.js';
 import { askSystemPrompt } from '../server/prompts/index.js';
 import { BY_ID, REPLAY_BY_ID, STRUCTURE_IDS, structureNotes } from '../server/lib/content.js';
 import { retrieve } from '../server/lib/retrieve.js';
@@ -33,16 +33,20 @@ export default async function handler(req, res) {
   const notes = used.map(structureNotes).join('\n\n');
   const contextLine = describeContext(context, preset);
 
-  // Mock mode — return a non-streaming JSON response for simplicity
+  // Mock mode
   if (process.env.MOCK_AI === 'true') {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
+    const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
     const s = used[0] || BY_ID['prefrontal'];
     const text = `(Demo mode) ${s.oneLiner} ${s.explain[0]}`;
-    return res.json({ answer: text, sources: used.map((x) => ({ id: x.id, name: x.name })) });
+    send({ type: 'delta', text });
+    send({ type: 'done', sources: used.map((x) => ({ id: x.id, name: x.name })) });
+    return res.end();
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(503).json({ error: 'AI is not set up on this server.', code: 'AI_DISABLED' });
-  }
+  const genAI = getGenAI();
+  if (!genAI) return res.status(503).json({ error: 'AI is not set up on this server.', code: 'AI_DISABLED' });
 
   // SSE headers
   res.setHeader('Content-Type', 'text/event-stream');
@@ -51,37 +55,28 @@ export default async function handler(req, res) {
   const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
 
   try {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: process.env.MODEL_ASK || 'gemini-3.5-flash' });
-
     const geminiHistory = messages.slice(0, -1).map((m) => ({
       role: m.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: m.content }],
     }));
 
-    const chat = model.startChat({
+    const { stream } = await streamWithFallback(genAI, {
       history: geminiHistory,
       systemInstruction: { parts: [{ text: askSystemPrompt({ notes, contextLine, style }) }] },
       generationConfig: {
         maxOutputTokens: style === 'deeper' ? Math.max(maxTokens, 900) : maxTokens,
       },
-    });
+    }, last.content);
 
-    const result = await chat.sendMessageStream(last.content);
-    for await (const chunk of result.stream) {
+    for await (const chunk of stream) {
       const text = chunk.text();
       if (text) send({ type: 'delta', text });
     }
     send({ type: 'done', sources: used.map((s) => ({ id: s.id, name: s.name })) });
     res.end();
   } catch (err) {
-    console.error('[ask] ERROR:', err?.message, err?.stack);
-    const msg = err?.message || '';
-    let userMsg = 'The AI could not finish this request. Try again.';
-    if (msg.includes('API_KEY_INVALID')) userMsg = 'The Gemini API key is invalid. Check GEMINI_API_KEY.';
-    else if (msg.includes('RESOURCE_EXHAUSTED') || msg.includes('429')) userMsg = 'The AI is busy. Wait a moment and try again.';
-    else if (msg.includes('SAFETY')) userMsg = 'The AI flagged this as sensitive. Try rephrasing your question about the brain.';
-    send({ type: 'error', code: 'UPSTREAM_ERROR', error: userMsg });
+    console.error('[ask]', err.message);
+    send({ type: 'error', code: 'UPSTREAM_ERROR', error: err.message });
     res.end();
   }
 }
