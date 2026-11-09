@@ -1,796 +1,392 @@
-# 🧠 Inside the Brain
+# Inside Your Brain
 
-An interactive, AI-assisted neuroscience learning platform. Explore a 3D brain, trace how a thought forms across the cortex, and study with a tutor that answers from reviewed course content instead of guessing.
+**Describe a moment from your day and watch it replay, step by step, inside a 3D brain.**
 
-[![Node](https://img.shields.io/badge/node-%E2%89%A5%2022%20LTS-3c873a)](https://nodejs.org/)
-[![Three.js](https://img.shields.io/badge/built%20with-three.js-black)](https://threejs.org/)
-[![Vite](https://img.shields.io/badge/bundler-vite-646cff)](https://vitejs.dev/)
-[![A11y](https://img.shields.io/badge/accessibility-WCAG%202.2%20AA%20target-7B3FA0)](#accessibility)
-[![License](https://img.shields.io/badge/license-see%20LICENSE-lightgrey)](#license-and-credits)
+Inside Your Brain is for people who have never cared about psychology. It doesn't start with anatomy. It starts with something that happened to you, like a smell that took you back, a name you forgot or a racing heart before a talk. Then it shows what your brain did, in order, in plain language.
 
-**Project status:** v2.0 is in active development. v2 is a ground-up redesign of the original static site. Throughout this README, ✅ means shipped in v1 and 🆕 means new in v2 (in development). The [Roadmap](#roadmap) shows what is done. Exact dependency versions live in `package.json`, not in this file, so the README never goes stale.
+![The replay page: a see-through brain with the amygdala, hypothalamus and brainstem lit up, and the step-by-step explanation beside it](docs/screens/replay.jpg)
 
-<!-- Add a screenshot or short GIF here: docs/media/explorer.png -->
-
----
-
-## Table of contents
-
-- [Overview](#overview)
-- [What's new in v2](#whats-new-in-v2)
-- [Features](#features)
-- [AI features in depth](#ai-features-in-depth)
-- [Architecture](#architecture)
-- [Project structure](#project-structure)
-- [Quick start](#quick-start)
-- [Configuration](#configuration)
-- [API reference](#api-reference)
-- [Content model](#content-model)
-- [3D brain model](#3d-brain-model)
-- [Design system](#design-system)
-- [Accessibility](#accessibility)
-- [Testing and quality](#testing-and-quality)
-- [Deployment](#deployment)
-- [Security and privacy](#security-and-privacy)
-- [Migrating from v1](#migrating-from-v1)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [Troubleshooting](#troubleshooting)
-- [License and credits](#license-and-credits)
+| | |
+|---|---|
+| ![Home page with the live 3D brain](docs/screens/home.jpg) | ![The explorer showing the hippocampus](docs/screens/explore.jpg) |
+| ![The lab with reaction time results](docs/screens/lab.jpg) | ![A replay on a phone](docs/screens/mobile.jpg) |
 
 ---
 
-## Overview
+## Contents
 
-Inside the Brain teaches how the brain works through three connected experiences:
-
-| Experience | You learn | How |
-|------------|-----------|-----|
-| **Explore** | Where things are | A rotatable 3D brain with clickable regions |
-| **Journey** | How a thought happens | A 7-stage teaching model, from sensation to action |
-| **Library** | Why it works | Deep-dive topics on neurons, memory, emotion, and more |
-
-Version 2 adds a **grounded AI layer** that ties them together: ask questions in context, describe a real moment and watch it traced through the brain, and practise with quizzes that schedule reviews for you.
-
-**Who it's for:** high-school and undergraduate students, self-learners, and teachers who want a visual classroom resource.
-
-### Design principles
-
-- **Accurate first.** Every claim lives in reviewed JSON content with sources. The AI answers from that content and cites it.
-- **Works without AI.** With no API key, the AI panels hide and everything else works.
-- **Private by default.** No accounts, no analytics. Progress stays on the learner's device.
-- **Accessible by design.** The 3D view always has a keyboard- and screen-reader-friendly equivalent.
-- **Honest simplifications.** Teaching models (like the 7-stage pipeline) are labeled as models, not as how the brain literally works.
+1. [What it does](#what-it-does)
+2. [What changed from v2](#what-changed-from-v2)
+3. [How the AI is used](#how-the-ai-is-used)
+4. [Quick start](#quick-start)
+5. [Configuration](#configuration)
+6. [Project structure](#project-structure)
+7. [The 3D brain](#the-3d-brain)
+8. [Content and accuracy](#content-and-accuracy)
+9. [API](#api)
+10. [Design](#design)
+11. [Accessibility](#accessibility)
+12. [Testing](#testing)
+13. [Deployment](#deployment)
+14. [Privacy and safety](#privacy-and-safety)
+15. [Roadmap](#roadmap)
+16. [Credits](#credits)
 
 ---
 
-## What's new in v2
+## What it does
 
-| Area | v1 | v2 |
-|------|----|----|
-| **Tooling** | Static HTML + `http-server` | Vite dev server, production builds, hot reload |
-| **Content** | Hard-coded in HTML | Data-driven JSON in `src/content/`, validated by schema |
-| **AI** | None | Grounded tutor, thought tracer, quiz generation |
-| **Learning loop** | Read-only | Quizzes, spaced repetition, progress tracking, study export |
-| **3D regions** | Bounding-box vertex coloring | Per-region meshes (atlas labeling as fallback), hover, isolate, explode |
-| **Accessibility** | Not systematically tested | WCAG 2.2 AA target, keyboard navigation, reduced motion, colorblind-safe palette |
-| **Typography** | Google Fonts CDN | Self-hosted variable fonts (faster, no third-party requests) |
-| **Quality** | Manual | Unit, end-to-end, accessibility, and AI evaluation tests in CI |
-| **Theme** | Dark only | Dark, light, and high-contrast |
+| Page | What you do | What you get |
+|---|---|---|
+| **Replay** (the core) | Type a moment, or pick an everyday mystery | A 4–6 step replay on a glass brain: which areas lit up, roughly when, which chemicals were involved, **why it felt that way**, things to try, and the fine print |
+| **Explore** | Spin the brain, click a glowing dot | 21 brain areas, each explained by *what you use it for* (“You use it when…”) rather than by Latin names |
+| **Lab** | Three one-minute experiments | Your reaction time, your Stroop “colour clash” cost and your memory span, with your own numbers explained through the brain |
+| **Ask** (on every page) | Ask a question in your own words | A short answer grounded in the app’s reviewed notes. It knows what you’re looking at, and you can follow up with *Simpler*, *Give me an analogy*, *Go deeper* or *What can I do with this?* |
 
----
+**It works without an API key.** Eight hand-written replays, the explorer and the lab need no AI. With a key, people can replay *their own* moments and use Ask.
 
-## Features
+### The eight hand-written replays
 
-### 3D Brain Explorer (`explore.html`)
+- Why can a smell bring back a memory so fast?
+- Why do I scroll instead of doing what I need to do?
+- Why do I forget what I came into a room for?
+- Why does my mind go blank when I’m nervous?
+- Why do songs get stuck in my head?
+- How did I catch it before I even thought about it?
+- Why can I recognise a face but blank on the name?
+- Why can’t I tickle myself?
 
-| Capability | Status |
-|------------|--------|
-| Interactive Three.js model with orbit, zoom, auto-rotate | ✅ |
-| Six color-coded regions with detail panels (description, functions, connections, facts) | ✅ |
-| Click-to-select legend | ✅ |
-| Hover tooltips and outline highlight | 🆕 |
-| Isolate and explode views to inspect one region at a time | 🆕 |
-| Opacity slider to see deeper structures | 🆕 |
-| On-screen rotate and zoom buttons (no dragging required) | 🆕 |
-| Keyboard navigation and a text-based region list (no mouse or WebGL required) | 🆕 |
-| "Ask the tutor about this region" button | 🆕 |
-| Colorblind-safe palette toggle | 🆕 |
-
-### How Thoughts Form (`journey.html`)
-
-A seven-stage teaching model:
-
-| # | Stage | `stageId` |
-|---|-------|-----------|
-| 1 | Sensory input | `sensory` |
-| 2 | Perception | `perception` |
-| 3 | Attention | `attention` |
-| 4 | Memory retrieval | `memory` |
-| 5 | Emotional processing | `emotion` |
-| 6 | Reasoning and decision | `reasoning` |
-| 7 | Action | `action` |
-
-> Real processing is massively parallel and recurrent. The stages are a way to organise ideas, and the page says so.
-
-| Capability | Status |
-|------------|--------|
-| Stage-by-stage explanations with brain-region tags | ✅ |
-| Auto-play with pause and resume | ✅ |
-| Expandable deep dives | ✅ |
-| Synced 3D view that highlights the active regions for each stage | 🆕 |
-| Trace a Thought: AI maps your own scenario onto the stages | 🆕 |
-| Shareable link to a traced result (stored in the URL fragment, never on a server) | 🆕 |
-
-### Learning Library (`library.html`)
-
-Six topics: Neural Communication, Sensory Perception, Memory and Learning, Emotions and Cognition, Reasoning and Behavior, Brain Network Cooperation.
-
-| Capability | Status |
-|------------|--------|
-| Expandable deep-dive articles | ✅ |
-| Searchable glossary with hover and focus definitions | 🆕 |
-| Per-topic reading level (Curious / High school / Undergrad) | 🆕 |
-| Cited sources on every article | 🆕 |
-| "Quiz me on this topic" | 🆕 |
-| Bookmarks and reading progress | 🆕 |
-
-### Quiz and study tools (`quiz.html`) 🆕
-
-- Multiple-choice quizzes per region, stage, or topic
-- Reviewed question bank first, AI-generated questions to fill gaps (always labeled *AI-generated*)
-- Spaced repetition with the SM-2 algorithm, so weak cards come back sooner
-- Short AI explanations for wrong answers, grounded in the same sources
-- Progress dashboard showing coverage by region and topic
-- Export notes and flashcards as Markdown or JSON; import JSON to move progress between devices
+Each one lists its published sources.
 
 ---
 
-## AI features in depth
+## What changed from v2
 
-Every AI feature is **grounded**: the server retrieves relevant passages from `src/content/`, gives them to the model, and instructs it to answer only from them and cite their IDs. If retrieval finds nothing relevant, the tutor says the question is outside the course content instead of improvising.
+| | v2 | v3 |
+|---|---|---|
+| **Starting point** | Anatomy first (lobes, fasciculi) | Your own moment first, anatomy second |
+| **Home page** | Illustrated portrait | Live 3D brain with background activity, and a box to type a moment |
+| **AI** | Endpoints returned “coming in v2.0” | Working replay generator (structured JSON) and a streaming, grounded Ask guide |
+| **3D brain** | Opaque, coloured by bounding boxes (most of the temporal lobe came out frontal) | See-through “glass” brain, 21 glowing structures including deep ones (hippocampus, amygdala, thalamus, reward circuit), signals that travel between them, and a lobe view based on real landmarks |
+| **Thought journey** | Fixed 7-stage list, not connected to the brain | Any moment becomes a replay that drives the brain in sync |
+| **Quiz** | Multiple-choice quiz with spaced repetition | Removed. Replaced by the Lab: experiments *on you*, not questions *about* the brain |
+| **Library** | Separate textbook-style page | Folded into the explorer and replays |
+| **Look** | Emoji icons, template copy | No emoji, self-hosted Fraunces and Instrument Sans, colour used only to mean something |
+| **Draco decoder and fonts** | Loaded from Google’s servers | Served locally |
 
-```mermaid
-sequenceDiagram
-    participant L as Learner
-    participant W as Web app
-    participant A as API proxy
-    participant G as Grounding (src/content)
-    participant C as Claude API
+Old URLs (`journey.html`, `library.html`, `quiz.html`, `thoughts.html`, `departments.html`, `brain.html`) redirect to the new pages when you run the production server.
 
-    L->>W: Ask a question (with page context)
-    W->>A: POST /api/tutor
-    A->>A: Validate, rate-limit, cap length
-    A->>G: Retrieve top passages
-    G-->>A: Chunks + IDs
-    A->>C: System prompt + chunks + messages
-    C-->>A: Streamed text
-    A-->>W: SSE deltas, then source IDs
-    W-->>L: Answer with source chips
-```
+---
 
-### 1. Ask the Brain (context-aware tutor)
+## How the AI is used
 
-A drawer available on every page.
+The AI isn't a chatbot bolted on the side. It does two specific jobs, and each one is checked.
 
-- **Knows where you are.** Opening it from the Temporal Lobe panel sets the context chip: *Asking about: Temporal Lobe*.
-- **Adjustable level:** Curious (age 12+), High school, Undergraduate, Pre-med.
-- **Streaming answers** with source chips that open the underlying content card.
-- **Follow-up actions:** *Explain differently*, *Give an analogy*, *Quiz me on this*.
-- **Suggested questions** based on the current region, stage, or topic.
+### 1. Replay generator (`POST /api/replay`)
 
-### 2. Trace a Thought
+The person’s moment goes to the model with:
 
-Describe a real moment and see it mapped onto the stages.
+- the catalogue of the **21 brain areas** the app can show, with their reviewed one-line descriptions,
+- the list of **10 chemicals** it may mention,
+- one hand-written replay as a style reference,
+- rules: second person, plain language, honest timings, no diagnosis, no invented studies or statistics, no popular myths.
 
-> *"I smelled fresh bread and suddenly remembered my grandmother's kitchen."*
+The response must match a **JSON schema** sent through [structured outputs](https://docs.claude.com/en/docs/build-with-claude/structured-outputs). Brain areas and chemicals are `enum`s, so the model physically can’t light up an area the 3D brain doesn’t have. The server then validates the result again with Zod, trims anything too long, drops duplicate or unknown IDs, and retries once if fewer than three usable steps remain. While the model writes, the server streams progress (“step 3 drafted”) so the wait feels shorter.
 
-The API returns structured JSON, validated against a schema. The Journey page animates the stages and the 3D view lights up the regions involved.
+Every response also carries a `safety` field:
 
-```json
-{
-  "stages": [
-    {
-      "stageId": "sensory",
-      "regionIds": ["frontal", "temporal"],
-      "structures": ["olfactory bulb", "piriform cortex"],
-      "explanation": "...",
-      "sourceIds": ["topic:sensory-perception"]
-    },
-    {
-      "stageId": "memory",
-      "regionIds": ["temporal"],
-      "structures": ["hippocampus"],
-      "explanation": "...",
-      "sourceIds": ["topic:memory-learning"]
-    },
-    {
-      "stageId": "emotion",
-      "regionIds": ["temporal"],
-      "structures": ["amygdala"],
-      "explanation": "...",
-      "sourceIds": ["topic:emotions-cognition"]
-    }
-  ],
-  "caveats": ["Simplified model; real processing is parallel, not strictly sequential."]
-}
-```
+| `safety` | When | What the person sees |
+|---|---|---|
+| `ok` | A real moment, however small or silly | The replay |
+| `support` | Mentions of self-harm, suicide, abuse or danger | A short, caring message, emergency guidance and a link to [findahelpline.com](https://findahelpline.com). No replay. |
+| `off_topic` | “Write my essay”, code, random text | A friendly nudge with an example moment to try |
 
-**Schema rules**
+If someone types a moment that exactly matches a hand-written replay, the server returns the reviewed version for free.
 
-- `stageId` must be one of the seven IDs above, and stages appear in pipeline order.
-- `regionIds` must exist in `src/content/regions/`. Unknown IDs are rejected, so the 3D view never tries to highlight something that isn't there.
-- `structures` names deeper structures as text until they get their own meshes ([v2.2](#roadmap)). For example, the hippocampus and amygdala sit in the medial temporal lobe, so they highlight `temporal` for now.
+### 2. Ask guide (`POST /api/ask`)
 
-**Good answers handle nuance.** Smell is a classic example: olfactory signals reach the cortex without the thalamic relay that other senses use, and the olfactory pathway is closely connected to the amygdala and hippocampus, which helps explain why smells can trigger vivid memories.
+A streaming answer, grounded in the app’s notes:
 
-### 3. Quiz generation
+1. The server collects the notes for what you’re looking at (the selected brain area, the replay’s areas, or your Lab numbers) plus the top keyword matches for your question (BM25-style retrieval).
+2. The model answers from those notes and says when something is uncertain or debated.
+3. The UI shows **which notes it used** as chips you can click to open them in the explorer.
 
-- The reviewed question bank (`src/content/questions/`) is served first.
-- AI-generated questions are validated: exactly one correct option, an explanation, and `sourceIds` that exist. Invalid questions are discarded, not shown.
-- Difficulty adapts to recent accuracy.
-- Scheduling is deterministic (SM-2), so review timing never depends on the AI.
+Follow-up buttons change the answer style rather than just the wording: simpler, an analogy (and where it breaks down), one level deeper, or practical takeaways.
 
 ### Guardrails
 
-| Risk | Mitigation |
-|------|------------|
-| Hallucinated facts | Retrieval grounding, mandatory source IDs, permission to say "I'm not sure", visible *AI-generated* label |
-| Off-topic or medical questions | System prompt scopes the tutor to education; no diagnosis or treatment advice; points to a professional |
-| Prompt injection | User text is treated as data. The tutor has no tools and no private data, so the worst case is an off-topic answer. Output is rendered as sanitized text, never raw HTML. |
-| Key exposure | The API key lives only on the server; the browser never sees it |
-| Abuse and cost | Per-IP rate limits, input and history caps, `max_tokens` caps, a cheaper model for structured tasks, streams aborted when the learner closes the drawer |
-| Malformed output | Zod schema validation with one automatic retry, then a friendly error |
-
-### Cost control
-
-- Use a stronger model for open-ended tutoring and a faster, cheaper one for quizzes and tracing. Both are set by environment variable (see [Configuration](#configuration)).
-- Cap conversation history (`MAX_TURNS`) so long chats don't grow the bill on every request.
-- Consider [prompt caching](https://docs.claude.com/en/docs/build-with-claude/prompt-caching) for the long, unchanging part of the system prompt.
-- Check the [Claude API docs](https://docs.claude.com/en/api/overview) for current model IDs and pricing.
+| Risk | What the app does |
+|---|---|
+| Made-up anatomy | Brain areas and chemicals are schema `enum`s, validated again on the server |
+| Made-up facts | Grounded on reviewed notes, told not to invent studies or numbers, shows sources, labels everything *AI-generated* |
+| Medical misuse | Educational scope only: no diagnosis, labels or medication advice. Health symptoms always come with “see a doctor”. |
+| Someone in crisis | The `support` path replaces the replay with care and resources |
+| Prompt injection | The moment is wrapped as data, and the prompt says to ignore instructions inside it. The model has no tools and no private data. Output is rendered as text, never HTML. |
+| Shared links | Shared AI replays travel in the URL `#fragment` (never sent to the server). They're treated as untrusted input on open: only known brain areas are kept, and everything is rendered as text. |
+| Cost and abuse | Per-IP rate limit, input and history caps, `max_tokens` caps, prompt caching on the long replay prompt, a cheaper model for Ask, and generation stops when the visitor leaves |
+| Key exposure | The key lives only on the server. Only `VITE_`-prefixed variables reach the browser, and none are secret. |
 
 ---
 
-## Architecture
+## Quick start
 
-```mermaid
-flowchart LR
-    L[Learner] --> W["Web app<br/>Vite + Three.js"]
-    W --> P[("Progress<br/>IndexedDB")]
-    W -->|"REST and SSE"| A["API proxy<br/>Node + Express"]
-    A --> G["Grounding<br/>src/content/*.json"]
-    A -->|"Anthropic SDK"| C["Claude API"]
+**You need:** Node.js 22 or newer.
+
+```bash
+npm install
+cp .env.example .env     # optional: add ANTHROPIC_API_KEY for AI replays and Ask
+npm run dev              # site on http://localhost:5173, API on :8787
 ```
 
-**Why a server at all?** An API key must never ship to the browser. The small proxy holds the key, validates input, retrieves grounding passages, enforces rate limits, and streams the response back. Everything else is a static site.
+**No key yet?** Set `MOCK_AI=true` in `.env` to try the whole flow with canned answers (demo mode). It picks the closest hand-written replay for anything you type.
 
-### Tutor route
+| Command | What it does |
+|---|---|
+| `npm run dev` | Site and API together, with hot reload |
+| `npm run dev:web` | Site only (AI features hide themselves) |
+| `npm run dev:api` | API only |
+| `npm run build` | Production build into `dist/` |
+| `npm start` | Serve `dist/` and the API from one process (port 8787) |
+| `npm run preview` | Build, then start |
+| `npm test` | Server unit tests (Node’s built-in test runner) |
+| `npm run content:validate` | Check every replay only uses brain areas and chemicals that exist |
 
-```javascript
-// server/routes/tutor.js
-import Anthropic from '@anthropic-ai/sdk';
-import { tutorSchema } from '../lib/schemas.js';
-import { retrieve }    from '../lib/grounding.js';
-import { tutorSystemPrompt } from '../prompts/tutor.js';
+---
 
-const client = new Anthropic(); // reads ANTHROPIC_API_KEY from the environment
+## Configuration
 
-export async function tutor(req, res) {
-  // Throws on invalid input; the error middleware turns it into a 400.
-  // The schema caps message length, number of turns, and allowed roles.
-  const { messages, context, level } = tutorSchema.parse(req.body);
+All settings live in `.env` (see `.env.example`).
 
-  const chunks = retrieve(messages.at(-1).content, context, { k: 5 });
+| Variable | Default | Purpose |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | none | Turns on AI replays and Ask. **Server only.** |
+| `MODEL_REPLAY` | `claude-sonnet-5-5` | Writes replays. Must support structured outputs. |
+| `MODEL_ASK` | `claude-haiku-5-5` | Answers questions |
+| `MOCK_AI` | `false` | Demo mode: canned answers, no API calls |
+| `PORT` | `8787` | Server port |
+| `ALLOWED_ORIGIN` | empty | Only needed if the site and API are on different domains |
+| `TRUST_PROXY` | `false` | Set to `1` behind a proxy so rate limits see real IPs |
+| `RATE_LIMIT_PER_MIN` | `20` | AI requests per IP per minute |
+| `MAX_INPUT_CHARS` | `600` | Longest moment or question |
+| `MAX_TURNS` | `12` | Conversation history sent to the model |
+| `MAX_OUTPUT_TOKENS` | `700` | Longest Ask answer |
+| `VITE_AI_ENABLED` | `true` | Set `false` at build time to hide all AI UI |
 
-  res.set({
-    'Content-Type':  'text/event-stream',
-    'Cache-Control': 'no-cache',
-    Connection:      'keep-alive',
-  });
-  res.flushHeaders();
-
-  const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
-
-  const stream = client.messages.stream({
-    model:      process.env.MODEL_TUTOR,
-    max_tokens: Number(process.env.MAX_OUTPUT_TOKENS ?? 800),
-    system:     tutorSystemPrompt({ level, chunks }),
-    messages,
-  });
-
-  // Stop generating (and paying for) tokens if the learner closes the drawer.
-  let clientGone = false;
-  res.on('close', () => {
-    if (!res.writableEnded) { clientGone = true; stream.abort(); }
-  });
-
-  stream.on('text', (delta) => send({ delta }));
-
-  try {
-    await stream.finalMessage();
-    send({ done: true, sources: chunks.map((c) => c.id) });
-  } catch (err) {
-    if (!clientGone)
-      send({ error: 'The tutor could not finish this answer.', code: 'UPSTREAM_ERROR' });
-  } finally {
-    res.end();
-  }
-}
-```
-
-### Grounding
-
-Version 2.0 uses **keyword (BM25-style) retrieval** over content chunks. It is fast, free, deterministic, and good enough for a corpus this size. The current page context (region, stage, or topic) boosts matching chunks. Embedding-based retrieval is on the [roadmap](#roadmap).
+Check the [Claude API docs](https://docs.claude.com/en/api/overview) for current model names and pricing.
 
 ---
 
 ## Project structure
 
 ```
-inside-the-brain/
-├── index.html                # Landing page
-├── explore.html              # 3D brain explorer
-├── journey.html              # How Thoughts Form (+ Trace a Thought)
-├── library.html              # Learning library
-├── quiz.html                 # Quizzes and study tools
+inside-your-brain/
+├── index.html  replay.html  explore.html  lab.html
 ├── public/
-│   ├── models/brain.glb      # Compressed brain model (Draco or Meshopt)
-│   ├── draco/                # Draco decoder files
-│   └── images/
+│   ├── models/brain.glb          # Draco-compressed brain mesh
+│   ├── draco/                    # Draco decoder, served locally
+│   └── favicon.svg
 ├── src/
-│   ├── main.js
-│   ├── components/           # nav, region-panel, tutor-drawer, quiz-card, stage-stepper
-│   ├── three/                # scene, brain-model, region-picker, highlight
-│   ├── ai/                   # client (SSE), context, prompt helpers
-│   ├── learning/             # srs.js (SM-2), progress.js, export.js
-│   ├── content/              # regions, stages, topics, glossary, questions (JSON)
-│   │   └── schemas/          # JSON Schemas for every content type
-│   ├── styles/               # tokens.css, base.css, components.css
-│   └── utils/
+│   ├── brain/
+│   │   ├── brain-view.js         # The 3D glass brain (shader, glows, signals, labels, camera)
+│   │   └── anatomy.js            # Structure positions, lobe map, colour groups
+│   ├── content/
+│   │   ├── structures.json       # 21 brain areas: plain-language notes and sources
+│   │   ├── chemicals.json        # 10 neurochemicals in one sentence each
+│   │   ├── replays/*.json        # 8 hand-written replays (generated from scripts/replays-source.py)
+│   │   └── replays.js
+│   ├── pages/                    # home.js, replay.js, explore.js, lab.js
+│   ├── ui/                       # shell, Ask drawer, API client, share links, DOM helpers
+│   └── styles/                   # tokens, base, components, pages
 ├── server/
-│   ├── index.js              # Express app
-│   ├── routes/               # tutor.js, quiz.js, trace.js, health.js
-│   ├── lib/                  # grounding.js, schemas.js, rateLimit.js
-│   └── prompts/              # versioned system prompts
+│   ├── index.js                  # Express: API, static site, old-URL redirects
+│   ├── routes/replay.js  ask.js
+│   ├── lib/                      # content loader, JSON schema + validator, retrieval, HTTP helpers
+│   └── prompts/index.js          # Versioned system prompts
 ├── scripts/
-│   └── validate-content.js   # schema + cross-reference checks for src/content
-├── tests/
-│   ├── unit/
-│   ├── e2e/
-│   └── evals/                # golden questions for AI grounding checks
-├── .github/workflows/ci.yml
-├── .env.example
+│   ├── validate-content.js
+│   └── replays-source.py         # Easier place to write long replay text
+├── tests/server.test.js
+├── docs/screens/                 # Screenshots used in this README
 ├── Dockerfile
-├── vite.config.js
-└── package.json
+└── .env.example
 ```
 
 ---
 
-## Quick start
+## The 3D brain
 
-### Prerequisites
+The model is a single mesh, so regions are added in code rather than baked into the file.
 
-- **Node.js 22 LTS** or newer and npm. Node 20 reached end of life in April 2026.
-- A modern browser with **WebGL 2** (Chrome, Firefox, Edge, Safari)
-- *(Optional)* An [Anthropic API key](https://console.anthropic.com/) to enable AI features
+- **Glass shader.** A custom `ShaderMaterial` draws the brain as a translucent shell with a soft rim (back faces first, then front faces). Activity is a set of glowing hotspots passed to the shader as uniforms, so glows spread smoothly over the surface instead of filling hard-edged regions.
+- **21 structures** sit at hand-calibrated positions inside the model (`src/content/structures.json`, `pos: [distance from midline, height, front–back]`). Deep structures glow through the shell. Paired structures appear in both hemispheres. Broca’s and Wernicke’s areas are left-side only.
+- **Signals.** When a replay moves to the next step, small pulses travel along curved paths from the previous step’s areas to the new ones.
+- **Camera.** It turns to face whichever areas are active. Lateral areas are shown from their own side, and deep or midline ones from an oblique angle.
+- **Lobe view.** In the explorer, each vertex is assigned a lobe using sloped boundaries that follow the main landmarks (lateral fissure, central sulcus, parieto-occipital line). It’s still a teaching approximation, and the page says so.
+- **Labels.** HTML labels follow each active structure on screen, with its name and nickname.
+- **Performance.** Rendering pauses when the brain is off screen or the tab is hidden. The pixel ratio is capped. three.js gets its own cached chunk.
+- **Reduced motion.** No auto-rotate, no travelling signals, no auto-play. Steps change only when you press Next.
 
-### Install and run
-
-```bash
-git clone <your-repo-url> inside-the-brain
-cd inside-the-brain
-npm install
-cp .env.example .env          # add ANTHROPIC_API_KEY to enable AI features
-npm run dev                    # web app on :5173, API on :8787
-```
-
-Open `http://localhost:5173`. Vite proxies `/api` to the API server, so there is nothing else to configure. This also removes the v1 need to run a separate static server just to load the 3D model.
-
-**No API key?** Run `npm run dev:web`. The AI panels hide automatically and everything else works.
-
-### Scripts
-
-| Command | What it does |
-|---------|-------------|
-| `npm run dev` | Web app and API together with hot reload |
-| `npm run dev:web` | Frontend only (AI panels hide automatically) |
-| `npm run dev:api` | API server only |
-| `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm test` | Unit tests (Vitest) |
-| `npm run test:e2e` | End-to-end and accessibility tests (Playwright) |
-| `npm run eval:ai` | Run golden questions against the live API and check citations (uses your key) |
-| `npm run lint` | ESLint and Prettier checks |
-| `npm run content:validate` | Validate all JSON content against its schema |
+The +x side of the model is the subject’s **left** hemisphere. This comes from a right-handed frame with +z at the front and +y on top. If you swap in another model, re-check this before trusting Broca’s and Wernicke’s positions.
 
 ---
 
-## Configuration
+## Content and accuracy
 
-Copy `.env.example` to `.env`.
+Everything the app says comes from three files you can review: `structures.json`, `chemicals.json` and `replays/*.json`.
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `ANTHROPIC_API_KEY` | *none* | Enables AI features. Server only. Never prefix with `VITE_`. |
-| `MODEL_TUTOR` | `claude-sonnet-5-5` | Model for open-ended tutoring |
-| `MODEL_FAST` | `claude-haiku-5-5` | Model for quizzes and thought tracing |
-| `PORT` | `8787` | API server port |
-| `ALLOWED_ORIGIN` | `http://localhost:5173` | CORS allow-list (comma-separated for several origins) |
-| `TRUST_PROXY` | `false` | Set to `1` behind a reverse proxy or load balancer so rate limits see the real client IP |
-| `RATE_LIMIT_PER_MIN` | `20` | Requests per IP per minute on AI routes |
-| `MAX_INPUT_CHARS` | `1000` | Maximum length of one learner message |
-| `MAX_TURNS` | `12` | Maximum messages of history sent to the model |
-| `MAX_OUTPUT_TOKENS` | `800` | Upper bound on tutor answer length |
-| `VITE_AI_ENABLED` | `true` | Set `false` to hide all AI UI at build time |
+- **Written for non-specialists.** Each area has a nickname (“the relevance alarm”), a one-liner, three “you use it when…” examples, two short paragraphs and one surprising fact.
+- **Sourced.** Every area and every replay lists real, published sources.
+- **Honest about simplification.** Every replay ends with fine print, timings are marked as approximate, and nicknames are explained as memory aids.
+- **Myth-aware.** The notes and prompts push back on common myths: dopamine isn’t simply “the pleasure chemical”, the amygdala isn’t only a “fear centre”, there are no left-brained or right-brained people, and we use all of our brain.
+
+`npm run content:validate` fails if a replay uses an unknown brain area or chemical, or if anything is missing a source.
+
+**Adding a replay:** add it to `scripts/replays-source.py`, run `python3 scripts/replays-source.py`, then `npm run content:validate`.
 
 ---
 
-## API reference
+## API
 
-**Base path:** `/api`. All bodies are JSON and validated with Zod.
-
-**Error format:** `{ "error": "Human-readable message", "code": "MACHINE_CODE" }`
-
-| Code | HTTP | Meaning |
-|------|------|---------|
-| `INVALID_INPUT` | 400 | Body failed validation (too long, unknown ID, wrong shape) |
-| `RATE_LIMITED` | 429 | Too many requests; check the `Retry-After` header |
-| `AI_DISABLED` | 503 | No API key configured |
-| `UPSTREAM_ERROR` | 502 | The model request failed or returned invalid output twice |
-
-### `POST /api/tutor`
-
-Streams a grounded answer as Server-Sent Events.
-
-```json
-{
-  "messages": [{ "role": "user", "content": "Why does the hippocampus matter for memory?" }],
-  "context": { "page": "explore", "regionId": "temporal" },
-  "level": "highschool"
-}
-```
-
-**Events:** `{ "delta": "text" }` repeated, then `{ "done": true, "sources": ["region:temporal", "topic:memory-learning"] }`. On failure mid-stream: `{ "error": "...", "code": "UPSTREAM_ERROR" }`.
-
-`level` is one of `curious`, `highschool`, `undergrad`, `premed`.
-
-### `POST /api/trace`
-
-```json
-{
-  "scenario": "I smelled fresh bread and remembered my grandmother's kitchen."
-}
-```
-
-Returns the structured stage mapping shown in [Trace a Thought](#2-trace-a-thought).
-
-### `POST /api/quiz`
-
-```json
-{
-  "scope": { "type": "region", "id": "frontal" },
-  "count": 5,
-  "difficulty": "medium"
-}
-```
-
-Returns:
-
-```json
-{
-  "questions": [
-    {
-      "id": "q:frontal:012",
-      "prompt": "...",
-      "options": ["...", "...", "...", "..."],
-      "correctIndex": 2,
-      "explanation": "...",
-      "sourceIds": ["region:frontal"],
-      "origin": "bank"
-    }
-  ]
-}
-```
-
-`origin` is `bank` (reviewed) or `ai` (generated and validated).
+All routes are under `/api`. Errors look like `{ "error": "…", "code": "…" }`.
 
 ### `GET /api/health`
 
-Returns `{ "ok": true, "ai": true | false }` so the UI knows whether to show AI features.
+```json
+{ "ok": true, "ai": true, "demo": false, "prompts": "replay-v3.0 / ask-v3.0" }
+```
 
----
+### `POST /api/replay` (Server-Sent Events)
 
-## Content model
+```json
+{ "moment": "I keep checking my phone even when nothing is new" }
+```
 
-Content is data, not markup. One edit to a JSON file updates the page, the AI's knowledge, and the quizzes.
+Events: `{ "type": "progress", "steps": 3 }` while drafting, then `{ "type": "done", "replay": { … } }`, or `{ "type": "error", "code", "error" }`.
+
+A replay has `question`, `summary`, `beats[]` (`time`, `title`, `structures[]`, `chemicals[]`, `text`), `whyItFelt`, `tryThis[]` and `finePrint[]`. If `safety` isn't `ok`, there's a `message` instead.
+
+### `POST /api/ask` (Server-Sent Events)
 
 ```json
 {
-  "id": "temporal",
-  "name": "Temporal Lobe",
-  "color": "#4CAF50",
-  "summary": "Short, plain-language description.",
-  "functions": ["Auditory processing", "Language comprehension", "Memory formation"],
-  "structures": ["Hippocampus", "Amygdala", "Primary auditory cortex"],
-  "connections": [
-    { "to": "frontal", "via": "Uncinate fasciculus", "note": "Links memory with decision-making." }
-  ],
-  "facts": [{ "text": "A memorable, verifiable fact.", "sourceIndex": 0 }],
-  "sources": [
-    { "title": "Principles of Neural Science", "authors": "Kandel et al.", "edition": "6th", "year": 2021 }
-  ],
-  "lastReviewed": "2026-10-25",
-  "reviewedBy": "github-handle"
+  "messages": [{ "role": "user", "content": "Why is the amygdala involved?" }],
+  "context": { "page": "explore", "structureId": "amygdala" },
+  "style": "analogy"
 }
 ```
 
-`npm run content:validate` fails the build if a record:
+`context` can also carry `replayId`, an AI `replay` (`question` and `structures`), or `lab` results. `style` is `default`, `simpler`, `analogy`, `deeper` or `apply`.
 
-- is missing a required field,
-- has a broken cross-reference (for example, a connection to a region that doesn't exist),
-- has a fact that doesn't point to a source, or
-- has no source at all.
+Events: `{ "type": "delta", "text" }`, then `{ "type": "done", "sources": [{ "id", "name" }] }`.
 
-### Content accuracy checklist
-
-- Every statistic has a source and a date.
-- Ranges are stated as ranges. For example, ~86 billion neurons is a widely cited estimate; synapse counts are commonly given from roughly 100 trillion upward; the fastest axonal conduction is about 120 m/s (approximately 268 mph), which is a maximum for large myelinated fibers, not a universal signal speed.
-- Simplifications are labeled as simplifications.
-- Avoid popular myths (the "10% of the brain" myth, strict left-brain/right-brain personalities, learning styles). If a topic mentions one, it explains why it's a myth.
-
----
-
-## 3D brain model
-
-The model is based on **Frank Johansson's anatomical brain reference**, delivered as a compressed GLB. See [License and credits](#license-and-credits) for attribution requirements.
-
-### Regions and palette
-
-| Region | `id` | Default | Colorblind-safe (Okabe-Ito) |
-|--------|------|---------|-----------------------------|
-| Frontal lobe | `frontal` | `#4A90D9` | `#0072B2` |
-| Parietal lobe | `parietal` | `#F5D63D` | `#F0E442` |
-| Temporal lobe | `temporal` | `#4CAF50` | `#009E73` |
-| Occipital lobe | `occipital` | `#E53935` | `#D55E00` |
-| Cerebellum | `cerebellum` | `#AB47BC` | `#CC79A7` |
-| Brainstem | `brainstem` | `#FF9800` | `#E69F00` |
-
-The default palette pairs red and green, which many learners can't tell apart, so the **Okabe-Ito toggle matters**. Color is never the only cue: every region also has a text label, a legend entry, and an outline on hover and focus.
-
-### Region identification
-
-| Method | Notes |
-|--------|-------|
-| **Per-region meshes** (recommended) | Split the model by region in Blender so each lobe is its own named mesh (`frontal`, `parietal`, ...). Enables raycast picking, isolate, and explode views, and removes guesswork. |
-| **Atlas-based labeling** | Label vertices from an established parcellation such as Desikan-Killiany. More accurate than geometry heuristics. |
-| **Bounding-box heuristic** (v1 `getLobeFromPoint`) | Kept only as a last-resort fallback. Lobe boundaries follow sulci, not boxes, so expect misclassified vertices near borders. |
-
-### Performance targets
-
-- Model under 3 MB (Draco or Meshopt geometry; KTX2 textures if any)
-- Lazy-load the model when the Explorer opens, with a loading state and a text-list fallback
-- Render on demand: pause the loop when the tab is hidden, nothing is moving, or the user prefers reduced motion
-- Cap device pixel ratio at 2 on high-density screens
+| Code | HTTP | Meaning |
+|---|---|---|
+| `INVALID_INPUT` | 400 | Too short, too long or the wrong shape |
+| `RATE_LIMITED` | 429 | Too many requests (check `Retry-After`) |
+| `AI_DISABLED` | 503 | No API key on the server |
+| `AI_MISCONFIGURED` | 503 | Key rejected or model name not found |
+| `BUSY` | 503 | The AI is overloaded right now |
+| `UPSTREAM_ERROR` | 502 | The model failed, or its replay failed validation twice |
 
 ---
 
-## Design system
+## Design
 
-The plum-and-gold identity is kept and formalized as design tokens in `src/styles/tokens.css`.
+The brain is the only luminous thing on the page, and everything around it stays quiet.
 
-```css
-:root {
-  --bg:        #0F0B14;
-  --surface:   #181220;
-  --plum-500:  #7B3FA0;   /* decorative fills only */
-  --plum-300:  #B58AD6;   /* text-safe accent, about 7:1 on --bg */
-  --gold-300:  #D4C5A0;
-  --text:      #EDE7F3;
-  --radius:    14px;
-}
-```
+| Token | Value | Use |
+|---|---|---|
+| Night | `#15101D` | Page background (the original plum identity, deepened) |
+| Ivory | `#F3ECE4` | Text and primary buttons |
+| Mist | `#B6AAC2` | Secondary text (about 8:1 contrast) |
+| Sensing | `#7CC8E8` | Brain areas that take in the world |
+| Feeling | `#EE8FA8` | Areas that decide what matters and ready the body |
+| Thinking and remembering | `#F2C66D` | Goals, memory, language |
+| Moving and predicting | `#93D39A` | Movement, prediction, life support |
 
-> **Contrast note.** `#7B3FA0` on `#0F0B14` is about 2.8:1. That fails WCAG AA for normal text (4.5:1), large text (3:1), and meaningful UI components such as borders and icons (3:1), so use it for **purely decorative fills only**. Use `--plum-300` for links, labels, focus rings, and any text.
+The four group colours are the only accents, and they always mean the same thing: what kind of work an area does. The dots next to each everyday mystery show which kinds of work it involves.
 
-| Token group | Notes |
-|-------------|-------|
-| Typography | Fraunces (headings) and Inter (body), self-hosted via Fontsource |
-| Scale | Fluid type with `clamp()`; 4 px spacing grid |
-| Themes | Dark (default), light, high-contrast; respects `prefers-color-scheme` and `prefers-contrast` |
-| Motion | Glows, float, and shimmer are disabled under `prefers-reduced-motion` |
-| Components | Nav, cards, region panel, stage stepper, tutor drawer, quiz card, toast |
+Type is **Fraunces** (soft, slightly wonky optical serif) for headlines and the emotional “why it felt like that” lines, and **Instrument Sans** for everything else. Both are self-hosted through Fontsource.
 
 ---
 
 ## Accessibility
 
-**Target:** WCAG 2.2 AA.
+Target: **WCAG 2.2 AA**. All pages pass automated `axe-core` checks (WCAG 2.0–2.2 A/AA plus best practices) at desktop and phone widths, and none scroll sideways at 390 px.
 
-### Keyboard and pointer
-
-- Full keyboard operation, including the 3D view: `Tab` to the region list, `Enter` to select, arrow keys to rotate the focused canvas, `+`/`-` to zoom, `Esc` to deselect
-- On-screen rotate and zoom buttons, so dragging is never required (WCAG 2.5.7)
-- Interactive targets at least 24 x 24 CSS px (WCAG 2.5.8)
-- Visible focus that is never hidden behind the tutor drawer or sticky nav (WCAG 2.4.11)
-- A skip-to-content link
-
-### Screen readers
-
-- A text alternative to the canvas: a structured list of regions with the same information as the 3D panels
-- Region selection is announced (*"Temporal lobe selected"*)
-- Streaming AI answers are announced once complete, not word by word
-
-### Motion and vision
-
-- Auto-rotate and Journey auto-play can be paused at any time (WCAG 2.2.2), and are off under reduced motion
-- Colorblind-safe palette and a high-contrast theme
-- Text resizes to 200% without loss of content
-
-**Testing:** automated axe-core checks in the end-to-end suite, plus a manual pass with a screen reader (NVDA or VoiceOver) and keyboard only before each release. Automated tools catch only part of the problems.
+- **You never need the 3D view.** Every replay is fully readable as text. The explorer has a complete list of areas, and the lab works without the brain.
+- **Keyboard:** replay steps with ← and →, and every step, chip and control is a real button. The explorer’s Parts/Lobes switch uses arrow keys, and the lab tabs follow the ARIA tabs pattern. Space or Enter works for the reaction test, and R, B, G and Y for the colour test.
+- **The Ask drawer** traps focus, closes with Esc, returns focus to where you were and announces when an answer is ready.
+- **Reduced motion** turns off auto-rotate, travelling signals, auto-play and the cycling placeholder.
+- **Colour is never the only cue.** Every coloured dot has a text label. The colour-clash test warns that it may not work for people with colour blindness and says this says nothing about their brain.
+- **Focus rings are visible** everywhere. Every target is at least 24 px (the WCAG 2.2 minimum), and main controls are 36–44 px.
 
 ---
 
-## Testing and quality
+## Testing
 
-| Layer | Tool | Covers |
-|-------|------|--------|
-| Unit | Vitest | SM-2 scheduling, retrieval ranking, schema validation, content links |
-| End-to-end | Playwright | Navigation, region selection, quiz flow, tutor drawer (API mocked) |
-| Accessibility | axe-core via Playwright | Every page in each theme |
-| AI evaluation | `npm run eval:ai` | Golden questions: answer cites valid sources, stays in scope, declines medical advice, trace output passes schema |
-| Performance | Lighthouse CI | Budgets below |
-| Content | `content:validate` | Schemas, cross-references, required sources |
+```bash
+npm test                    # schema validation, ID clean-up, safety path, retrieval
+npm run content:validate    # every replay references real areas and chemicals
+```
 
-**Targets:** Lighthouse Performance >= 90, Accessibility >= 95, LCP < 2.5 s on a mid-range laptop.
+During development, the full flows were also run end to end in a headless browser: all three lab experiments, Explain my results, generating a replay from the home page, sharing it, opening the shared link and keyboard navigation. Accessibility was checked with `axe-core` on every page.
 
-CI (`.github/workflows/ci.yml`) runs lint, unit tests, content validation, build, and end-to-end tests on every pull request. AI evaluations call the real API, so they run on a schedule or manually rather than on every PR.
-
-Prompt changes are versioned in `server/prompts/` and must pass `eval:ai` before merging.
+**Before you point real users at it,** try a handful of real moments with your API key, including a few awkward ones (very short, very long, off-topic, emotional), and read the replays the way a sceptical neuroscience teacher would.
 
 ---
 
 ## Deployment
 
-### Option A: static site plus serverless functions
-
-Deploy `dist/` to Netlify, Vercel, or Cloudflare Pages and run the `server/` routes as functions. Add `ANTHROPIC_API_KEY` as a secret in the host's dashboard.
-
-**Things to check on serverless hosts:**
-
-- **Streaming:** confirm your host supports streamed (SSE) responses and that function timeouts are long enough for a full answer.
-- **Rate limiting:** in-memory counters don't work across many function instances. Use the host's rate limiting or a shared store (for example Redis or a KV service).
-- **Redirects:** add redirect rules for the old v1 URLs (see [Migrating from v1](#migrating-from-v1)).
-
-### Option B: single container
+**One container (simplest):**
 
 ```bash
-docker build -t inside-the-brain .
-docker run -p 8787:8787 --env-file .env inside-the-brain
+docker build -t inside-your-brain .
+docker run -p 8787:8787 --env-file .env inside-your-brain
 ```
 
-The container serves the built frontend and the API from one process. Behind a reverse proxy, set `TRUST_PROXY=1`.
+The build step runs content validation and the tests, then serves the built site and the API from one Node process.
 
-### Before going live
+**Any Node host** (Render, Railway, Fly.io, a VPS): run `npm ci && npm run build`, then `npm start`. Set `ANTHROPIC_API_KEY` as a secret and set `TRUST_PROXY=1` if the host puts a proxy in front.
 
-- [ ] `ALLOWED_ORIGIN` set to your production domain
-- [ ] `TRUST_PROXY` set correctly for your hosting setup
-- [ ] Rate limits, input caps, and `MAX_TURNS` reviewed
-- [ ] A monthly spend limit set on your Anthropic account
-- [ ] `npm run eval:ai` passing against the production models
-- [ ] Privacy notice reviewed for your audience (see below)
-- [ ] Model license and attribution verified (see [Credits](#license-and-credits))
+**Static host plus serverless functions:** possible, but the API streams Server-Sent Events and uses an in-memory rate limiter. Check that your platform supports streaming responses and long enough timeouts, and use the platform’s own rate limiting.
 
----
+**Before going live**
 
-## Security and privacy
-
-- **No accounts, no tracking.** Progress lives in the browser's IndexedDB. Export and import are available as JSON.
-- **Secrets stay server-side.** Only `VITE_`-prefixed variables reach the client, and none of them are secret.
-- **Learner messages** are sent to the Claude API to generate answers. The tutor drawer tells learners not to enter personal or health information. The server does not log message content by default.
-- **Shared trace links** keep the scenario in the URL fragment (`#...`), which browsers don't send to the server. Anyone with the link can read it, and the UI says so before sharing.
-- **Younger learners.** The audience includes under-18s (the Curious level starts at 12+). Before deploying to schools or minors, review [Anthropic's usage policies](https://www.anthropic.com/legal/aup) and the data-protection rules that apply to you (for example COPPA in the US or GDPR in the EU), and consider running with `VITE_AI_ENABLED=false` until that review is done.
-- **Output safety:** AI text is rendered through a sanitizer; HTML is never injected raw.
-- **Dependencies:** `npm audit` and Dependabot run in CI.
-- **Reporting a vulnerability:** please open a private security advisory on the repository rather than a public issue.
+- [ ] Set a monthly spend limit on your Anthropic account
+- [ ] Review the rate limits and input caps
+- [ ] Try the safety paths (a distressing moment, an off-topic request)
+- [ ] Check the brain model’s licence and keep its attribution in the footer
+- [ ] If the audience includes under-18s, review [Anthropic’s usage policies](https://www.anthropic.com/legal/aup) and the data-protection rules that apply to you (for example COPPA in the US or GDPR in the EU)
 
 ---
 
-## Migrating from v1
+## Privacy and safety
 
-| v1 file | v2 location | Notes |
-|---------|-------------|-------|
-| `brain.html` | `index.html` | Add a redirect rule |
-| `explore.html` | `explore.html` | Same URL |
-| `thoughts.html` | `journey.html` | Add a redirect rule |
-| `departments.html` | `library.html` | Add a redirect rule |
-| `css/shared.css` | `src/styles/` | Split into tokens, base, components |
-| Inline page content | `src/content/*.json` | Extract once, then edit data only |
-| `brain_c.glb` | `public/models/brain.glb` | Re-export as per-region meshes when ready |
-| `npx http-server ...` | `npm run dev` | No separate server needed |
-
-Redirects depend on your host: a `_redirects` file on Netlify or Cloudflare Pages, `vercel.json` on Vercel, or Express routes in the container build.
+- **No accounts and no analytics.** Lab results and your last five AI replays stay in your browser’s local storage.
+- **What leaves the browser:** only the moment you type and your Ask questions, which go to the Claude API to generate a response. The server doesn't log their content. The app asks people not to include names or personal details.
+- **Shared AI replays** live entirely in the link’s `#fragment`, which browsers don't send to servers. Anyone with the link can read it.
+- **This is not medical or psychological advice,** and the lab experiments aren't tests. The app says so where it matters.
 
 ---
 
 ## Roadmap
 
-### v2.0 — Foundation
-
-- [ ] Vite migration and shared layout
-- [ ] Content extracted to validated JSON
-- [ ] Reviewed question bank (at least 10 questions per region and topic)
-- [ ] Ask the Brain tutor (grounded, streaming)
-- [ ] Trace a Thought with synced 3D highlights
-- [ ] Quizzes with spaced repetition
-- [ ] Accessibility pass (keyboard, reduced motion, colorblind palette, manual screen-reader test)
-- [ ] AI evaluation suite in place
-
-### v2.1 — Reach
-
-- [ ] Offline support (PWA; AI features need a connection)
-- [ ] Read-aloud for articles and tutor answers
-- [ ] Internationalization (content and UI strings)
-- [ ] Embedding-based retrieval
-
-### v2.2 — Depth
-
-- [ ] Deep structures as individual meshes: hippocampus, amygdala, thalamus, basal ganglia, olfactory bulb
-- [ ] Cross-section slicing
-- [ ] Guided tours (for example, "What happens when you read this sentence?")
-
-### v3 — Classroom
-
-- [ ] Teacher mode with shareable class links and assignments
-- [ ] Printable worksheets generated from content
-- [ ] Anonymous, opt-in aggregate analytics for teachers
+- **Sound:** optional narration for replays (read aloud)
+- **More replays:** goosebumps from music, *déjà vu*, hunger making you irritable, falling-asleep twitches
+- **Better anatomy:** split the model into real per-region meshes from an atlas (for example Desikan–Killiany), and add white-matter tracts so signals follow real pathways
+- **Compare two moments:** see what changes in the brain between two similar experiences
+- **Teacher mode:** a replay-of-the-day link for a class, with discussion questions
+- **Languages:** the content is data, so translation means translating the JSON files
 
 ---
 
-## Contributing
+## Credits
 
-Contributions are welcome, especially content review from neuroscience educators.
+- **3D brain model:** based on Frank Johansson’s anatomical brain model. *Check its licence terms and keep the attribution in the footer.*
+- **Rendering:** [three.js](https://threejs.org/)
+- **AI:** [Claude API](https://docs.claude.com/en/api/overview) by Anthropic
+- **Fonts:** Fraunces and Instrument Sans (SIL Open Font License), via Fontsource
+- **Science:** sources are listed on every brain area and every replay. The main reference is Kandel et al., *Principles of Neural Science* (6th ed., 2021).
 
-1. Fork and create a branch: `feat/...`, `fix/...`, or `content/...`
-2. Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat: add isolate view`)
-3. Run `npm run lint && npm test && npm run content:validate`
-4. Open a pull request with a screenshot or short recording for UI changes
-
-**Content pull requests** must cite a source for every new claim, update `lastReviewed` and `reviewedBy`, and pass `content:validate`.
-
-**Prompt pull requests** must bump the prompt version in `server/prompts/` and include `eval:ai` results.
-
-Good first issues are labeled `good first issue`. Please follow the code of conduct in `CODE_OF_CONDUCT.md`.
-
----
-
-## Troubleshooting
-
-| Symptom | Likely cause and fix |
-|---------|---------------------|
-| 3D model doesn't load | Don't open HTML files with `file://`. Use `npm run dev`; browsers block module and model loading without HTTP. |
-| Blank canvas, no error | WebGL is disabled or unsupported. Use the text region list, or enable hardware acceleration in browser settings. |
-| Draco decode error | Confirm `public/draco/` exists and the loader's decoder path is `/draco/`. |
-| `npm install` fails or engines warning | Check `node -v`; Node 22 LTS or newer is required. |
-| AI drawer says "unavailable" | `ANTHROPIC_API_KEY` missing, or `/api/health` returns `ai: false`. Check `.env` and restart the API. |
-| Answer stops halfway | `MAX_OUTPUT_TOKENS` is too low, or your host's function timeout cut the stream. |
-| 429 Too Many Requests | Rate limit reached. Wait for `Retry-After`, or raise `RATE_LIMIT_PER_MIN`. |
-| Everyone gets rate-limited at once in production | The server sees the proxy's IP, not the learner's. Set `TRUST_PROXY=1`. |
-| CORS error in production | Set `ALLOWED_ORIGIN` to your site's exact origin (scheme, host, and port). |
-| Trace highlights nothing | The model returned region IDs that don't exist; check server logs for schema rejections. |
-| Tutor answers feel generic | Check that the *Asking about* chip is set and that content for that region exists and passes validation. |
-
----
-
-## License and credits
-
-Inside the Brain is an educational resource. See `LICENSE` for the code license. Content in `src/content/` may carry a separate license; see `CONTENT_LICENSE` if present.
-
-- **3D brain model:** Frank Johansson's anatomical brain reference. Confirm the model's license terms and keep the required attribution in the app footer.
-- **3D rendering:** [Three.js](https://threejs.org/) by mrdoob and contributors
-- **AI features:** [Claude API](https://docs.claude.com/en/api/overview) by Anthropic
-- **Colorblind palette:** Okabe and Ito, *Color Universal Design*
-- **Fonts:** Fraunces and Inter (SIL Open Font License), self-hosted via Fontsource
-- **Scientific content:** based on established neuroscience literature; sources are listed per record in `src/content/`
-
-> **Disclaimer.** This project is for education only. It is not medical advice and must not be used for diagnosis or treatment decisions. Consult a qualified professional for health concerns.
+> **Disclaimer.** Inside Your Brain is for education only. It isn't medical advice and must not be used for diagnosis or treatment. If something about your health worries you, talk to a qualified professional.

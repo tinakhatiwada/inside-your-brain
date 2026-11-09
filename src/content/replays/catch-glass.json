@@ -1,0 +1,107 @@
+{
+  "id": "catch-glass",
+  "order": 6,
+  "moment": "A glass slipped off the table and I caught it before I even thought about it.",
+  "question": "How did I catch it before I even thought about it?",
+  "summary": "Fast, practised movements run on circuits that don’t wait for conscious thought. Awareness arrives a moment after your hand is already moving.",
+  "beats": [
+    {
+      "time": "0 ms",
+      "title": "Something moves",
+      "structures": [
+        "visual-cortex",
+        "thalamus"
+      ],
+      "chemicals": [],
+      "text": "Light from the falling glass hits your eyes. Within a few tens of milliseconds, signals pass through the thalamus to your visual cortex."
+    },
+    {
+      "time": "~100 ms",
+      "title": "Motion detected",
+      "structures": [
+        "motion-area",
+        "posterior-parietal"
+      ],
+      "chemicals": [],
+      "text": "Your motion area picks up something dropping fast. The posterior parietal cortex works out where it is compared with your hand."
+    },
+    {
+      "time": "~200 ms",
+      "title": "Launch",
+      "structures": [
+        "posterior-parietal",
+        "motor-cortex"
+      ],
+      "chemicals": [
+        "acetylcholine"
+      ],
+      "text": "Without waiting for you to decide, your motor cortex sends commands down the spinal cord. At the muscles, acetylcholine triggers the contraction, and your hand shoots out."
+    },
+    {
+      "time": "~250 ms",
+      "title": "Corrections in flight",
+      "structures": [
+        "cerebellum",
+        "motion-area"
+      ],
+      "chemicals": [],
+      "text": "The cerebellum predicts where the glass will be and adjusts your hand’s path on the fly, faster than you could steer it on purpose."
+    },
+    {
+      "time": "~400 ms",
+      "title": "Awareness catches up",
+      "structures": [
+        "prefrontal",
+        "cingulate"
+      ],
+      "chemicals": [],
+      "text": "Around now you consciously notice: glass falling! In lab studies, people start correcting a reach before they become aware of the change they’re reacting to."
+    },
+    {
+      "time": "after",
+      "title": "The jolt",
+      "structures": [
+        "amygdala",
+        "brainstem"
+      ],
+      "chemicals": [
+        "adrenaline"
+      ],
+      "text": "Your heart jumps once it’s all over. The alarm system arrived a little late to help, but it will make sure you remember the near-miss."
+    }
+  ],
+  "whyItFelt": "It feels like you acted without thinking, and in a sense you did. Quick, well-practised actions are handled by circuits that don’t wait for conscious thought. Awareness is more like a report that arrives after the action has started, which is why the catch feels almost magical.",
+  "tryThis": [
+    {
+      "title": "Test your own speed",
+      "text": "Try the reaction-time experiment in the Lab. Most people land somewhere between 200 and 300 milliseconds."
+    },
+    {
+      "title": "Practice makes it automatic",
+      "text": "Sports drills work because repetition builds fast, automatic routes, so less has to pass through slow, deliberate thinking."
+    }
+  ],
+  "finePrint": [
+    "Timings are approximate. Reaction speed varies with age, alertness, practice and how expected the event is.",
+    "A glass falling from table height takes about 0.4 seconds to hit the floor, so a catch is fast but possible."
+  ],
+  "sources": [
+    {
+      "title": "Temporal dissociation of motor responses and subjective awareness",
+      "authors": "Castiello, Paulignan & Jeannerod",
+      "year": 1991,
+      "journal": "Brain"
+    },
+    {
+      "title": "Factors influencing the latency of simple reaction time",
+      "authors": "Woods et al.",
+      "year": 2015,
+      "journal": "Frontiers in Human Neuroscience"
+    },
+    {
+      "title": "Principles of Neural Science (6th ed.)",
+      "authors": "Kandel et al.",
+      "year": 2021
+    }
+  ]
+}

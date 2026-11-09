@@ -1,0 +1,103 @@
+{
+  "id": "doorway",
+  "order": 3,
+  "moment": "I walked into the kitchen and completely forgot why I went in there.",
+  "question": "Why do I forget what I came into a room for?",
+  "summary": "Your brain splits life into scenes, and a doorway marks the end of one. A goal you were holding can get filed away with the scene you just left.",
+  "beats": [
+    {
+      "time": "0 s",
+      "title": "An intention",
+      "structures": [
+        "prefrontal",
+        "hippocampus"
+      ],
+      "chemicals": [],
+      "text": "On the sofa, you decide to fetch your charger. The goal goes into working memory, held by your prefrontal cortex, and it’s quietly tied to everything around you: the living room, the show you were watching."
+    },
+    {
+      "time": "~3 s",
+      "title": "Walking on autopilot",
+      "structures": [
+        "motor-cortex",
+        "cerebellum",
+        "posterior-parietal"
+      ],
+      "chemicals": [],
+      "text": "As you walk, your motor cortex and cerebellum handle the movement without you thinking about it. Your mind drifts to other things, so the goal now has to compete for space in working memory."
+    },
+    {
+      "time": "~5 s",
+      "title": "Through the doorway",
+      "structures": [
+        "hippocampus",
+        "visual-cortex"
+      ],
+      "chemicals": [],
+      "text": "Walking through a doorway is what researchers call an event boundary. Your brain divides experience into chunks, and a new room signals that one chunk has ended. The hippocampus starts filing the old scene away."
+    },
+    {
+      "time": "~6 s",
+      "title": "The goal gets left behind",
+      "structures": [
+        "prefrontal",
+        "hippocampus"
+      ],
+      "chemicals": [],
+      "text": "Because the intention was bound to the old scene, it gets filed away with it. Your prefrontal cortex is busy updating for the kitchen, and the thread back to “charger” is harder to grab."
+    },
+    {
+      "time": "~7 s",
+      "title": "That blank feeling",
+      "structures": [
+        "cingulate",
+        "prefrontal"
+      ],
+      "chemicals": [],
+      "text": "You know you came for something. The anterior cingulate notices the gap between “I had a goal” and “I can’t find it”, and you get that odd, frustrating blank."
+    },
+    {
+      "time": "~20 s",
+      "title": "Going back helps",
+      "structures": [
+        "hippocampus",
+        "visual-cortex"
+      ],
+      "chemicals": [],
+      "text": "Walk back to the sofa and the familiar sights reactivate the old scene. Memory often depends on context, so returning to the original place can bring the goal straight back: charger!"
+    }
+  ],
+  "whyItFelt": "It feels like a glitch, but it’s a side effect of something useful. Splitting life into scenes helps you organise memories and focus on what’s happening now. The catch is that a fleeting goal can get stuck in the previous scene.",
+  "tryThis": [
+    {
+      "title": "Say it out loud",
+      "text": "Mutter “charger, charger” as you walk. Repeating it keeps the goal active in working memory."
+    },
+    {
+      "title": "Picture it first",
+      "text": "Before you stand up, imagine yourself picking up the charger. A vivid image is easier to carry through the doorway."
+    },
+    {
+      "title": "Retrace your steps",
+      "text": "If you forget, go back. Returning to the original context is one of the most reliable ways to recover the goal."
+    }
+  ],
+  "finePrint": [
+    "In lab studies, walking through a doorway causes a bit more forgetting than walking the same distance within one room. The effect is real but modest, and not every study finds it.",
+    "Timings are rough and only show the order of events."
+  ],
+  "sources": [
+    {
+      "title": "Walking through doorways causes forgetting: further explorations",
+      "authors": "Radvansky, Krawietz & Tamplin",
+      "year": 2011,
+      "journal": "Quarterly Journal of Experimental Psychology"
+    },
+    {
+      "title": "The magical number 4 in short-term memory",
+      "authors": "Cowan",
+      "year": 2001,
+      "journal": "Behavioral and Brain Sciences"
+    }
+  ]
+}

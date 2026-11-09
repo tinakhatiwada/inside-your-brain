@@ -1,0 +1,521 @@
+{
+  "groups": {
+    "sense": { "name": "Sensing", "color": "#7CC8E8", "blurb": "Turning light, sound, touch and smell into signals you can use." },
+    "feel": { "name": "Feeling", "color": "#EE8FA8", "blurb": "Deciding what matters and getting your body ready for it." },
+    "think": { "name": "Thinking and remembering", "color": "#F2C66D", "blurb": "Holding goals, finding memories and making sense of words." },
+    "act": { "name": "Moving and predicting", "color": "#93D39A", "blurb": "Launching movements, fine-tuning them and keeping you alive." }
+  },
+  "structures": [
+    {
+      "id": "olfactory-bulb",
+      "name": "Olfactory bulb",
+      "nickname": "the smell sorter",
+      "group": "sense",
+      "lobe": "frontal",
+      "side": "both",
+      "pos": [0.05, 0.42, 0.83],
+      "depth": "deep",
+      "oneLiner": "Sorts the chemicals you breathe in into recognisable smells.",
+      "youUseItWhen": [
+        "You catch the smell of rain before you see it",
+        "Coffee smells like morning",
+        "Food tastes flat when you have a cold, because most flavour is really smell"
+      ],
+      "explain": [
+        "Smell receptors high up in your nose send signals straight into the olfactory bulbs, two small strips under the front of your brain. Each bulb groups signals from receptors of the same type, so every smell becomes its own pattern.",
+        "Smell is the odd one out among the senses. Sight, hearing and touch pass through the thalamus before they reach the cortex. Smell signals reach smell cortex without that relay, only a step or two away from the amygdala and hippocampus, which handle emotion and memory."
+      ],
+      "surprising": "Humans are far better smellers than their reputation suggests. The idea that our sense of smell is weak is mostly a 19th-century myth.",
+      "sources": [
+        { "title": "Poor human olfaction is a 19th-century myth", "authors": "McGann", "year": 2017, "journal": "Science" },
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "visual-cortex",
+      "name": "Primary visual cortex",
+      "nickname": "the edge detector",
+      "group": "sense",
+      "lobe": "occipital",
+      "side": "mid",
+      "pos": [0, 0.5, 0.04],
+      "depth": "surface",
+      "oneLiner": "Turns signals from your eyes into edges, lines and contrast: the rough sketch of what you see.",
+      "youUseItWhen": [
+        "You read these words",
+        "You notice a crack in your phone screen",
+        "You see something at all"
+      ],
+      "explain": [
+        "Signals from your eyes travel to the thalamus and then all the way to the back of your head. That’s why a hard knock to the back of the head can make you see stars.",
+        "Each neuron here responds to a tiny patch of what you’re looking at and prefers particular features, like a line at a certain angle. Later areas combine these fragments into objects, faces and motion. Seeing feels instant, but it’s built in stages over a fraction of a second."
+      ],
+      "surprising": "Each eye has a blind spot where the optic nerve leaves, and you never notice it. Your brain quietly fills in the gap.",
+      "sources": [
+        { "title": "Receptive fields, binocular interaction and functional architecture in the cat’s visual cortex", "authors": "Hubel & Wiesel", "year": 1962, "journal": "Journal of Physiology" },
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "motion-area",
+      "name": "Motion area (MT/V5)",
+      "nickname": "the motion tracker",
+      "group": "sense",
+      "lobe": "occipital",
+      "side": "both",
+      "pos": [0.36, 0.48, 0.16],
+      "depth": "surface",
+      "oneLiner": "Specialises in movement: what’s moving, which way and how fast.",
+      "youUseItWhen": [
+        "You catch something that’s falling",
+        "You judge whether you can cross before a car arrives",
+        "Still rocks seem to drift after you’ve stared at a waterfall"
+      ],
+      "explain": [
+        "Neurons in this patch respond strongly to movement in particular directions. Together they turn a stream of snapshots into a smooth sense of motion.",
+        "In rare cases where this area is damaged on both sides, people lose the ability to see motion. One well-studied patient said that pouring tea looked like a frozen glacier, and that the cup seemed to fill all at once."
+      ],
+      "surprising": "Stare at a waterfall for a minute, then look at the rocks beside it. They seem to creep upwards, because the motion-tuned neurons have tired out.",
+      "sources": [
+        { "title": "Selective disturbance of movement vision after bilateral brain damage", "authors": "Zihl, von Cramon & Mai", "year": 1983, "journal": "Brain" }
+      ]
+    },
+    {
+      "id": "auditory-cortex",
+      "name": "Auditory cortex",
+      "nickname": "the sound room",
+      "group": "sense",
+      "lobe": "temporal",
+      "side": "both",
+      "pos": [0.43, 0.53, 0.5],
+      "depth": "surface",
+      "oneLiner": "Turns vibrations into pitch, rhythm and the sounds of speech.",
+      "youUseItWhen": [
+        "You pick out your name in a noisy room",
+        "A song plays in your head with no music on",
+        "You can tell a friend’s voice from a stranger’s"
+      ],
+      "explain": [
+        "Sound waves become electrical signals in your inner ear, pass through the brainstem and thalamus, and arrive on the upper surface of your temporal lobes, just above your ears.",
+        "It’s laid out a bit like a piano keyboard: neighbouring patches respond to neighbouring pitches. Imagining music activates auditory areas too, which is part of why a song stuck in your head can feel almost like hearing it."
+      ],
+      "surprising": "When people listen to a familiar song with short silent gaps, auditory areas stay active during the silences, as if the brain is filling in the missing bit.",
+      "sources": [
+        { "title": "Sound of silence activates auditory cortex", "authors": "Kraemer et al.", "year": 2005, "journal": "Nature" }
+      ]
+    },
+    {
+      "id": "face-area",
+      "name": "Fusiform face area",
+      "nickname": "the face finder",
+      "group": "sense",
+      "lobe": "temporal",
+      "side": "both",
+      "pos": [0.24, 0.31, 0.33],
+      "depth": "deep",
+      "oneLiner": "Specialises in recognising faces, often within about a fifth of a second.",
+      "youUseItWhen": [
+        "You spot a friend in a crowd",
+        "You see a face in a plug socket or a cloud",
+        "You know someone’s face but can’t remember their name"
+      ],
+      "explain": [
+        "On the underside of each temporal lobe is a patch that responds more strongly to faces than to almost anything else. Brain recordings show a face-specific response about 170 milliseconds after a face appears.",
+        "Damage here can cause face blindness (prosopagnosia). People can see eyes, a nose and a mouth but can’t tell whose face it is. A lifelong form affects roughly 2 in 100 people, and it has nothing to do with eyesight or intelligence."
+      ],
+      "surprising": "Seeing faces in objects, like a smiling car front, triggers face-tuned brain activity quickly, before you’ve decided it’s just a car.",
+      "sources": [
+        { "title": "The fusiform face area: a module in human extrastriate cortex specialized for face perception", "authors": "Kanwisher, McDermott & Chun", "year": 1997, "journal": "Journal of Neuroscience" },
+        { "title": "Electrophysiological studies of face perception in humans", "authors": "Bentin et al.", "year": 1996, "journal": "Journal of Cognitive Neuroscience" }
+      ]
+    },
+    {
+      "id": "body-map",
+      "name": "Somatosensory cortex",
+      "nickname": "the body map",
+      "group": "sense",
+      "lobe": "parietal",
+      "side": "both",
+      "pos": [0.25, 0.88, 0.45],
+      "depth": "surface",
+      "oneLiner": "A map of your whole body that registers touch, pressure, temperature and pain.",
+      "youUseItWhen": [
+        "You feel your phone buzz in your pocket",
+        "Someone tickles you",
+        "You find the light switch in the dark"
+      ],
+      "explain": [
+        "This strip runs over the top of your head, just behind the movement strip. Every part of your body has its own patch, arranged in order from toes near the middle to face lower down the side.",
+        "The map isn’t to scale. Lips, tongue and fingertips get huge areas because they’re packed with sensors. That’s why a paper cut on a fingertip hurts far more than one on your back."
+      ],
+      "surprising": "When you touch yourself, this area responds less than when someone else touches you. Your brain has already predicted the feeling and turned it down.",
+      "sources": [
+        { "title": "Central cancellation of self-produced tickle sensation", "authors": "Blakemore, Wolpert & Frith", "year": 1998, "journal": "Nature Neuroscience" },
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "thalamus",
+      "name": "Thalamus",
+      "nickname": "the relay station",
+      "group": "sense",
+      "lobe": "deep",
+      "side": "both",
+      "pos": [0.06, 0.54, 0.48],
+      "depth": "deep",
+      "oneLiner": "Routes almost every incoming sense signal to the right part of the cortex.",
+      "youUseItWhen": [
+        "You see, hear or feel anything",
+        "You wake to a crying baby but sleep through traffic",
+        "You stop noticing the hum of the fridge"
+      ],
+      "explain": [
+        "Two egg-shaped clusters sit right in the middle of your brain. Signals from your eyes, ears, skin and tongue all stop here before travelling on to the cortex.",
+        "It isn’t just a switchboard. The thalamus and cortex constantly talk back and forth, and that loop helps decide what reaches your awareness. It also plays a key role in sleep and waking."
+      ],
+      "surprising": "Smell is the only sense that doesn’t pass through the thalamus before reaching the cortex.",
+      "sources": [
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "amygdala",
+      "name": "Amygdala",
+      "nickname": "the relevance alarm",
+      "group": "feel",
+      "lobe": "temporal",
+      "side": "both",
+      "pos": [0.19, 0.42, 0.63],
+      "depth": "deep",
+      "oneLiner": "Flags what matters right now (threats, rewards, surprises) and gets your body ready.",
+      "youUseItWhen": [
+        "Your heart jumps at a sudden bang",
+        "A face looks angry before you’ve had time to think",
+        "An embarrassing memory still makes you cringe"
+      ],
+      "explain": [
+        "The amygdala is a pair of almond-shaped clusters deep in each temporal lobe. It’s often called the “fear centre”, but that’s an oversimplification. It responds to anything emotionally significant: danger, yes, but also rewards, surprises and social signals.",
+        "It works fast and has strong links to the hypothalamus and brainstem, which control heart rate and stress hormones. It also tags experiences as important, which is part of why emotional moments are remembered more vividly."
+      ],
+      "surprising": "People with damage to both amygdalae can still feel many emotions, but some lose the ability to recognise fear on other people’s faces.",
+      "sources": [
+        { "title": "Impaired recognition of emotion in facial expressions following bilateral damage to the human amygdala", "authors": "Adolphs, Tranel, Damasio & Damasio", "year": 1994, "journal": "Nature" }
+      ]
+    },
+    {
+      "id": "insula",
+      "name": "Insula",
+      "nickname": "the body’s dashboard",
+      "group": "feel",
+      "lobe": "deep",
+      "side": "both",
+      "pos": [0.3, 0.55, 0.6],
+      "depth": "deep",
+      "oneLiner": "Reads signals from inside your body (heartbeat, breathing, stomach) and helps turn them into feelings.",
+      "youUseItWhen": [
+        "You get butterflies before a big moment",
+        "Something smells disgusting",
+        "You notice you’re hungry, thirsty or need the toilet"
+      ],
+      "explain": [
+        "The insula is folded away inside the deep groove on the side of each hemisphere, hidden under the frontal and temporal lobes. It receives a constant stream of information from your organs.",
+        "It helps turn raw body signals into felt states, so a racing heart becomes “I’m nervous”. It’s also active during disgust, both the physical kind (rotten food) and the social kind (being treated unfairly)."
+      ],
+      "surprising": "People differ a lot in how well they can feel their own heartbeat without touching their pulse, and some studies link this to how intensely they experience emotions.",
+      "sources": [
+        { "title": "How do you feel — now? The anterior insula and human awareness", "authors": "Craig", "year": 2009, "journal": "Nature Reviews Neuroscience" }
+      ]
+    },
+    {
+      "id": "hypothalamus",
+      "name": "Hypothalamus",
+      "nickname": "the body’s thermostat",
+      "group": "feel",
+      "lobe": "deep",
+      "side": "mid",
+      "pos": [0, 0.45, 0.57],
+      "depth": "deep",
+      "oneLiner": "Keeps your body in balance: temperature, hunger, thirst, sleep and the stress response.",
+      "youUseItWhen": [
+        "You get hungry around lunchtime",
+        "You start sweating in the heat",
+        "Stress makes your body release cortisol"
+      ],
+      "explain": [
+        "About the size of an almond, the hypothalamus sits just below the thalamus. It constantly compares your body’s state to its set points and nudges things back on track.",
+        "It controls the pituitary gland, the hormone master switch just below it. When the amygdala raises an alarm, the hypothalamus starts the stress response: fast signals through your nerves and, a little slower, a chain of hormones that releases cortisol."
+      ],
+      "surprising": "Your 24-hour body clock lives here, in a tiny cluster of cells that is reset every day by light reaching your eyes.",
+      "sources": [
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "reward-circuit",
+      "name": "Striatum (reward circuit)",
+      "nickname": "the wanting engine",
+      "group": "feel",
+      "lobe": "deep",
+      "side": "both",
+      "pos": [0.1, 0.52, 0.65],
+      "depth": "deep",
+      "oneLiner": "Learns what’s worth chasing and drives you to go after it, with help from dopamine.",
+      "youUseItWhen": [
+        "You refresh a feed for just one more post",
+        "You crave the snack you know is in the cupboard",
+        "You feel driven to beat a game level"
+      ],
+      "explain": [
+        "The striatum is a group of structures deep in the brain, including the nucleus accumbens. It receives dopamine from neurons in the midbrain and helps turn “that might be good” into action.",
+        "Dopamine is often called the “pleasure chemical”, but that’s misleading. It’s more about wanting and learning than enjoying. Dopamine neurons fire most when something turns out better than expected, which teaches your brain what to seek again. Unpredictable rewards, like a feed where the next post might be great, keep that signal going."
+      ],
+      "surprising": "Once a reward becomes predictable, dopamine neurons stop firing for the reward itself and fire for the cue that predicts it instead. The anticipation becomes the signal.",
+      "sources": [
+        { "title": "A neural substrate of prediction and reward", "authors": "Schultz, Dayan & Montague", "year": 1997, "journal": "Science" },
+        { "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?", "authors": "Berridge & Robinson", "year": 1998, "journal": "Brain Research Reviews" }
+      ]
+    },
+    {
+      "id": "hippocampus",
+      "name": "Hippocampus",
+      "nickname": "the memory indexer",
+      "group": "think",
+      "lobe": "temporal",
+      "side": "both",
+      "pos": [0.2, 0.42, 0.48],
+      "depth": "deep",
+      "oneLiner": "Stitches the pieces of an experience together so you can find it again later.",
+      "youUseItWhen": [
+        "You remember where you left your keys",
+        "A smell takes you back to childhood",
+        "You learn your way around a new place"
+      ],
+      "explain": [
+        "Curled deep inside each temporal lobe, the hippocampus is named after the Greek word for seahorse because of its shape. It doesn’t store memories like a hard drive. It works more like an index, linking the sights, sounds and feelings stored across the cortex into one episode.",
+        "Remembering is rebuilding. Each time you recall something, the hippocampus helps reassemble it from fragments, and the memory can shift slightly in the process. During sleep it replays the day’s experiences, which helps strengthen the ones worth keeping."
+      ],
+      "surprising": "London taxi drivers, who memorise thousands of streets, were found to have a larger rear hippocampus than people who don’t drive taxis.",
+      "sources": [
+        { "title": "Navigation-related structural change in the hippocampi of taxi drivers", "authors": "Maguire et al.", "year": 2000, "journal": "PNAS" },
+        { "title": "Loss of recent memory after bilateral hippocampal lesions", "authors": "Scoville & Milner", "year": 1957, "journal": "Journal of Neurology, Neurosurgery and Psychiatry" }
+      ]
+    },
+    {
+      "id": "prefrontal",
+      "name": "Prefrontal cortex",
+      "nickname": "the planner",
+      "group": "think",
+      "lobe": "frontal",
+      "side": "both",
+      "pos": [0.26, 0.74, 0.83],
+      "depth": "surface",
+      "oneLiner": "Holds goals in mind, weighs options and puts the brakes on impulses.",
+      "youUseItWhen": [
+        "You keep a code in your head long enough to type it",
+        "You stop yourself from saying something rude",
+        "You choose studying now for a better result later"
+      ],
+      "explain": [
+        "The prefrontal cortex sits behind your forehead. It’s one of the last parts of the brain to finish developing, and it keeps maturing into your twenties.",
+        "It isn’t a boss that controls everything. It’s more of a coordinator that keeps goals active (working memory), resists distractions and switches between tasks. It’s sensitive to stress, lack of sleep and alcohol, which is why all three make self-control harder."
+      ],
+      "surprising": "Working memory is small. Most people can hold only about four chunks of information at once, which is why phone numbers are split into groups.",
+      "sources": [
+        { "title": "The magical number 4 in short-term memory", "authors": "Cowan", "year": 2001, "journal": "Behavioral and Brain Sciences" },
+        { "title": "Stress signalling pathways that impair prefrontal cortex structure and function", "authors": "Arnsten", "year": 2009, "journal": "Nature Reviews Neuroscience" }
+      ]
+    },
+    {
+      "id": "orbitofrontal",
+      "name": "Orbitofrontal cortex",
+      "nickname": "the value judge",
+      "group": "think",
+      "lobe": "frontal",
+      "side": "both",
+      "pos": [0.14, 0.47, 0.86],
+      "depth": "deep",
+      "oneLiner": "Works out how much something is worth to you right now.",
+      "youUseItWhen": [
+        "Your favourite food seems less tempting after a big meal",
+        "You decide whether a price is fair",
+        "You recognise a smell and decide if you like it"
+      ],
+      "explain": [
+        "Sitting just above your eye sockets (the orbits), this region combines smell, taste, sight and your current needs to estimate how valuable something is.",
+        "Value isn’t fixed. Keep eating chocolate and this region’s response to chocolate falls, even before you feel full. That flexibility helps you match your choices to what you need right now."
+      ],
+      "surprising": "In one study, people ate chocolate past the point of enjoying it. Their brain’s response to it dropped as they went, and some areas started responding as if it were unpleasant.",
+      "sources": [
+        { "title": "Changes in brain activity related to eating chocolate: from pleasure to aversion", "authors": "Small et al.", "year": 2001, "journal": "Brain" }
+      ]
+    },
+    {
+      "id": "cingulate",
+      "name": "Anterior cingulate cortex",
+      "nickname": "the conflict monitor",
+      "group": "think",
+      "lobe": "frontal",
+      "side": "mid",
+      "pos": [0, 0.7, 0.72],
+      "depth": "deep",
+      "oneLiner": "Notices when something’s off (a mistake, a clash, pain) and calls for more effort.",
+      "youUseItWhen": [
+        "You realise you’ve made a typo before you see it",
+        "Two choices pull you in different directions",
+        "Being left out feels genuinely painful"
+      ],
+      "explain": [
+        "The cingulate cortex wraps around the thick band of fibres connecting your two hemispheres. Its front part is active when responses conflict, when you make mistakes and when something hurts.",
+        "It’s a key part of the brain’s “something needs attention” system. When it detects a conflict, it helps recruit the prefrontal cortex to focus harder. Brain recordings show an error signal within about a tenth of a second of a mistake."
+      ],
+      "surprising": "The colour-word test in the Lab, where you name the ink colour of a word like RED printed in blue, is a classic way to make this region work hard.",
+      "sources": [
+        { "title": "Conflict monitoring and cognitive control", "authors": "Botvinick et al.", "year": 2001, "journal": "Psychological Review" }
+      ]
+    },
+    {
+      "id": "broca",
+      "name": "Broca’s area",
+      "nickname": "the speech builder",
+      "group": "think",
+      "lobe": "frontal",
+      "side": "left",
+      "pos": [0.38, 0.55, 0.76],
+      "depth": "surface",
+      "oneLiner": "Helps put words in order and plan the movements needed to say them.",
+      "youUseItWhen": [
+        "You build a sentence before you speak",
+        "You hunt for the right word",
+        "You repeat something in your head to remember it"
+      ],
+      "explain": [
+        "In most people, language is concentrated in the left hemisphere. Broca’s area sits low in the left frontal lobe, close to the areas that move your lips, tongue and jaw.",
+        "It’s named after Paul Broca, who in 1861 studied a man who understood speech but could say only one syllable: “tan”. Language relies on a wide network, but this region is still central to producing fluent, grammatical speech."
+      ],
+      "surprising": "About 95 in 100 right-handed people have language mainly in the left hemisphere. For left-handed people it’s still most of them, roughly 70 in 100.",
+      "sources": [
+        { "title": "Handedness and hemispheric language dominance in healthy humans", "authors": "Knecht et al.", "year": 2000, "journal": "Brain" }
+      ]
+    },
+    {
+      "id": "wernicke",
+      "name": "Wernicke’s area",
+      "nickname": "the meaning finder",
+      "group": "think",
+      "lobe": "temporal",
+      "side": "left",
+      "pos": [0.4, 0.52, 0.33],
+      "depth": "surface",
+      "oneLiner": "Helps turn the sounds of words into meaning.",
+      "youUseItWhen": [
+        "You understand a sentence as it’s spoken",
+        "You read a word and instantly know what it means",
+        "A pun takes you a second to get"
+      ],
+      "explain": [
+        "Wernicke’s area sits at the back of the upper left temporal lobe, next to the auditory cortex. It helps link the sounds of words to what they mean.",
+        "Damage here can produce speech that flows easily but doesn’t make sense, and the person may not notice. A bundle of fibres called the arcuate fasciculus connects this area to Broca’s area, so understanding and speaking can work together."
+      ],
+      "surprising": "When you read silently, you may hear an inner voice. Language areas become active as if the words were being spoken.",
+      "sources": [
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "posterior-parietal",
+      "name": "Posterior parietal cortex",
+      "nickname": "the space mapper",
+      "group": "think",
+      "lobe": "parietal",
+      "side": "both",
+      "pos": [0.3, 0.83, 0.28],
+      "depth": "surface",
+      "oneLiner": "Combines vision and touch to work out where things are, and steers your attention.",
+      "youUseItWhen": [
+        "You reach for a cup without looking",
+        "You find your phone in the clutter on your desk",
+        "You judge whether a sofa will fit through a door"
+      ],
+      "explain": [
+        "At the top and back of your head, this area takes in vision, hearing and body position and builds a map of the space around you.",
+        "It also directs attention. Damage to the right side can cause “neglect”, where people ignore the left side of the world. They may eat food from only the right half of their plate and not notice anything is missing."
+      ],
+      "surprising": "Using a tool, like a racket or a stick, can make your brain treat it as part of your body for a while. Its map of how far you can reach stretches to include the tool.",
+      "sources": [
+        { "title": "Tools for the body (schema)", "authors": "Maravita & Iriki", "year": 2004, "journal": "Trends in Cognitive Sciences" }
+      ]
+    },
+    {
+      "id": "motor-cortex",
+      "name": "Motor cortex",
+      "nickname": "the movement launcher",
+      "group": "act",
+      "lobe": "frontal",
+      "side": "both",
+      "pos": [0.25, 0.9, 0.56],
+      "depth": "surface",
+      "oneLiner": "Sends the commands that move your muscles.",
+      "youUseItWhen": [
+        "You tap, type or swipe",
+        "You start walking",
+        "You smile at someone"
+      ],
+      "explain": [
+        "This strip runs across the top of your head, just in front of the body map. Like the body map, it’s laid out by body part, with large areas for the hands and face.",
+        "The left side moves the right side of your body and vice versa, because the pathways cross over in the brainstem. Areas just in front of it prepare movements, and brain activity linked to that preparation can start before you feel you’ve decided to move. What that means for free will is still hotly debated."
+      ],
+      "surprising": "Your hands and face take up a surprisingly large share of this strip, which is why writing and speaking can be so precise.",
+      "sources": [
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    },
+    {
+      "id": "cerebellum",
+      "name": "Cerebellum",
+      "nickname": "the predictor",
+      "group": "act",
+      "lobe": "cerebellum",
+      "side": "both",
+      "pos": [0.2, 0.23, 0.26],
+      "depth": "surface",
+      "oneLiner": "Predicts the results of your movements and fine-tunes them on the fly.",
+      "youUseItWhen": [
+        "You catch a ball",
+        "You type without looking at the keys",
+        "You try to tickle yourself and it doesn’t work"
+      ],
+      "explain": [
+        "Its name means “little brain”. Tucked under the back of your brain, it holds about four out of every five neurons in your entire brain, packed into roughly a tenth of its volume.",
+        "It compares the movement you intended with what’s actually happening and smoothly corrects the difference. It also predicts what your own movements will feel like, which is why your own touch feels muted."
+      ],
+      "surprising": "Alcohol disrupts the cerebellum, which is why roadside sobriety tests ask people to walk a straight line or touch their nose.",
+      "sources": [
+        { "title": "Equal numbers of neuronal and nonneuronal cells make the human brain an isometrically scaled-up primate brain", "authors": "Azevedo et al.", "year": 2009, "journal": "Journal of Comparative Neurology" }
+      ]
+    },
+    {
+      "id": "brainstem",
+      "name": "Brainstem",
+      "nickname": "the life support",
+      "group": "act",
+      "lobe": "brainstem",
+      "side": "mid",
+      "pos": [0, 0.19, 0.38],
+      "depth": "deep",
+      "oneLiner": "Runs the essentials automatically: breathing, heart rate, swallowing and staying awake.",
+      "youUseItWhen": [
+        "You keep breathing while you sleep",
+        "Your heart speeds up when you’re scared",
+        "You blink before something hits your eye"
+      ],
+      "explain": [
+        "The brainstem connects your brain to your spinal cord. Almost every signal travelling between brain and body passes through it.",
+        "It runs life-support systems you never have to think about. It also contains small clusters of neurons that send chemicals like dopamine, noradrenaline and serotonin throughout the brain, setting your overall level of alertness."
+      ],
+      "surprising": "Sneezing, coughing, yawning and hiccups are all coordinated here.",
+      "sources": [
+        { "title": "Principles of Neural Science (6th ed.)", "authors": "Kandel et al.", "year": 2021 }
+      ]
+    }
+  ]
+}

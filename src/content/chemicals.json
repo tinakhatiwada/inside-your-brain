@@ -1,0 +1,12 @@
+{
+  "glutamate": { "name": "Glutamate", "what": "The brain's main “go” signal. Most fast messages between neurons use it." },
+  "gaba": { "name": "GABA", "what": "The brain's main “ease off” signal. It quiets neurons so activity doesn't run away." },
+  "dopamine": { "name": "Dopamine", "what": "Signals that something is worth pursuing, and teaches the brain from rewards that beat expectations." },
+  "noradrenaline": { "name": "Noradrenaline", "what": "Turns up alertness inside the brain. A burst of it makes you instantly watchful." },
+  "adrenaline": { "name": "Adrenaline", "what": "A hormone from glands above the kidneys that readies the body: faster heart, quicker breathing." },
+  "cortisol": { "name": "Cortisol", "what": "A slower stress hormone that releases energy and keeps you going for minutes to hours." },
+  "acetylcholine": { "name": "Acetylcholine", "what": "Tells muscles to contract, and inside the brain helps sharpen attention." },
+  "serotonin": { "name": "Serotonin", "what": "Helps regulate mood, sleep, appetite and patience. Its effects are broad and still being worked out." },
+  "endorphins": { "name": "Endorphins", "what": "The body's own painkillers, released during stress, exercise and laughter." },
+  "oxytocin": { "name": "Oxytocin", "what": "A hormone involved in bonding and trust. Its effects depend heavily on the situation." }
+}

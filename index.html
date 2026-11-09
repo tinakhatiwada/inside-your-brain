@@ -1,66 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Inside the Brain — A Field Guide</title>
-  <meta name="description" content="An interactive, AI-assisted neuroscience learning platform.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inside Your Brain</title>
+  <meta name="description" content="Describe a moment from your day and watch it replay, step by step, inside a 3D brain. Plain-language neuroscience for people who never thought they'd care.">
+  <meta name="theme-color" content="#15101d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Inside Your Brain">
+  <meta property="og:description" content="Watch your everyday moments replay inside a 3D brain.">
 </head>
-<body>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <nav class="site-nav">
-    <a href="index.html" class="nav-brand"><span class="icon">🧠</span><span>Inside the Brain</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="explore.html">Explore in 3D</a></li>
-      <li><a href="journey.html">How Thoughts Form</a></li>
-      <li><a href="library.html">Library</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-    </ul>
-  </nav>
+<body class="page-home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M15 5.5C9 5.5 4.5 10 4.5 16s4.5 10.5 10.5 10.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M17 5.5c6 0 10.5 4.5 10.5 10.5S23 26.5 17 26.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".5"/><path d="M8.5 13.2c2-1.6 4.2-1.6 6.5 0M8.5 19c2.2 1.5 4.3 1.5 6.5 0" stroke="#F3ECE4" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/><circle cx="21.6" cy="12.6" r="2.5" fill="#F2C66D"/></svg>
+      <span class="brand-text">Inside Your Brain</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/replay.html">Replay</a></li>
+        <li><a href="/explore.html">Explore</a></li>
+        <li><a href="/lab.html">Lab</a></li>
+      </ul>
+    </nav>
+    <button class="btn btn-quiet btn-small nav-ask" type="button" data-ask-open data-ai-only>Ask</button>
+  </header>
+
   <main id="main">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">A field guide to the brain</div>
-        <h1>Three pounds of tissue, running everything you've ever done.</h1>
-        <div class="portrait-stage" id="portrait-stage">
-          <div class="portrait-glow"></div>
-          <div class="portrait-3d-wrap" id="portrait-3d">
-            <img src="/images/portrait.jpg" alt="Portrait illustration" class="portrait-img">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">What was your brain doing just then?</h1>
+        <p class="lede">Describe a moment from your day, like a smell that took you back, a name you forgot or a racing heart, and watch it replay step by step inside a 3D brain.</p>
+        <form class="composer" id="composer" data-ai-only novalidate>
+          <label class="visually-hidden" for="moment">Describe a moment</label>
+          <div class="composer-field">
+            <textarea id="moment" name="moment" rows="1" maxlength="600" autocomplete="off" placeholder="I forgot someone’s name the second they told me"></textarea>
+            <button class="btn btn-primary" type="submit">Replay it</button>
           </div>
-        </div>
-        <p class="hero-subtitle">Roughly 86 billion neurons, each wired to thousands of others, produce every thought, memory, and reflex you have. Meet the brain behind the eyes — then take a look inside it.</p>
-        <div class="hero-actions">
-          <a href="explore.html" class="btn-primary">Explore in 3D 🧠</a>
-          <a href="#intro" class="btn-outline">Learn More ↓</a>
+          <p class="composer-hint" id="composer-hint">Don’t include names or personal details. The AI writes the replay; the brain areas come from reviewed notes.</p>
+        </form>
+        <div class="hero-try">
+          <p class="hero-try-label" id="try-label">Or start with one of these</p>
+          <div class="examples" id="examples" aria-labelledby="try-label"></div>
         </div>
       </div>
-    </section>
-    <section id="intro" style="padding:0 28px 80px;max-width:860px;margin:0 auto;position:relative;z-index:1">
-      <h2 style="text-align:center" class="reveal">The Most Complex Object in the Known Universe</h2>
-      <p style="text-align:center;margin:0 auto 20px" class="reveal">The human brain weighs about 1.4 kilograms yet consumes roughly 20% of the body's energy. Within its folds lie networks of unimaginable complexity.</p>
-      <div class="stats-row">
-        <div class="stat-item reveal"><span class="stat-num">~86B</span><span class="stat-label">Neurons</span></div>
-        <div class="stat-item reveal"><span class="stat-num">~100T+</span><span class="stat-label">Synaptic Connections</span></div>
-        <div class="stat-item reveal"><span class="stat-num">20%</span><span class="stat-label">Body's Energy</span></div>
-        <div class="stat-item reveal"><span class="stat-num">~120m/s</span><span class="stat-label">Max Signal Speed</span></div>
+      <div class="hero-brain brain-stage" id="hero-brain">
+        <p class="brain-loading">Loading the brain</p>
+        <p class="brain-fallback">Your browser couldn’t show the 3D brain, but every replay also works as text.</p>
       </div>
     </section>
-    <section class="section-block centered">
-      <span class="topic-tag plum">Interactive Learning</span>
-      <h2>What You'll Discover</h2>
-      <p>Explore the brain through interactive 3D models, animated neural pathways, and detailed explanations.</p>
-      <div class="preview-grid">
-        <a href="explore.html" class="preview-card reveal"><span class="card-icon">🔬</span><h3>Brain Anatomy</h3><p>Rotate and explore a real 3D brain model. Click any region to learn its functions.</p><span class="card-arrow">→</span></a>
-        <a href="journey.html" class="preview-card reveal"><span class="card-icon">⚡</span><h3>How Thoughts Form</h3><p>Follow a thought from sensory input through perception, memory, emotion, and action.</p><span class="card-arrow">→</span></a>
-        <a href="library.html" class="preview-card reveal"><span class="card-icon">🧬</span><h3>Deep Dive Topics</h3><p>Explore neural communication, memory, emotions, reasoning, and brain networks.</p><span class="card-arrow">→</span></a>
-        <a href="quiz.html" class="preview-card reveal"><span class="card-icon">📝</span><h3>Quiz Yourself</h3><p>Test your knowledge with spaced repetition quizzes and track your progress.</p><span class="card-arrow">→</span></a>
+
+    <section class="band mysteries" aria-labelledby="mysteries-title">
+      <div class="band-head">
+        <h2 id="mysteries-title">Everyday mysteries, replayed</h2>
+        <p>Each one is written by hand from published research, with the sources listed at the end.</p>
+      </div>
+      <ol class="mystery-list" id="mystery-list"></ol>
+    </section>
+
+    <section class="band ways" aria-label="More ways in">
+      <article class="way">
+        <h2>Explore the parts</h2>
+        <p>Spin a see-through brain and meet the 21 areas that do most of the work, from the face finder to the wanting engine. Each one is explained by what you use it for.</p>
+        <ul class="key" id="group-key"></ul>
+        <a class="btn btn-quiet" href="/explore.html">Open the explorer</a>
+      </article>
+      <article class="way">
+        <h2>Try it on yourself</h2>
+        <p>Three one-minute experiments: how fast you react, how your brain handles a clash between word and colour, and how much you can hold in mind at once. Then see what your numbers mean.</p>
+        <ul class="lab-preview">
+          <li>Reaction time</li>
+          <li>Colour clash</li>
+          <li>Memory span</li>
+        </ul>
+        <a class="btn btn-quiet" href="/lab.html">Go to the lab</a>
+      </article>
+    </section>
+
+    <section class="band honesty" aria-labelledby="honesty-title">
+      <h2 id="honesty-title">How it stays honest</h2>
+      <div class="honesty-grid">
+        <p><strong>Reviewed notes underneath everything.</strong> The 3D brain maps 21 areas, each with plain-language notes and sources. The AI can only light up those areas, and every answer says which notes it used.</p>
+        <p><strong>Simplified, and it says so.</strong> Real brains work in parallel, not one step at a time. Timings are rough, and every replay ends with the fine print on what’s simplified or still debated.</p>
+        <p><strong>Learning, not diagnosis.</strong> This explains how brains generally work. It can’t tell you anything about your health. If something worries you, talk to a doctor.</p>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><p>Built as an educational resource. Brain model based on Frank Johansson's anatomical reference.</p></footer>
+
+  <footer class="footer">
+    <p>Inside Your Brain is an educational project. It isn’t medical advice. The 3D brain is based on Frank Johansson’s anatomical brain model.</p>
+    <nav class="footer-links" aria-label="Footer"><a href="/replay.html">Replay</a><a href="/explore.html">Explore</a><a href="/lab.html">Lab</a></nav>
+  </footer>
   <script type="module" src="/src/pages/home.js"></script>
 </body>
 </html>

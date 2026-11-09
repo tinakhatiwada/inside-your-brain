@@ -1,0 +1,104 @@
+{
+  "id": "earworm",
+  "order": 5,
+  "moment": "A song got stuck in my head all day and I couldn’t make it stop.",
+  "question": "Why do songs get stuck in my head?",
+  "summary": "Imagining music uses many of the same areas as hearing it. A short, catchy fragment can loop on its own, especially when your mind is idle.",
+  "beats": [
+    {
+      "time": "0 s",
+      "title": "The trigger",
+      "structures": [
+        "auditory-cortex",
+        "hippocampus"
+      ],
+      "chemicals": [],
+      "text": "Maybe you heard the song this morning, or a word reminded you of it. Earworms are often set off by recent listening, a memory, or even a mood."
+    },
+    {
+      "time": "~0.5 s",
+      "title": "Hearing without sound",
+      "structures": [
+        "auditory-cortex"
+      ],
+      "chemicals": [],
+      "text": "Your auditory cortex starts recreating the tune. Imagining music activates many of the same areas as actually hearing it, which is why an earworm can feel so real."
+    },
+    {
+      "time": "~1 s",
+      "title": "The hook loops",
+      "structures": [
+        "auditory-cortex",
+        "broca",
+        "motor-cortex"
+      ],
+      "chemicals": [],
+      "text": "It’s usually just a short fragment, often the chorus. Areas that plan speech and movement can join in, as if you’re silently singing along, and that helps keep the loop going."
+    },
+    {
+      "time": "minutes",
+      "title": "An idle mind",
+      "structures": [
+        "prefrontal",
+        "cingulate"
+      ],
+      "chemicals": [],
+      "text": "Earworms tend to show up when your attention isn’t busy, like when you’re walking or washing up. With nothing else to grab your focus, the loop takes centre stage."
+    },
+    {
+      "time": "hours",
+      "title": "Trying not to think of it",
+      "structures": [
+        "prefrontal",
+        "cingulate"
+      ],
+      "chemicals": [],
+      "text": "Telling yourself to stop can backfire. To check whether the song has gone, your brain has to look for it, which can bring it right back."
+    }
+  ],
+  "whyItFelt": "Catchy songs tend to have simple, repetitive melodies with a slightly unusual twist, which makes them easy to replay. One idea is that the fragment feels unfinished, so your brain keeps returning to it, a bit like a question waiting for an answer.",
+  "tryThis": [
+    {
+      "title": "Listen to the whole song",
+      "text": "Hearing it all the way through may help close the loop."
+    },
+    {
+      "title": "Chew gum",
+      "text": "In one study, chewing gum reduced earworms, possibly because it keeps busy the mouth and jaw muscles used for silent singing."
+    },
+    {
+      "title": "Give your brain a puzzle",
+      "text": "A moderately hard task, like anagrams or sudoku, can crowd the song out. Too easy and it won’t work; too hard and the song creeps back."
+    }
+  ],
+  "finePrint": [
+    "Surveys suggest most people get an earworm at least once a week, so this is completely normal.",
+    "Brain imaging shows imagined and heard music overlap, but the exact circuitry of earworms is still being studied."
+  ],
+  "sources": [
+    {
+      "title": "Sound of silence activates auditory cortex",
+      "authors": "Kraemer et al.",
+      "year": 2005,
+      "journal": "Nature"
+    },
+    {
+      "title": "How do earworms start? Classifying the everyday circumstances of involuntary musical imagery",
+      "authors": "Williamson et al.",
+      "year": 2012,
+      "journal": "Psychology of Music"
+    },
+    {
+      "title": "Dissecting an earworm: melodic features and song popularity predict involuntary musical imagery",
+      "authors": "Jakubowski et al.",
+      "year": 2017,
+      "journal": "Psychology of Aesthetics, Creativity, and the Arts"
+    },
+    {
+      "title": "Want to block earworms from conscious awareness? B(u)y gum!",
+      "authors": "Beaman et al.",
+      "year": 2015,
+      "journal": "Quarterly Journal of Experimental Psychology"
+    }
+  ]
+}

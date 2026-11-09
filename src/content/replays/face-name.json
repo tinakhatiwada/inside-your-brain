@@ -1,0 +1,115 @@
+{
+  "id": "face-name",
+  "order": 7,
+  "moment": "I spotted my friend in a huge crowd but couldn’t remember her name for a second.",
+  "question": "Why can I recognise a face but blank on the name?",
+  "summary": "Recognising faces is fast and automatic. Names are arbitrary labels with few links to anything else, so they’re the first thing to slip.",
+  "beats": [
+    {
+      "time": "0 ms",
+      "title": "Scanning",
+      "structures": [
+        "visual-cortex",
+        "posterior-parietal"
+      ],
+      "chemicals": [],
+      "text": "Your eyes jump across the crowd several times a second. Visual cortex handles each glimpse while your parietal cortex steers where to look next."
+    },
+    {
+      "time": "~170 ms",
+      "title": "A face pops out",
+      "structures": [
+        "face-area"
+      ],
+      "chemicals": [],
+      "text": "The fusiform face area responds. Brain recordings show a face-specific signal about 170 milliseconds after a face appears, fast enough that her face seems to jump out at you."
+    },
+    {
+      "time": "~250 ms",
+      "title": "Familiar!",
+      "structures": [
+        "face-area",
+        "amygdala",
+        "hippocampus"
+      ],
+      "chemicals": [],
+      "text": "The face matches a stored pattern. A sense of familiarity and warmth arrives straight away, as emotional areas recognise someone who matters to you."
+    },
+    {
+      "time": "~400 ms",
+      "title": "Who is she?",
+      "structures": [
+        "hippocampus",
+        "prefrontal"
+      ],
+      "chemicals": [],
+      "text": "Next comes what you know about her: you met in class, she likes the same band. This knowledge is stored across the temporal lobes and recalled with help from the hippocampus and prefrontal cortex."
+    },
+    {
+      "time": "~1 s",
+      "title": "The name won’t come",
+      "structures": [
+        "wernicke",
+        "broca",
+        "cingulate"
+      ],
+      "chemicals": [],
+      "text": "Names are the last and weakest link. A name is an arbitrary label that isn’t connected to anything else about her, so finding it fails more easily. Your anterior cingulate notices you’re stuck: it’s on the tip of your tongue."
+    },
+    {
+      "time": "~3 s",
+      "title": "Got it",
+      "structures": [
+        "broca",
+        "prefrontal"
+      ],
+      "chemicals": [],
+      "text": "Often the name turns up on its own a moment later, once you stop pushing. The sound of the word finally clicks into place, ready to say."
+    }
+  ],
+  "whyItFelt": "Recognising faces is one of the brain’s oldest and most practised skills, so it’s fast and automatic. Names are different. If you learn that someone is a baker, that job comes with lots of linked knowledge (bread, early mornings, flour). If you learn her surname is Baker, it’s just a label. That’s why names slip first.",
+  "tryThis": [
+    {
+      "title": "Build a link",
+      "text": "When you learn a name, connect it to something: Maya, like the ancient Maya. Extra links give your brain more ways to find it."
+    },
+    {
+      "title": "Use it straight away",
+      "text": "Say the name back in conversation. Recalling it once soon after learning strengthens it."
+    },
+    {
+      "title": "Stop pushing",
+      "text": "If it’s stuck, think about something else. The answer often pops up on its own."
+    }
+  ],
+  "finePrint": [
+    "Some people have lifelong difficulty recognising faces (developmental prosopagnosia), estimated at about 2 in 100 people. It isn’t related to eyesight or intelligence.",
+    "Timings are approximate and only show the order of events."
+  ],
+  "sources": [
+    {
+      "title": "The fusiform face area: a module in human extrastriate cortex specialized for face perception",
+      "authors": "Kanwisher, McDermott & Chun",
+      "year": 1997,
+      "journal": "Journal of Neuroscience"
+    },
+    {
+      "title": "Electrophysiological studies of face perception in humans",
+      "authors": "Bentin et al.",
+      "year": 1996,
+      "journal": "Journal of Cognitive Neuroscience"
+    },
+    {
+      "title": "The “tip of the tongue” phenomenon",
+      "authors": "Brown & McNeill",
+      "year": 1966,
+      "journal": "Journal of Verbal Learning and Verbal Behavior"
+    },
+    {
+      "title": "Putting names to faces",
+      "authors": "McWeeny et al.",
+      "year": 1987,
+      "journal": "British Journal of Psychology"
+    }
+  ]
+}

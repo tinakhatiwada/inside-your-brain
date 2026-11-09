@@ -1,0 +1,105 @@
+{
+  "id": "smell-memory",
+  "order": 1,
+  "moment": "I smelled fresh bread and suddenly remembered my grandmother’s kitchen.",
+  "question": "Why can a smell bring back a memory so fast?",
+  "summary": "Smell has an unusually direct line to the brain’s emotion and memory areas, so it can pull up a whole scene before you’ve even named the smell.",
+  "beats": [
+    {
+      "time": "0 s",
+      "title": "Molecules land",
+      "structures": [
+        "olfactory-bulb"
+      ],
+      "chemicals": [
+        "glutamate"
+      ],
+      "text": "Tiny molecules from the bread drift into your nose and bind to smell receptors. Each receptor type responds to certain molecular shapes, and your olfactory bulb sorts the signals into a pattern that means fresh bread."
+    },
+    {
+      "time": "~0.2 s",
+      "title": "A shortcut to feeling",
+      "structures": [
+        "olfactory-bulb",
+        "amygdala"
+      ],
+      "chemicals": [],
+      "text": "Sight, sound and touch all stop at the thalamus, a relay station, before reaching the cortex. Smell doesn’t. Its signals go straight to smell cortex, only a step or two from the amygdala, so the smell picks up an emotional charge almost immediately."
+    },
+    {
+      "time": "~0.4 s",
+      "title": "The index finds a match",
+      "structures": [
+        "hippocampus",
+        "amygdala"
+      ],
+      "chemicals": [],
+      "text": "Your hippocampus links this smell pattern to an old episode where the same smell was present. It starts pulling the stored pieces together: the warm oven, the tiles on the floor, your grandmother’s voice."
+    },
+    {
+      "time": "~0.6 s",
+      "title": "Putting a name to it",
+      "structures": [
+        "orbitofrontal"
+      ],
+      "chemicals": [],
+      "text": "The orbitofrontal cortex, just above your eyes, helps you consciously recognise the smell and decide it’s pleasant. Often the feeling of familiarity arrives before the word “bread” does."
+    },
+    {
+      "time": "~1 s",
+      "title": "A whole scene rebuilt",
+      "structures": [
+        "hippocampus",
+        "visual-cortex",
+        "auditory-cortex",
+        "prefrontal"
+      ],
+      "chemicals": [],
+      "text": "Remembering isn’t playing back a recording. The hippocampus helps reactivate sights and sounds stored across your cortex, and your prefrontal cortex helps put them in order. You’re rebuilding the scene from fragments, which is why it feels vivid but may not be exact."
+    },
+    {
+      "time": "a few seconds",
+      "title": "The warm, aching feeling",
+      "structures": [
+        "insula",
+        "amygdala"
+      ],
+      "chemicals": [],
+      "text": "Your body reacts to the memory as well as the smell. The insula registers the shift (a softening, maybe a lump in your throat), and that mix of memory and body feeling is what we call nostalgia."
+    }
+  ],
+  "whyItFelt": "Smell-triggered memories feel different because of that wiring. They arrive with emotion already attached, and studies suggest they tend to come from earlier in life, often the first ten years, than memories triggered by words or pictures. That’s why a smell can feel like time travel rather than just remembering.",
+  "tryThis": [
+    {
+      "title": "Anchor a memory with a scent",
+      "text": "Wear or carry a distinctive smell during a moment you want to remember, like a trip. Smelling it later can help bring the experience back."
+    },
+    {
+      "title": "Notice the order",
+      "text": "Next time a smell grabs you, see whether the feeling arrives before you can name the smell. It often does."
+    }
+  ],
+  "finePrint": [
+    "Timings are rough estimates to show the order of events. Real brain activity overlaps and loops back on itself.",
+    "“Skipping the thalamus” means smell skips the relay other senses use on their way to the cortex. Smell signals still pass through other areas first, such as piriform cortex."
+  ],
+  "sources": [
+    {
+      "title": "Smell your way back to childhood: autobiographical odor memory",
+      "authors": "Willander & Larsson",
+      "year": 2006,
+      "journal": "Psychonomic Bulletin & Review"
+    },
+    {
+      "title": "A naturalistic analysis of autobiographical memories triggered by olfactory, visual and auditory stimuli",
+      "authors": "Herz",
+      "year": 2004,
+      "journal": "Chemical Senses"
+    },
+    {
+      "title": "Principles of Neural Science (6th ed.)",
+      "authors": "Kandel et al.",
+      "year": 2021
+    }
+  ]
+}

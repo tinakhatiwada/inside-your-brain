@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Replay a moment · Inside Your Brain</title>
+  <meta name="description" content="Watch an everyday moment replay step by step inside a 3D brain, with plain-language explanations.">
+  <meta name="theme-color" content="#15101d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body class="page-replay">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M15 5.5C9 5.5 4.5 10 4.5 16s4.5 10.5 10.5 10.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M17 5.5c6 0 10.5 4.5 10.5 10.5S23 26.5 17 26.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".5"/><path d="M8.5 13.2c2-1.6 4.2-1.6 6.5 0M8.5 19c2.2 1.5 4.3 1.5 6.5 0" stroke="#F3ECE4" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/><circle cx="21.6" cy="12.6" r="2.5" fill="#F2C66D"/></svg>
+      <span class="brand-text">Inside Your Brain</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/replay.html">Replay</a></li>
+        <li><a href="/explore.html">Explore</a></li>
+        <li><a href="/lab.html">Lab</a></li>
+      </ul>
+    </nav>
+    <button class="btn btn-quiet btn-small nav-ask" type="button" data-ask-open data-ai-only>Ask</button>
+  </header>
+
+  <main id="main" class="replay">
+    <div class="replay-stage">
+      <div class="brain-stage replay-brain" id="stage">
+        <p class="brain-loading">Loading the brain</p>
+        <p class="brain-fallback">Your browser couldn’t show the 3D brain. The replay still works as text.</p>
+      </div>
+      <div class="caption" id="caption" aria-hidden="true"></div>
+      <div class="player" id="player" hidden>
+        <button class="btn btn-quiet btn-icon" type="button" id="prev" aria-label="Previous step"></button>
+        <button class="btn btn-primary btn-icon" type="button" id="play" aria-label="Play"></button>
+        <button class="btn btn-quiet btn-icon" type="button" id="next" aria-label="Next step"></button>
+        <ol class="ticks" id="ticks" aria-label="Steps"></ol>
+        <span class="player-count" id="count" aria-live="polite"></span>
+      </div>
+      <ul class="key stage-key" id="stage-key" aria-label="Colour key"></ul>
+    </div>
+    <div class="replay-panel" id="panel" tabindex="-1"></div>
+  </main>
+
+  <script type="module" src="/src/pages/replay.js"></script>
+</body>
+</html>

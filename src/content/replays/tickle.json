@@ -1,0 +1,87 @@
+{
+  "id": "tickle",
+  "order": 8,
+  "moment": "My friend can tickle me easily, but when I try to tickle myself, nothing happens.",
+  "question": "Why can’t I tickle myself?",
+  "summary": "Your brain predicts what your own movements will feel like and turns those sensations down. A tickle only works when it’s a surprise.",
+  "beats": [
+    {
+      "time": "0 ms",
+      "title": "You decide to move",
+      "structures": [
+        "prefrontal",
+        "motor-cortex"
+      ],
+      "chemicals": [],
+      "text": "You reach for your own ribs. Your motor cortex sends commands to your arm and fingers."
+    },
+    {
+      "time": "at the same moment",
+      "title": "A copy of the plan",
+      "structures": [
+        "motor-cortex",
+        "cerebellum"
+      ],
+      "chemicals": [],
+      "text": "A copy of that movement command goes to the cerebellum, like your brain sending itself a note: here’s what I’m about to do."
+    },
+    {
+      "time": "~50 ms",
+      "title": "Prediction",
+      "structures": [
+        "cerebellum"
+      ],
+      "chemicals": [],
+      "text": "The cerebellum predicts exactly what the touch will feel like: where, when and how hard."
+    },
+    {
+      "time": "~100 ms",
+      "title": "Touch arrives, turned down",
+      "structures": [
+        "body-map",
+        "cerebellum"
+      ],
+      "chemicals": [],
+      "text": "The real touch signal reaches your body map. Because it matches the prediction, the response here is dialled down. No surprise, no tickle."
+    },
+    {
+      "time": "by contrast",
+      "title": "When a friend does it",
+      "structures": [
+        "body-map",
+        "amygdala",
+        "insula"
+      ],
+      "chemicals": [],
+      "text": "When someone else tickles you, there’s no prediction to cancel it out. The touch is unexpected, your body map responds fully, and you squirm and laugh."
+    }
+  ],
+  "whyItFelt": "Your brain is constantly predicting the results of your own actions so it can focus on what’s unexpected. That’s useful: it’s how you can tell a spider on your arm from your own sleeve brushing it. Self-tickling fails because it’s too predictable.",
+  "tryThis": [
+    {
+      "title": "Feel the difference",
+      "text": "Lightly stroke your palm with your own finger, then have someone else do the same. The second usually feels stronger, because your brain couldn’t predict it."
+    },
+    {
+      "title": "Add a delay",
+      "text": "In one experiment, people tickled themselves through a robot. Adding a delay of about a fifth of a second made the touch feel more ticklish, because it no longer matched the prediction."
+    }
+  ],
+  "finePrint": [
+    "The robot studies used small groups of people, but many later studies support the idea that the brain dampens sensations it caused itself."
+  ],
+  "sources": [
+    {
+      "title": "Central cancellation of self-produced tickle sensation",
+      "authors": "Blakemore, Wolpert & Frith",
+      "year": 1998,
+      "journal": "Nature Neuroscience"
+    },
+    {
+      "title": "Spatio-temporal prediction modulates the perception of self-produced stimuli",
+      "authors": "Blakemore, Frith & Wolpert",
+      "year": 1999,
+      "journal": "Journal of Cognitive Neuroscience"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "procrastination",
+  "order": 2,
+  "moment": "I was supposed to study, but I ended up scrolling my phone for two hours.",
+  "question": "Why do I scroll instead of doing what I need to do?",
+  "summary": "Procrastination is less about laziness and more about avoiding a bad feeling. Your brain picks instant relief over a reward that’s days away.",
+  "beats": [
+    {
+      "time": "0 s",
+      "title": "The task appears",
+      "structures": [
+        "visual-cortex",
+        "prefrontal"
+      ],
+      "chemicals": [],
+      "text": "You look at your notes. Your prefrontal cortex holds the goal (study for Friday), but the goal is abstract and the payoff is days away."
+    },
+    {
+      "time": "~0.5 s",
+      "title": "A flicker of dread",
+      "structures": [
+        "amygdala",
+        "insula",
+        "cingulate"
+      ],
+      "chemicals": [
+        "noradrenaline"
+      ],
+      "text": "Your brain predicts how studying will feel: boring, hard, maybe a bit threatening if you’re worried about the result. The amygdala and insula flag that as unpleasant, and the anterior cingulate picks up the clash between “I should” and “I don’t want to”."
+    },
+    {
+      "time": "~1 s",
+      "title": "An easy way out",
+      "structures": [
+        "orbitofrontal",
+        "reward-circuit"
+      ],
+      "chemicals": [
+        "dopamine"
+      ],
+      "text": "Your phone is right there. The orbitofrontal cortex rates it as nice, right now, while studying is good, but later. Brains naturally shrink the value of rewards that are far off, so the instant option wins more often than it should."
+    },
+    {
+      "time": "~2 s",
+      "title": "Relief",
+      "structures": [
+        "reward-circuit",
+        "insula"
+      ],
+      "chemicals": [
+        "dopamine"
+      ],
+      "text": "You pick up the phone and the bad feeling eases straight away. That relief is itself rewarding, so your brain learns that avoiding the task works, at least for now."
+    },
+    {
+      "time": "the next 2 hours",
+      "title": "The loop",
+      "structures": [
+        "reward-circuit",
+        "visual-cortex",
+        "motor-cortex"
+      ],
+      "chemicals": [
+        "dopamine"
+      ],
+      "text": "Each swipe might bring something great, or nothing. Dopamine neurons respond strongly to rewards you can’t predict, so “maybe the next one” keeps you going. Your thumb is on autopilot while the goal slips out of working memory."
+    },
+    {
+      "time": "later",
+      "title": "The guilt",
+      "structures": [
+        "prefrontal",
+        "cingulate",
+        "amygdala"
+      ],
+      "chemicals": [],
+      "text": "When you finally notice the time, your prefrontal cortex brings the goal back into focus. The clash returns, now with guilt added, which can make the task feel even worse next time."
+    }
+  ],
+  "whyItFelt": "Procrastination isn’t laziness or bad time management. Researchers increasingly describe it as a mood problem: you’re dodging a bad feeling now and paying for it later. Your brain is doing what it evolved to do, which is to grab immediate relief, in a world that offers instant rewards everywhere.",
+  "tryThis": [
+    {
+      "title": "Make the start tiny",
+      "text": "Commit to just two minutes, or just opening the file. Starting is the hardest part, and the dread usually shrinks once you begin."
+    },
+    {
+      "title": "Add friction to the phone",
+      "text": "Put it in another room or log out of the app. Even a small barrier cuts down impulsive grabs."
+    },
+    {
+      "title": "Name the feeling",
+      "text": "Saying “I’m avoiding this because it feels overwhelming” can take the edge off and make the next step clearer."
+    }
+  ],
+  "finePrint": [
+    "The areas shown are the ones most often linked to emotion, conflict and reward in this research. Brain scans show associations, not an exact script.",
+    "If putting things off is constant and getting in the way of your life, a teacher, counsellor or doctor can help. It’s very common and very fixable."
+  ],
+  "sources": [
+    {
+      "title": "Procrastination and the priority of short-term mood regulation",
+      "authors": "Sirois & Pychyl",
+      "year": 2013,
+      "journal": "Social and Personality Psychology Compass"
+    },
+    {
+      "title": "The nature of procrastination",
+      "authors": "Steel",
+      "year": 2007,
+      "journal": "Psychological Bulletin"
+    },
+    {
+      "title": "A neural substrate of prediction and reward",
+      "authors": "Schultz, Dayan & Montague",
+      "year": 1997,
+      "journal": "Science"
+    }
+  ]
+}

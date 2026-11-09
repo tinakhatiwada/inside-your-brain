@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The lab · Inside Your Brain</title>
+  <meta name="description" content="Three one-minute experiments on your own brain: reaction time, the colour clash and memory span.">
+  <meta name="theme-color" content="#15101d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body class="page-lab">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="brand" href="/">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M15 5.5C9 5.5 4.5 10 4.5 16s4.5 10.5 10.5 10.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M17 5.5c6 0 10.5 4.5 10.5 10.5S23 26.5 17 26.5" stroke="#F3ECE4" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".5"/><path d="M8.5 13.2c2-1.6 4.2-1.6 6.5 0M8.5 19c2.2 1.5 4.3 1.5 6.5 0" stroke="#F3ECE4" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/><circle cx="21.6" cy="12.6" r="2.5" fill="#F2C66D"/></svg>
+      <span class="brand-text">Inside Your Brain</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/replay.html">Replay</a></li>
+        <li><a href="/explore.html">Explore</a></li>
+        <li><a href="/lab.html">Lab</a></li>
+      </ul>
+    </nav>
+    <button class="btn btn-quiet btn-small nav-ask" type="button" data-ask-open data-ai-only>Ask</button>
+  </header>
+
+  <main id="main" class="lab">
+    <header class="lab-head">
+      <h1>The lab</h1>
+      <p class="lede">Three quick experiments on the subject you know best: you. Each takes about a minute, and your results stay on this device.</p>
+    </header>
+
+    <div class="lab-tabs" role="tablist" aria-label="Experiments" id="tabs"></div>
+
+    <div class="lab-body">
+      <section class="lab-panel" id="panel" role="tabpanel" tabindex="-1" aria-live="polite"></section>
+      <aside class="lab-brain-wrap" aria-label="What your brain is doing">
+        <div class="lab-brain-sticky">
+          <div class="brain-stage lab-brain" id="stage">
+            <p class="brain-loading">Loading the brain</p>
+            <p class="brain-fallback">The 3D brain couldn’t load, but the experiments still work.</p>
+          </div>
+          <p class="lab-brain-caption" id="brain-caption"></p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="band lab-summary" id="summary" aria-labelledby="summary-title" hidden>
+      <div class="band-head">
+        <h2 id="summary-title">Your results</h2>
+        <p>Browser timings include some lag from your screen, mouse or keyboard, so treat these as rough. They’re a window into how brains work, not a test of how good yours is.</p>
+      </div>
+      <dl class="results" id="results"></dl>
+      <div class="row">
+        <button class="btn btn-primary" type="button" id="explain" data-ai-only>Explain my results</button>
+        <button class="btn btn-quiet" type="button" id="clear">Clear my results</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Inside Your Brain is an educational project. These experiments aren’t medical or psychological tests and can’t tell you anything about your health.</p>
+    <nav class="footer-links" aria-label="Footer"><a href="/replay.html">Replay</a><a href="/explore.html">Explore</a><a href="/lab.html">Lab</a></nav>
+  </footer>
+  <script type="module" src="/src/pages/lab.js"></script>
+</body>
+</html>

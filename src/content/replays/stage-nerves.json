@@ -1,0 +1,119 @@
+{
+  "id": "stage-nerves",
+  "order": 4,
+  "moment": "My heart was pounding and my mind went blank right before my presentation.",
+  "question": "Why does my mind go blank when I’m nervous?",
+  "summary": "Your alarm system treats an audience like a threat. The same chemicals that give you energy also make it harder for your planning area to hold on to your words.",
+  "beats": [
+    {
+      "time": "0 s",
+      "title": "All eyes on you",
+      "structures": [
+        "visual-cortex",
+        "face-area",
+        "amygdala"
+      ],
+      "chemicals": [],
+      "text": "You stand up and see faces turned towards you. Your amygdala reads being watched and judged as highly important, maybe even threatening."
+    },
+    {
+      "time": "~0.2 s",
+      "title": "Alarm",
+      "structures": [
+        "amygdala",
+        "hypothalamus",
+        "brainstem"
+      ],
+      "chemicals": [
+        "noradrenaline"
+      ],
+      "text": "The amygdala signals the hypothalamus and brainstem. Brainstem neurons release noradrenaline across the brain, and you’re instantly on high alert, scanning for danger."
+    },
+    {
+      "time": "~1–2 s",
+      "title": "Body on full power",
+      "structures": [
+        "hypothalamus",
+        "brainstem",
+        "insula"
+      ],
+      "chemicals": [
+        "adrenaline"
+      ],
+      "text": "Your nervous system tells your adrenal glands to release adrenaline. Your heart pounds, you breathe faster, your palms sweat and your mouth goes dry. The insula registers all of it, and you feel the butterflies."
+    },
+    {
+      "time": "a few seconds",
+      "title": "The planner goes quiet",
+      "structures": [
+        "prefrontal"
+      ],
+      "chemicals": [
+        "noradrenaline",
+        "dopamine"
+      ],
+      "text": "High levels of stress chemicals weaken the prefrontal cortex, the area holding your opening line in working memory. Control shifts towards faster, more habitual responses. That’s the blank."
+    },
+    {
+      "time": "minutes",
+      "title": "The slower wave",
+      "structures": [
+        "hypothalamus"
+      ],
+      "chemicals": [
+        "cortisol"
+      ],
+      "text": "A slower chain of hormones releases cortisol, which keeps energy available for the emergency. It’s why you can feel shaky for a while even after the talk is over."
+    },
+    {
+      "time": "~1 minute in",
+      "title": "Finding your feet",
+      "structures": [
+        "prefrontal",
+        "insula",
+        "brainstem"
+      ],
+      "chemicals": [],
+      "text": "Once you get going, things usually settle. A slow breath and a few familiar sentences give your prefrontal cortex room to come back online, and the alarm fades."
+    }
+  ],
+  "whyItFelt": "Your body is preparing for a physical threat, like a predator, not a room of classmates. The racing heart doesn’t mean you’re going to fail. It’s your body handing you energy. The blank mind happens because the chemicals that make you alert also make it harder to hold on to details.",
+  "tryThis": [
+    {
+      "title": "Breathe out slowly",
+      "text": "Make each exhale longer than the inhale, for example in for 4 and out for 6. Slow breathing is linked to calming the body’s alarm response."
+    },
+    {
+      "title": "Call it excitement",
+      "text": "In one well-known study, people who told themselves “I’m excited” performed better than those who tried to calm down. Excitement and nerves feel almost the same in the body."
+    },
+    {
+      "title": "Learn your first line by heart",
+      "text": "Know your opening sentence cold. Once you’re talking, momentum takes over."
+    }
+  ],
+  "finePrint": [
+    "Nerves before speaking are extremely common. If anxiety regularly stops you from doing things you want to do, a doctor, counsellor or therapist can help.",
+    "Timings are approximate and only show the order of events."
+  ],
+  "sources": [
+    {
+      "title": "Stress signalling pathways that impair prefrontal cortex structure and function",
+      "authors": "Arnsten",
+      "year": 2009,
+      "journal": "Nature Reviews Neuroscience"
+    },
+    {
+      "title": "Get excited: reappraising pre-performance anxiety as excitement",
+      "authors": "Brooks",
+      "year": 2014,
+      "journal": "Journal of Experimental Psychology: General"
+    },
+    {
+      "title": "How breath-control can change your life: a systematic review on psycho-physiological correlates of slow breathing",
+      "authors": "Zaccaro et al.",
+      "year": 2018,
+      "journal": "Frontiers in Human Neuroscience"
+    }
+  ]
+}
