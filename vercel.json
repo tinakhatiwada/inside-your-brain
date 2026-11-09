@@ -9,6 +9,8 @@
     { "source": "/api/health", "destination": "/api/health" },
     { "source": "/api/replay", "destination": "/api/replay" },
     { "source": "/api/ask", "destination": "/api/ask" },
+    { "source": "/api/test", "destination": "/api/test" },
+    { "source": "/api/models", "destination": "/api/models" },
     { "source": "/replay", "destination": "/replay.html" },
     { "source": "/explore", "destination": "/explore.html" },
     { "source": "/lab", "destination": "/lab.html" }
