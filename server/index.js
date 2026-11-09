@@ -2,7 +2,7 @@
 import express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { replayRoute } from './routes/replay.js';
 import { askRoute } from './routes/ask.js';
 import { rateLimit } from './lib/http.js';
@@ -11,8 +11,8 @@ import { PROMPT_VERSION } from './prompts/index.js';
 const env = process.env;
 const config = {
   port: Number(env.PORT || 8787),
-  modelReplay: env.MODEL_REPLAY || 'claude-sonnet-5-5',
-  modelAsk: env.MODEL_ASK || 'claude-haiku-5-5',
+  modelReplay: env.MODEL_REPLAY || 'gemini-2.0-flash',
+  modelAsk: env.MODEL_ASK || 'gemini-2.0-flash',
   ratePerMin: Number(env.RATE_LIMIT_PER_MIN || 20),
   maxChars: Number(env.MAX_INPUT_CHARS || 600),
   maxTurns: Number(env.MAX_TURNS || 12),
@@ -21,8 +21,17 @@ const config = {
   allowedOrigins: (env.ALLOWED_ORIGIN || '').split(',').map((s) => s.trim()).filter(Boolean),
 };
 
-const client = env.ANTHROPIC_API_KEY ? new Anthropic() : null;
-const aiOn = Boolean(client) || config.mock;
+let genAI = null;
+let replayModel = null;
+let askModel = null;
+
+if (env.GEMINI_API_KEY) {
+  genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
+  replayModel = genAI.getGenerativeModel({ model: config.modelReplay });
+  askModel = genAI.getGenerativeModel({ model: config.modelAsk });
+}
+
+const aiOn = Boolean(genAI) || config.mock;
 
 const app = express();
 app.disable('x-powered-by');
@@ -44,8 +53,8 @@ app.get('/api/health', (req, res) => {
 });
 
 const limit = rateLimit({ perMinute: config.ratePerMin });
-app.post('/api/replay', limit, replayRoute({ client, model: config.modelReplay, maxChars: config.maxChars, mock: config.mock }));
-app.post('/api/ask', limit, askRoute({ client, model: config.modelAsk, maxChars: config.maxChars, maxTurns: config.maxTurns, maxTokens: config.maxTokens, mock: config.mock }));
+app.post('/api/replay', limit, replayRoute({ model: replayModel, maxChars: config.maxChars, mock: config.mock }));
+app.post('/api/ask', limit, askRoute({ model: askModel, maxChars: config.maxChars, maxTurns: config.maxTurns, maxTokens: config.maxTokens, mock: config.mock }));
 app.use('/api', (req, res) => res.status(404).json({ error: 'No such API route.', code: 'NOT_FOUND' }));
 
 // Old v1/v2 URLs keep working.
@@ -61,5 +70,5 @@ if (existsSync(dist)) {
 
 app.listen(config.port, () => {
   console.log(`Inside Your Brain API on http://localhost:${config.port}`);
-  console.log(config.mock ? 'AI: demo mode (canned answers, no API calls)' : client ? `AI: on (replay ${config.modelReplay}, ask ${config.modelAsk})` : 'AI: off. Add ANTHROPIC_API_KEY to .env to turn it on.');
+  console.log(config.mock ? 'AI: demo mode (canned answers, no API calls)' : genAI ? `AI: on (replay ${config.modelReplay}, ask ${config.modelAsk})` : 'AI: off. Add GEMINI_API_KEY to .env to turn it on.');
 });

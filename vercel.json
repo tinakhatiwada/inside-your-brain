@@ -1,5 +1,13 @@
 {
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
+    { "source": "/api/health", "destination": "/api/health" },
+    { "source": "/api/replay", "destination": "/api/replay" },
+    { "source": "/api/ask", "destination": "/api/ask" },
     { "source": "/replay", "destination": "/replay.html" },
     { "source": "/explore", "destination": "/explore.html" },
     { "source": "/lab", "destination": "/lab.html" }

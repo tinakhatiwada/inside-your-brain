@@ -10,7 +10,7 @@ import { retrieve } from '../lib/retrieve.js';
 
 const num = z.number().finite().min(0).max(100000);
 
-export function askRoute({ client, model, maxChars, maxTurns, maxTokens, mock }) {
+export function askRoute({ model, maxChars, maxTurns, maxTokens, mock }) {
   const body = z.object({
     messages: z.array(z.object({
       role: z.enum(['user', 'assistant']),
@@ -58,22 +58,36 @@ export function askRoute({ client, model, maxChars, maxTurns, maxTokens, mock })
 
     const out = sse(res);
     if (mock) return mockAnswer(used, out, res);
-    if (!client) return sendError(res, new HttpError(503, 'AI_DISABLED', 'AI is not set up on this server.'));
+    if (!model) return sendError(res, new HttpError(503, 'AI_DISABLED', 'AI is not set up on this server.'));
 
-    let stream = null;
     let clientGone = false;
-    res.on('close', () => { if (!res.writableEnded) { clientGone = true; stream?.abort(); } });
+    res.on('close', () => { if (!res.writableEnded) clientGone = true; });
+
     try {
-      stream = client.messages.stream({
-        model,
-        max_tokens: style === 'deeper' ? Math.max(maxTokens, 900) : maxTokens,
-        system: askSystemPrompt({ notes, contextLine, style }),
-        messages,
+      // Convert messages to Gemini format (history + last user message)
+      const geminiHistory = messages.slice(0, -1).map((m) => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }],
+      }));
+
+      const chat = model.startChat({
+        history: geminiHistory,
+        systemInstruction: { parts: [{ text: askSystemPrompt({ notes, contextLine, style }) }] },
+        generationConfig: {
+          maxOutputTokens: style === 'deeper' ? Math.max(maxTokens, 900) : maxTokens,
+        },
       });
-      stream.on('text', (text) => out.send({ type: 'delta', text }));
-      await stream.finalMessage();
-      out.send({ type: 'done', sources: used.map((s) => ({ id: s.id, name: s.name })) });
-      res.end();
+
+      const result = await chat.sendMessageStream(last.content);
+      for await (const chunk of result.stream) {
+        if (clientGone) break;
+        const text = chunk.text();
+        if (text) out.send({ type: 'delta', text });
+      }
+      if (!clientGone) {
+        out.send({ type: 'done', sources: used.map((s) => ({ id: s.id, name: s.name })) });
+        res.end();
+      }
     } catch (err) {
       if (clientGone) return res.end();
       console.error('[ask]', err?.status || '', err?.message);
@@ -84,8 +98,8 @@ export function askRoute({ client, model, maxChars, maxTurns, maxTokens, mock })
 
 function describeContext(ctx, preset) {
   if (ctx.page === 'explore' && ctx.structureId) return `Looking at the ${BY_ID[ctx.structureId].name} in the 3D explorer.`;
-  if (ctx.page === 'replay' && preset) return `Watching the replay “${preset.question}” (moment: “${preset.moment}”).`;
-  if (ctx.page === 'replay' && ctx.replay) return `Watching an AI-generated replay titled “${ctx.replay.question}”.`;
+  if (ctx.page === 'replay' && preset) return `Watching the replay "${preset.question}" (moment: "${preset.moment}").`;
+  if (ctx.page === 'replay' && ctx.replay) return `Watching an AI-generated replay titled "${ctx.replay.question}".`;
   if (ctx.page === 'lab' && ctx.lab) {
     const l = ctx.lab;
     const parts = [];

@@ -48,11 +48,12 @@ export function rateLimit({ perMinute = 20 } = {}) {
   };
 }
 
-/** Map Anthropic SDK errors to something safe to show. */
+/** Map Gemini SDK errors to something safe to show. */
 export function upstreamError(err) {
-  const status = err?.status;
-  if (status === 429 || status === 529) return new HttpError(503, 'BUSY', 'The AI is busy right now. Try again in a moment.');
-  if (status === 401 || status === 403) return new HttpError(503, 'AI_MISCONFIGURED', 'The AI key on the server was rejected. Check ANTHROPIC_API_KEY.');
-  if (status === 404) return new HttpError(503, 'AI_MISCONFIGURED', 'The AI model name on the server was not found. Check MODEL_REPLAY and MODEL_ASK.');
+  const status = err?.status || err?.httpStatusCode;
+  const msg = err?.message || '';
+  if (status === 429 || msg.includes('RESOURCE_EXHAUSTED')) return new HttpError(503, 'BUSY', 'The AI is busy right now. Try again in a moment.');
+  if (status === 401 || status === 403 || msg.includes('API_KEY_INVALID')) return new HttpError(503, 'AI_MISCONFIGURED', 'The AI key on the server was rejected. Check GEMINI_API_KEY.');
+  if (status === 404 || msg.includes('not found')) return new HttpError(503, 'AI_MISCONFIGURED', 'The AI model name on the server was not found. Check MODEL_REPLAY and MODEL_ASK.');
   return new HttpError(502, 'UPSTREAM_ERROR', 'The AI could not finish this request. Try again.');
 }
