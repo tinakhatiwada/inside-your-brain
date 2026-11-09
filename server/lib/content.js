@@ -1,8 +1,10 @@
 // Loads the reviewed content once at startup. The AI is grounded on exactly these files.
 import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = join(import.meta.dirname, '..', '..', 'src', 'content');
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = join(__dirname, '..', '..', 'src', 'content');
 const read = (p) => JSON.parse(readFileSync(join(root, p), 'utf8'));
 
 const data = read('structures.json');
@@ -31,5 +33,5 @@ export function structureNotes(s) {
 
 /** One-line catalogue entry, used so the model knows every ID it may use. */
 export function structureLine(s) {
-  return `- ${s.id}: ${s.name}, “${s.nickname}” (${GROUPS[s.group].name.toLowerCase()}). ${s.oneLiner}`;
+  return `- ${s.id}: ${s.name}, "${s.nickname}" (${GROUPS[s.group].name.toLowerCase()}). ${s.oneLiner}`;
 }
