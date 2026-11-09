@@ -24,38 +24,31 @@ export default async function handler(req, res) {
 
   // Ground the answer
   const ids = new Set();
-  if (context.structureId) ids.add(context.structureId);
+  if (context.structureId && BY_ID[context.structureId]) ids.add(context.structureId);
   const preset = context.replayId && REPLAY_BY_ID[context.replayId];
   const replayStructures = preset ? preset.beats.flatMap((b) => b.structures) : context.replay?.structures || [];
   replayStructures.slice(0, 4).forEach((id) => ids.add(id));
   retrieve(last.content, { kind: 'structure', k: 3 }).forEach((r) => ids.add(r.id));
   const used = [...ids].slice(0, 6).map((id) => BY_ID[id]).filter(Boolean);
   const notes = used.map(structureNotes).join('\n\n');
-
   const contextLine = describeContext(context, preset);
 
-  // SSE headers
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache, no-transform');
-  res.setHeader('Connection', 'keep-alive');
-  res.setHeader('X-Accel-Buffering', 'no');
-  const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
-
-  // Mock mode
+  // Mock mode — return a non-streaming JSON response for simplicity
   if (process.env.MOCK_AI === 'true') {
     const s = used[0] || BY_ID['prefrontal'];
-    const text = `(Demo mode: this is a canned answer, not the AI.)\n\n${s.oneLiner} ${s.explain[0]}\n\n${s.explain[1] || ''}`;
-    for (const word of text.split(/(?<=\s)/)) {
-      send({ type: 'delta', text: word });
-      await new Promise((ok) => setTimeout(ok, 12));
-    }
-    send({ type: 'done', sources: used.map((x) => ({ id: x.id, name: x.name })) });
-    return res.end();
+    const text = `(Demo mode) ${s.oneLiner} ${s.explain[0]}`;
+    return res.json({ answer: text, sources: used.map((x) => ({ id: x.id, name: x.name })) });
   }
 
   if (!process.env.GEMINI_API_KEY) {
     return res.status(503).json({ error: 'AI is not set up on this server.', code: 'AI_DISABLED' });
   }
+
+  // SSE headers
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('X-Accel-Buffering', 'no');
+  const send = (data) => res.write(`data: ${JSON.stringify(data)}\n\n`);
 
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -82,24 +75,28 @@ export default async function handler(req, res) {
     send({ type: 'done', sources: used.map((s) => ({ id: s.id, name: s.name })) });
     res.end();
   } catch (err) {
-    console.error('[ask]', err?.message);
-    send({ type: 'error', code: 'UPSTREAM_ERROR', error: 'The AI could not finish this request. Try again.' });
+    console.error('[ask] ERROR:', err?.message, err?.stack);
+    const msg = err?.message || '';
+    let userMsg = 'The AI could not finish this request. Try again.';
+    if (msg.includes('API_KEY_INVALID')) userMsg = 'The Gemini API key is invalid. Check GEMINI_API_KEY.';
+    else if (msg.includes('RESOURCE_EXHAUSTED') || msg.includes('429')) userMsg = 'The AI is busy. Wait a moment and try again.';
+    else if (msg.includes('SAFETY')) userMsg = 'The AI flagged this as sensitive. Try rephrasing your question about the brain.';
+    send({ type: 'error', code: 'UPSTREAM_ERROR', error: userMsg });
     res.end();
   }
 }
 
 function describeContext(ctx, preset) {
   if (ctx.page === 'explore' && ctx.structureId && BY_ID[ctx.structureId]) return `Looking at the ${BY_ID[ctx.structureId].name} in the 3D explorer.`;
-  if (ctx.page === 'replay' && preset) return `Watching the replay "${preset.question}" (moment: "${preset.moment}").`;
+  if (ctx.page === 'replay' && preset) return `Watching the replay "${preset.question}".`;
   if (ctx.page === 'replay' && ctx.replay) return `Watching an AI-generated replay titled "${ctx.replay.question}".`;
   if (ctx.page === 'lab' && ctx.lab) {
     const l = ctx.lab;
     const parts = [];
-    if (l.reactionMs) parts.push(`reaction time median ${Math.round(l.reactionMs)} ms`);
+    if (l.reactionMs) parts.push(`reaction time ${Math.round(l.reactionMs)} ms`);
     if (l.stroopCostMs !== undefined) parts.push(`Stroop cost ${Math.round(l.stroopCostMs)} ms`);
     if (l.span) parts.push(`digit span ${l.span}`);
     return `Lab results: ${parts.join('; ')}.`;
   }
   return `On the ${ctx.page || 'home'} page.`;
 }
-
